@@ -28,141 +28,142 @@ namespace FurnitureAccounting.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.iconLabel = new System.Windows.Forms.Label();
-            this.usernameLabel = new System.Windows.Forms.Label();
-            this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.passwordLabel = new System.Windows.Forms.Label();
-            this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.loginButton = new System.Windows.Forms.Button();
-            this.footerLabel = new System.Windows.Forms.Label();
-            this.mainPanel.SuspendLayout();
-            this.SuspendLayout();
+            mainPanel = new Panel();
+            titleLabel = new Label();
+            iconLabel = new Label();
+            usernameLabel = new Label();
+            usernameTextBox = new TextBox();
+            passwordLabel = new Label();
+            passwordTextBox = new TextBox();
+            loginButton = new Button();
+            footerLabel = new Label();
+            mainPanel.SuspendLayout();
+            SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.Color.White;
-            this.mainPanel.Controls.Add(this.titleLabel);
-            this.mainPanel.Controls.Add(this.iconLabel);
-            this.mainPanel.Controls.Add(this.usernameLabel);
-            this.mainPanel.Controls.Add(this.usernameTextBox);
-            this.mainPanel.Controls.Add(this.passwordLabel);
-            this.mainPanel.Controls.Add(this.passwordTextBox);
-            this.mainPanel.Controls.Add(this.loginButton);
-            this.mainPanel.Location = new System.Drawing.Point(75, 100);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(300, 350);
-            this.mainPanel.TabIndex = 0;
+            mainPanel.BackColor = Color.White;
+            mainPanel.Controls.Add(titleLabel);
+            mainPanel.Controls.Add(iconLabel);
+            mainPanel.Controls.Add(usernameLabel);
+            mainPanel.Controls.Add(usernameTextBox);
+            mainPanel.Controls.Add(passwordLabel);
+            mainPanel.Controls.Add(passwordTextBox);
+            mainPanel.Controls.Add(loginButton);
+            mainPanel.Location = new Point(75, 100);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Size = new Size(300, 350);
+            mainPanel.TabIndex = 0;
             // 
             // titleLabel
             // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.titleLabel.Location = new System.Drawing.Point(50, 100);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(200, 37);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Учет мебели";
-            this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            titleLabel.AutoSize = true;
+            titleLabel.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            titleLabel.ForeColor = Color.FromArgb(52, 152, 219);
+            titleLabel.Location = new Point(50, 100);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new Size(184, 37);
+            titleLabel.TabIndex = 0;
+            titleLabel.Text = "Учет мебели";
+            titleLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // iconLabel
             // 
-            this.iconLabel.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.iconLabel.Location = new System.Drawing.Point(100, 20);
-            this.iconLabel.Name = "iconLabel";
-            this.iconLabel.Size = new System.Drawing.Size(100, 80);
-            this.iconLabel.TabIndex = 1;
-            this.iconLabel.Text = "🪑";
-            this.iconLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            iconLabel.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point);
+            iconLabel.Location = new Point(100, 20);
+            iconLabel.Name = "iconLabel";
+            iconLabel.Size = new Size(100, 80);
+            iconLabel.TabIndex = 1;
+            iconLabel.Text = "\U0001fa91";
+            iconLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // usernameLabel
             // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.usernameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.usernameLabel.Location = new System.Drawing.Point(50, 160);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(109, 19);
-            this.usernameLabel.TabIndex = 2;
-            this.usernameLabel.Text = "Имя пользователя";
+            usernameLabel.AutoSize = true;
+            usernameLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            usernameLabel.ForeColor = Color.FromArgb(64, 64, 64);
+            usernameLabel.Location = new Point(50, 160);
+            usernameLabel.Name = "usernameLabel";
+            usernameLabel.Size = new Size(125, 19);
+            usernameLabel.TabIndex = 2;
+            usernameLabel.Text = "Имя пользователя";
             // 
             // usernameTextBox
             // 
-            this.usernameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.usernameTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.usernameTextBox.Location = new System.Drawing.Point(50, 182);
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(200, 29);
-            this.usernameTextBox.TabIndex = 3;
+            usernameTextBox.BorderStyle = BorderStyle.FixedSingle;
+            usernameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            usernameTextBox.Location = new Point(50, 182);
+            usernameTextBox.Name = "usernameTextBox";
+            usernameTextBox.Size = new Size(200, 29);
+            usernameTextBox.TabIndex = 3;
             // 
             // passwordLabel
             // 
-            this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.passwordLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.passwordLabel.Location = new System.Drawing.Point(50, 220);
-            this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(50, 19);
-            this.passwordLabel.TabIndex = 4;
-            this.passwordLabel.Text = "Пароль";
+            passwordLabel.AutoSize = true;
+            passwordLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            passwordLabel.ForeColor = Color.FromArgb(64, 64, 64);
+            passwordLabel.Location = new Point(50, 220);
+            passwordLabel.Name = "passwordLabel";
+            passwordLabel.Size = new Size(56, 19);
+            passwordLabel.TabIndex = 4;
+            passwordLabel.Text = "Пароль";
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.passwordTextBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.passwordTextBox.Location = new System.Drawing.Point(50, 242);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.PasswordChar = '•';
-            this.passwordTextBox.Size = new System.Drawing.Size(200, 29);
-            this.passwordTextBox.TabIndex = 5;
+            passwordTextBox.BorderStyle = BorderStyle.FixedSingle;
+            passwordTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            passwordTextBox.Location = new Point(50, 242);
+            passwordTextBox.Name = "passwordTextBox";
+            passwordTextBox.PasswordChar = '•';
+            passwordTextBox.Size = new Size(200, 29);
+            passwordTextBox.TabIndex = 5;
             // 
             // loginButton
             // 
-            this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.loginButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loginButton.FlatAppearance.BorderSize = 0;
-            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.loginButton.ForeColor = System.Drawing.Color.White;
-            this.loginButton.Location = new System.Drawing.Point(50, 290);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(200, 40);
-            this.loginButton.TabIndex = 6;
-            this.loginButton.Text = "Войти";
-            this.loginButton.UseVisualStyleBackColor = false;
+            loginButton.BackColor = Color.FromArgb(52, 152, 219);
+            loginButton.Cursor = Cursors.Hand;
+            loginButton.FlatAppearance.BorderSize = 0;
+            loginButton.FlatStyle = FlatStyle.Flat;
+            loginButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            loginButton.ForeColor = Color.White;
+            loginButton.Location = new Point(50, 290);
+            loginButton.Name = "loginButton";
+            loginButton.Size = new Size(200, 40);
+            loginButton.TabIndex = 6;
+            loginButton.Text = "Войти";
+            loginButton.UseVisualStyleBackColor = false;
             // 
             // footerLabel
             // 
-            this.footerLabel.AutoSize = true;
-            this.footerLabel.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.footerLabel.ForeColor = System.Drawing.Color.White;
-            this.footerLabel.Location = new System.Drawing.Point(165, 500);
-            this.footerLabel.Name = "footerLabel";
-            this.footerLabel.Size = new System.Drawing.Size(120, 13);
-            this.footerLabel.TabIndex = 1;
-            this.footerLabel.Text = "© 2024 Учет мебели";
-            this.footerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            footerLabel.AutoSize = true;
+            footerLabel.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            footerLabel.ForeColor = Color.White;
+            footerLabel.Location = new Point(165, 500);
+            footerLabel.Name = "footerLabel";
+            footerLabel.Size = new Size(114, 13);
+            footerLabel.TabIndex = 1;
+            footerLabel.Text = "© 2025 Учет мебели";
+            footerLabel.TextAlign = ContentAlignment.MiddleCenter;
+            footerLabel.Click += footerLabel_Click;
             // 
             // LoginForm
             // 
-            this.AcceptButton = this.loginButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.ClientSize = new System.Drawing.Size(450, 550);
-            this.Controls.Add(this.footerLabel);
-            this.Controls.Add(this.mainPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "LoginForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Вход в систему";
-            this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = loginButton;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(52, 152, 219);
+            ClientSize = new Size(450, 550);
+            Controls.Add(footerLabel);
+            Controls.Add(mainPanel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Вход в систему";
+            mainPanel.ResumeLayout(false);
+            mainPanel.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
