@@ -32,7 +32,7 @@ namespace FurnitureAccounting.Views
         private void InitializeComponents()
         {
             Text = "Система учета мебели";
-            Size = new Size(1200, 800);
+            Size = new Size(1400, 900);
             StartPosition = FormStartPosition.CenterScreen;
             BackColor = backgroundColor;
             Activated += MainForm_Activated;
@@ -246,7 +246,7 @@ namespace FurnitureAccounting.Views
         {
             var card = new Panel
             {
-                Width = 250,
+                Width = 280,
                 Height = 120,
                 BackColor = Color.White,
                 Margin = new Padding(0, 0, 20, 20)
@@ -274,9 +274,9 @@ namespace FurnitureAccounting.Views
             var valueLabel = new Label
             {
                 Text = value,
-                Font = new Font("Segoe UI", 24, FontStyle.Bold),
+                Font = new Font("Segoe UI", 20, FontStyle.Bold),
                 ForeColor = textColor,
-                Location = new Point(100, 20),
+                Location = new Point(90, 20),
                 AutoSize = true
             };
             
@@ -285,7 +285,7 @@ namespace FurnitureAccounting.Views
                 Text = title,
                 Font = new Font("Segoe UI", 11),
                 ForeColor = Color.Gray,
-                Location = new Point(100, 60),
+                Location = new Point(90, 55),
                 AutoSize = true
             };
             
