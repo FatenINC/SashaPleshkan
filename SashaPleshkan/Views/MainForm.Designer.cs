@@ -103,17 +103,17 @@ namespace FurnitureAccounting.Views
             this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.logoPanel.Location = new System.Drawing.Point(0, 0);
             this.logoPanel.Name = "logoPanel";
-            this.logoPanel.Size = new System.Drawing.Size(250, 100);
+            this.logoPanel.Size = new System.Drawing.Size(250, 60);
             this.logoPanel.TabIndex = 0;
             // 
             // logoLabel
             // 
             this.logoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoLabel.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.logoLabel.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.logoLabel.ForeColor = System.Drawing.Color.White;
             this.logoLabel.Location = new System.Drawing.Point(0, 0);
             this.logoLabel.Name = "logoLabel";
-            this.logoLabel.Size = new System.Drawing.Size(250, 100);
+            this.logoLabel.Size = new System.Drawing.Size(250, 60);
             this.logoLabel.TabIndex = 0;
             this.logoLabel.Text = "🪑 Учет мебели";
             this.logoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -131,7 +131,7 @@ namespace FurnitureAccounting.Views
             this.navigationPanel.Controls.Add(this.logoutButton);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.navigationPanel.Location = new System.Drawing.Point(0, 100);
+            this.navigationPanel.Location = new System.Drawing.Point(0, 60);
             this.navigationPanel.Name = "navigationPanel";
             this.navigationPanel.Size = new System.Drawing.Size(250, 828);
             this.navigationPanel.TabIndex = 1;
@@ -604,14 +604,14 @@ namespace FurnitureAccounting.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1800, 950);
+            this.ClientSize = new System.Drawing.Size(1200, 700);
             this.Controls.Add(this.mainContentPanel);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.sidebarPanel);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Система учета мебели";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
             this.sidebarPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
             this.navigationPanel.ResumeLayout(false);
