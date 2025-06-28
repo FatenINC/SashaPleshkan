@@ -40,6 +40,8 @@ namespace FurnitureAccounting.Views
             this.reportsButton = new System.Windows.Forms.Button();
             this.logsButton = new System.Windows.Forms.Button();
             this.dividerLabel = new System.Windows.Forms.Label();
+            this.importButton = new System.Windows.Forms.Button();
+            this.exportButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.userStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -128,6 +130,8 @@ namespace FurnitureAccounting.Views
             this.navigationPanel.Controls.Add(this.reportsButton);
             this.navigationPanel.Controls.Add(this.logsButton);
             this.navigationPanel.Controls.Add(this.dividerLabel);
+            this.navigationPanel.Controls.Add(this.importButton);
+            this.navigationPanel.Controls.Add(this.exportButton);
             this.navigationPanel.Controls.Add(this.logoutButton);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -270,6 +274,42 @@ namespace FurnitureAccounting.Views
             this.dividerLabel.Size = new System.Drawing.Size(244, 2);
             this.dividerLabel.TabIndex = 7;
             // 
+            // importButton
+            // 
+            this.importButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.importButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.importButton.FlatAppearance.BorderSize = 0;
+            this.importButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.importButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.importButton.ForeColor = System.Drawing.Color.White;
+            this.importButton.Location = new System.Drawing.Point(0, 358);
+            this.importButton.Margin = new System.Windows.Forms.Padding(0);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(250, 50);
+            this.importButton.TabIndex = 8;
+            this.importButton.Text = "    📥 Импорт";
+            this.importButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.importButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.importButton.UseVisualStyleBackColor = false;
+            // 
+            // exportButton
+            // 
+            this.exportButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.exportButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exportButton.FlatAppearance.BorderSize = 0;
+            this.exportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exportButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.exportButton.ForeColor = System.Drawing.Color.White;
+            this.exportButton.Location = new System.Drawing.Point(0, 408);
+            this.exportButton.Margin = new System.Windows.Forms.Padding(0);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(250, 50);
+            this.exportButton.TabIndex = 9;
+            this.exportButton.Text = "    📤 Экспорт";
+            this.exportButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.exportButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.exportButton.UseVisualStyleBackColor = false;
+            // 
             // logoutButton
             // 
             this.logoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
@@ -278,11 +318,11 @@ namespace FurnitureAccounting.Views
             this.logoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logoutButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.logoutButton.ForeColor = System.Drawing.Color.White;
-            this.logoutButton.Location = new System.Drawing.Point(0, 358);
+            this.logoutButton.Location = new System.Drawing.Point(0, 458);
             this.logoutButton.Margin = new System.Windows.Forms.Padding(0);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(250, 50);
-            this.logoutButton.TabIndex = 8;
+            this.logoutButton.TabIndex = 10;
             this.logoutButton.Text = "    🚪 Выход";
             this.logoutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.logoutButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
@@ -654,6 +694,8 @@ namespace FurnitureAccounting.Views
         private System.Windows.Forms.Button reportsButton;
         private System.Windows.Forms.Button logsButton;
         private System.Windows.Forms.Label dividerLabel;
+        private System.Windows.Forms.Button importButton;
+        private System.Windows.Forms.Button exportButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel userStatusLabel;

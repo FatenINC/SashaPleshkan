@@ -57,11 +57,14 @@ namespace FurnitureAccounting.Views
             writeOffButton.Click += (s, e) => OpenWriteOffForm();
             logsButton.Click += (s, e) => OpenLogsForm();
             reportsButton.Click += (s, e) => OpenReportForm();
+            importButton.Click += (s, e) => ImportData();
+            exportButton.Click += (s, e) => ExportData();
             logoutButton.Click += (s, e) => Application.Exit();
             
             // Add hover effects to navigation buttons
             var navButtons = new[] { dashboardButton, furnitureButton, departmentsButton, 
-                                   assignmentButton, writeOffButton, reportsButton, logsButton, logoutButton };
+                                   assignmentButton, writeOffButton, reportsButton, logsButton, 
+                                   importButton, exportButton, logoutButton };
             
             foreach (var button in navButtons)
             {
