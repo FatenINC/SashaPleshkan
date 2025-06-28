@@ -29,6 +29,26 @@ namespace FurnitureAccounting.Views
             ShowDashboard();
         }
         
+        private string TranslateAction(string action)
+        {
+            // Переводим старые английские действия на русский для отображения
+            var translations = new System.Collections.Generic.Dictionary<string, string>
+            {
+                { "Add Department", "Добавить отдел" },
+                { "Update Department", "Обновить отдел" },
+                { "Delete Department", "Удалить отдел" },
+                { "Add Furniture", "Добавить мебель" },
+                { "Update Furniture", "Обновить мебель" },
+                { "Delete Furniture", "Удалить мебель" },
+                { "Assign Furniture", "Назначить мебель" },
+                { "Write-off Furniture", "Списать мебель" },
+                { "Export Data", "Экспорт данных" },
+                { "Import Data", "Импорт данных" }
+            };
+            
+            return translations.ContainsKey(action) ? translations[action] : action;
+        }
+        
         private void InitializeComponents()
         {
             Text = "Система учета мебели";
@@ -227,7 +247,18 @@ namespace FurnitureAccounting.Views
             };
             
             var recentLogs = _dataService.GetLogs().OrderByDescending(l => l.Timestamp).Take(10).ToList();
-            activityGrid.DataSource = recentLogs;
+            
+            // Переводим действия для отображения
+            var displayLogs = recentLogs.Select(l => new 
+            {
+                l.Id,
+                l.Username,
+                Action = TranslateAction(l.Action),
+                l.Details,
+                l.Timestamp
+            }).ToList();
+            
+            activityGrid.DataSource = displayLogs;
             
             if (activityGrid.Columns["Id"] != null)
             {

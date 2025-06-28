@@ -23,6 +23,26 @@ namespace FurnitureAccounting.Views
             InitializeComponents();
         }
         
+        private string TranslateAction(string action)
+        {
+            // Переводим старые английские действия на русский для отображения
+            var translations = new System.Collections.Generic.Dictionary<string, string>
+            {
+                { "Add Department", "Добавить отдел" },
+                { "Update Department", "Обновить отдел" },
+                { "Delete Department", "Удалить отдел" },
+                { "Add Furniture", "Добавить мебель" },
+                { "Update Furniture", "Обновить мебель" },
+                { "Delete Furniture", "Удалить мебель" },
+                { "Assign Furniture", "Назначить мебель" },
+                { "Write-off Furniture", "Списать мебель" },
+                { "Export Data", "Экспорт данных" },
+                { "Import Data", "Импорт данных" }
+            };
+            
+            return translations.ContainsKey(action) ? translations[action] : action;
+        }
+        
         private void InitializeComponents()
         {
             Text = "Журнал действий";
@@ -107,7 +127,18 @@ namespace FurnitureAccounting.Views
         private void LoadData()
         {
             var logs = _dataService.GetLogs().OrderByDescending(l => l.Timestamp).ToList();
-            gridView.DataSource = logs;
+            
+            // Переводим действия для отображения
+            var displayLogs = logs.Select(l => new 
+            {
+                l.Id,
+                l.Username,
+                Action = TranslateAction(l.Action),
+                l.Details,
+                l.Timestamp
+            }).ToList();
+            
+            gridView.DataSource = displayLogs;
             
             // Use BeginInvoke only if handle is created
             if (logs.Any() && IsHandleCreated)
@@ -149,7 +180,7 @@ namespace FurnitureAccounting.Views
                 }));
             }
             
-            var actions = logs.Select(l => l.Action).Distinct().OrderBy(a => a).ToList();
+            var actions = logs.Select(l => TranslateAction(l.Action)).Distinct().OrderBy(a => a).ToList();
             actions.Insert(0, "Все действия");
             actionFilterComboBox.DataSource = actions;
             actionFilterComboBox.SelectedIndex = 0;
@@ -171,10 +202,20 @@ namespace FurnitureAccounting.Views
                 
             if (actionFilterComboBox.Text != "Все действия")
             {
-                logs = logs.Where(l => l.Action == actionFilterComboBox.Text).ToList();
+                logs = logs.Where(l => TranslateAction(l.Action) == actionFilterComboBox.Text).ToList();
             }
             
-            gridView.DataSource = logs;
+            // Переводим действия для отображения
+            var displayLogs = logs.Select(l => new 
+            {
+                l.Id,
+                l.Username,
+                Action = TranslateAction(l.Action),
+                l.Details,
+                l.Timestamp
+            }).ToList();
+            
+            gridView.DataSource = displayLogs;
         }
         
         private void ClearFilterButton_Click(object sender, EventArgs e)
@@ -194,14 +235,15 @@ namespace FurnitureAccounting.Views
                 {
                     try
                     {
-                        var logs = gridView.DataSource as System.Collections.Generic.List<FurnitureAccounting.Models.ActionLog>;
+                        var logs = gridView.DataSource as System.Collections.IList;
                         var lines = new System.Collections.Generic.List<string>();
                         
                         lines.Add("ID,Пользователь,Действие,Детали,Время");
                         
                         foreach (var log in logs)
                         {
-                            lines.Add($"{log.Id},\"{log.Username}\",\"{log.Action}\",\"{log.Details}\",\"{log.Timestamp:yyyy-MM-dd HH:mm:ss}\"");
+                            dynamic logItem = log;
+                            lines.Add($"{logItem.Id},\"{logItem.Username}\",\"{logItem.Action}\",\"{logItem.Details}\",\"{logItem.Timestamp:yyyy-MM-dd HH:mm:ss}\"");
                         }
                         
                         System.IO.File.WriteAllLines(dialog.FileName, lines);
