@@ -39,10 +39,12 @@ namespace FurnitureAccounting.Views
                 RowCount = 2,
                 Padding = new Padding(10)
             };
+            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 240));
+            mainPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             
             var inputPanel = new Panel
             {
-                Height = 180,
+                Height = 220,
                 Dock = DockStyle.Top,
                 BackColor = Color.White,
                 Padding = new Padding(20)
