@@ -336,7 +336,7 @@ namespace FurnitureAccounting.Views
             this.dashboardLayout.Name = "dashboardLayout";
             this.dashboardLayout.RowCount = 3;
             this.dashboardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.dashboardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.dashboardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 320F));
             this.dashboardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.dashboardLayout.Size = new System.Drawing.Size(1510, 888);
             this.dashboardLayout.TabIndex = 0;
@@ -383,8 +383,9 @@ namespace FurnitureAccounting.Views
             this.statsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statsPanel.Location = new System.Drawing.Point(3, 83);
             this.statsPanel.Name = "statsPanel";
-            this.statsPanel.Size = new System.Drawing.Size(1504, 174);
+            this.statsPanel.Size = new System.Drawing.Size(1504, 314);
             this.statsPanel.TabIndex = 1;
+            this.statsPanel.WrapContents = true;
             // 
             // totalFurnitureCard
             // 
@@ -564,10 +565,10 @@ namespace FurnitureAccounting.Views
             this.recentActionsPanel.Controls.Add(this.recentActionsTitleLabel);
             this.recentActionsPanel.Controls.Add(this.recentActionsDataGridView);
             this.recentActionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.recentActionsPanel.Location = new System.Drawing.Point(3, 263);
+            this.recentActionsPanel.Location = new System.Drawing.Point(3, 403);
             this.recentActionsPanel.Name = "recentActionsPanel";
             this.recentActionsPanel.Padding = new System.Windows.Forms.Padding(20);
-            this.recentActionsPanel.Size = new System.Drawing.Size(1504, 622);
+            this.recentActionsPanel.Size = new System.Drawing.Size(1504, 482);
             this.recentActionsPanel.TabIndex = 2;
             // 
             // recentActionsTitleLabel
