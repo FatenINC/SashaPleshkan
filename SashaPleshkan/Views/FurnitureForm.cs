@@ -148,11 +148,14 @@ namespace FurnitureAccounting.Views
             gridView.DataSource = null;
             gridView.DataSource = furniture;
             
-            if (gridView.Columns["Id"] != null)
+            if (gridView.Columns != null && gridView.Columns.Count > 0)
             {
-                gridView.Columns["Id"].Width = 50;
-                gridView.Columns["DepartmentId"].Visible = false;
-                gridView.Columns["WriteOffReason"].Visible = false;
+                if (gridView.Columns["Id"] != null)
+                    gridView.Columns["Id"].Width = 50;
+                if (gridView.Columns["DepartmentId"] != null)
+                    gridView.Columns["DepartmentId"].Visible = false;
+                if (gridView.Columns["WriteOffReason"] != null)
+                    gridView.Columns["WriteOffReason"].Visible = false;
             }
         }
         

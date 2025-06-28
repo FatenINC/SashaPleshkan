@@ -167,7 +167,7 @@ namespace FurnitureAccounting.Views
             var departments = _dataService.GetDepartments();
             gridView.DataSource = departments;
             
-            if (gridView.Columns["Id"] != null)
+            if (gridView.Columns != null && gridView.Columns.Count > 0 && gridView.Columns["Id"] != null)
                 gridView.Columns["Id"].Width = 50;
         }
         

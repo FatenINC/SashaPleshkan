@@ -44,18 +44,24 @@ namespace FurnitureAccounting.Views
                 BackColor = primaryColor
             };
             
-            // Logo/Title
+            // Logo/Title Panel
+            var titlePanel = new Panel
+            {
+                Height = 100,
+                Dock = DockStyle.Top,
+                BackColor = primaryColor
+            };
+            
             var titleLabel = new Label
             {
                 Text = "FURNITURE\nACCOUNTING",
-                Font = new Font("Segoe UI", 16, FontStyle.Bold),
+                Font = new Font("Segoe UI", 14, FontStyle.Bold),
                 ForeColor = Color.White,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Height = 100,
-                Dock = DockStyle.Top,
-                Padding = new Padding(10)
+                Dock = DockStyle.Fill
             };
-            sidebarPanel.Controls.Add(titleLabel);
+            titlePanel.Controls.Add(titleLabel);
+            sidebarPanel.Controls.Add(titlePanel);
             
             // Navigation buttons
             var navPanel = new FlowLayoutPanel
@@ -104,14 +110,15 @@ namespace FurnitureAccounting.Views
             var button = new Button
             {
                 Text = text,
-                Width = 230,
-                Height = 45,
+                Width = 220,
+                Height = 40,
                 FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 11),
+                Font = new Font("Segoe UI", 10),
                 ForeColor = Color.White,
                 TextAlign = ContentAlignment.MiddleLeft,
-                Padding = new Padding(20, 0, 0, 0),
-                Cursor = Cursors.Hand
+                Padding = new Padding(15, 0, 0, 0),
+                Cursor = Cursors.Hand,
+                Margin = new Padding(15, 2, 15, 2)
             };
             
             button.FlatAppearance.BorderSize = 0;

@@ -104,13 +104,19 @@ namespace FurnitureAccounting.Views
             var logs = _dataService.GetLogs().OrderByDescending(l => l.Timestamp).ToList();
             gridView.DataSource = logs;
             
-            if (gridView.Columns["Id"] != null)
+            if (gridView.Columns != null && gridView.Columns.Count > 0)
             {
-                gridView.Columns["Id"].Width = 50;
-                gridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
-                gridView.Columns["Timestamp"].Width = 150;
-                gridView.Columns["Username"].Width = 100;
-                gridView.Columns["Action"].Width = 150;
+                if (gridView.Columns["Id"] != null)
+                    gridView.Columns["Id"].Width = 50;
+                if (gridView.Columns["Timestamp"] != null)
+                {
+                    gridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
+                    gridView.Columns["Timestamp"].Width = 150;
+                }
+                if (gridView.Columns["Username"] != null)
+                    gridView.Columns["Username"].Width = 100;
+                if (gridView.Columns["Action"] != null)
+                    gridView.Columns["Action"].Width = 150;
             }
             
             var actions = logs.Select(l => l.Action).Distinct().OrderBy(a => a).ToList();
