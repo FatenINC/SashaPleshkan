@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using FurnitureAccounting.Models;
 using FurnitureAccounting.Services;
 
 namespace FurnitureAccounting.Views
@@ -87,35 +88,40 @@ namespace FurnitureAccounting.Views
         {
             var furniture = _dataService.GetFurniture()
                 .Where(f => !f.IsWrittenOff)
-                .Select(f => new
+                .Select(f => new ComboBoxItem
                 {
-                    f.Id,
+                    Id = f.Id,
                     DisplayText = $"{f.Name} ({f.InventoryNumber})"
                 })
                 .ToList();
                 
             furnitureComboBox.DataSource = furniture;
+            furnitureComboBox.DisplayMember = "DisplayText";
+            furnitureComboBox.ValueMember = "Id";
         }
         
         private void FurnitureComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (furnitureComboBox.SelectedItem != null)
             {
-                dynamic selected = furnitureComboBox.SelectedItem;
-                var furniture = _dataService.GetFurnitureItem(selected.Id);
-                
-                if (furniture != null)
+                var selected = furnitureComboBox.SelectedItem as ComboBoxItem;
+                if (selected != null)
                 {
-                    var department = furniture.DepartmentId.HasValue 
-                        ? _dataService.GetDepartment(furniture.DepartmentId.Value)?.Name ?? "Not assigned"
-                        : "Not assigned";
-                        
-                    furnitureDetailsLabel.Text = $"Type: {furniture.Type}\n" +
-                                               $"Price: ${furniture.Price:N2}\n" +
-                                               $"Purchase Date: {furniture.PurchaseDate:d}\n" +
-                                               $"Department: {department}";
-                    furnitureDetailsLabel.ForeColor = Color.Black;
-                    writeOffButton.Enabled = true;
+                    var furniture = _dataService.GetFurnitureItem(selected.Id);
+                    
+                    if (furniture != null)
+                    {
+                        var department = furniture.DepartmentId.HasValue 
+                            ? _dataService.GetDepartment(furniture.DepartmentId.Value)?.Name ?? "Not assigned"
+                            : "Not assigned";
+                            
+                        furnitureDetailsLabel.Text = $"Type: {furniture.Type}\n" +
+                                                   $"Price: ${furniture.Price:N2}\n" +
+                                                   $"Purchase Date: {furniture.PurchaseDate:d}\n" +
+                                                   $"Department: {department}";
+                        furnitureDetailsLabel.ForeColor = Color.Black;
+                        writeOffButton.Enabled = true;
+                    }
                 }
             }
             else
@@ -144,17 +150,20 @@ namespace FurnitureAccounting.Views
                 
             if (result == DialogResult.Yes)
             {
-                dynamic selected = furnitureComboBox.SelectedItem;
-                _dataService.WriteOffFurniture(selected.Id, reasonTextBox.Text.Trim());
-                
-                MessageBox.Show("Furniture written off successfully!", "Success", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var selected = furnitureComboBox.SelectedItem as ComboBoxItem;
+                if (selected != null)
+                {
+                    _dataService.WriteOffFurniture(selected.Id, reasonTextBox.Text.Trim());
                     
-                LoadData();
-                reasonTextBox.Clear();
-                furnitureDetailsLabel.Text = "Select furniture to see details";
-                furnitureDetailsLabel.ForeColor = Color.Gray;
-                writeOffButton.Enabled = false;
+                    MessageBox.Show("Furniture written off successfully!", "Success", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                    LoadData();
+                    reasonTextBox.Clear();
+                    furnitureDetailsLabel.Text = "Select furniture to see details";
+                    furnitureDetailsLabel.ForeColor = Color.Gray;
+                    writeOffButton.Enabled = false;
+                }
             }
         }
     }

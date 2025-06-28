@@ -94,15 +94,17 @@ namespace FurnitureAccounting.Views
         {
             var furniture = _dataService.GetFurniture()
                 .Where(f => !f.IsWrittenOff)
-                .Select(f => new
+                .Select(f => new ComboBoxItem
                 {
-                    f.Id,
+                    Id = f.Id,
                     DisplayText = $"{f.Name} ({f.InventoryNumber})",
-                    f.DepartmentId
+                    DepartmentId = f.DepartmentId
                 })
                 .ToList();
                 
             furnitureComboBox.DataSource = furniture;
+            furnitureComboBox.DisplayMember = "DisplayText";
+            furnitureComboBox.ValueMember = "Id";
             
             var departments = _dataService.GetDepartments();
             departmentComboBox.DataSource = departments;
@@ -112,24 +114,27 @@ namespace FurnitureAccounting.Views
         {
             if (furnitureComboBox.SelectedItem != null)
             {
-                dynamic selected = furnitureComboBox.SelectedItem;
-                var furniture = _dataService.GetFurnitureItem(selected.Id);
-                
-                if (furniture != null && furniture.DepartmentId.HasValue)
+                var selected = furnitureComboBox.SelectedItem as ComboBoxItem;
+                if (selected != null)
                 {
-                    var department = _dataService.GetDepartment(furniture.DepartmentId.Value);
-                    if (department != null)
+                    var furniture = _dataService.GetFurnitureItem(selected.Id);
+                    
+                    if (furniture != null && furniture.DepartmentId.HasValue)
                     {
-                        currentAssignmentLabel.Text = department.Name;
-                        currentAssignmentLabel.ForeColor = Color.Black;
-                        clearAssignmentButton.Enabled = true;
+                        var department = _dataService.GetDepartment(furniture.DepartmentId.Value);
+                        if (department != null)
+                        {
+                            currentAssignmentLabel.Text = department.Name;
+                            currentAssignmentLabel.ForeColor = Color.Black;
+                            clearAssignmentButton.Enabled = true;
+                        }
                     }
-                }
-                else
-                {
-                    currentAssignmentLabel.Text = "Not assigned";
-                    currentAssignmentLabel.ForeColor = Color.Gray;
-                    clearAssignmentButton.Enabled = false;
+                    else
+                    {
+                        currentAssignmentLabel.Text = "Not assigned";
+                        currentAssignmentLabel.ForeColor = Color.Gray;
+                        clearAssignmentButton.Enabled = false;
+                    }
                 }
             }
         }
@@ -143,16 +148,19 @@ namespace FurnitureAccounting.Views
                 return;
             }
             
-            dynamic selectedFurniture = furnitureComboBox.SelectedItem;
+            var selectedFurniture = furnitureComboBox.SelectedItem as ComboBoxItem;
             var department = departmentComboBox.SelectedItem as Department;
             
-            _dataService.AssignFurnitureToDepartment(selectedFurniture.Id, department.Id);
-            
-            MessageBox.Show($"Furniture assigned to {department.Name} successfully!", "Success", 
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (selectedFurniture != null && department != null)
+            {
+                _dataService.AssignFurnitureToDepartment(selectedFurniture.Id, department.Id);
                 
-            LoadData();
-            FurnitureComboBox_SelectedIndexChanged(null, null);
+                MessageBox.Show($"Furniture assigned to {department.Name} successfully!", "Success", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                LoadData();
+                FurnitureComboBox_SelectedIndexChanged(null, null);
+            }
         }
         
         private void ClearAssignmentButton_Click(object sender, EventArgs e)
@@ -160,19 +168,22 @@ namespace FurnitureAccounting.Views
             if (furnitureComboBox.SelectedItem == null)
                 return;
                 
-            dynamic selectedFurniture = furnitureComboBox.SelectedItem;
-            var furniture = _dataService.GetFurnitureItem(selectedFurniture.Id);
-            
-            if (furniture != null)
+            var selectedFurniture = furnitureComboBox.SelectedItem as ComboBoxItem;
+            if (selectedFurniture != null)
             {
-                furniture.DepartmentId = null;
-                _dataService.UpdateFurniture(furniture);
+                var furniture = _dataService.GetFurnitureItem(selectedFurniture.Id);
                 
-                MessageBox.Show("Assignment cleared successfully!", "Success", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (furniture != null)
+                {
+                    furniture.DepartmentId = null;
+                    _dataService.UpdateFurniture(furniture);
                     
-                LoadData();
-                FurnitureComboBox_SelectedIndexChanged(null, null);
+                    MessageBox.Show("Assignment cleared successfully!", "Success", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                    LoadData();
+                    FurnitureComboBox_SelectedIndexChanged(null, null);
+                }
             }
         }
     }
