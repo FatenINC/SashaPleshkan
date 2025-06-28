@@ -25,7 +25,7 @@ namespace FurnitureAccounting.Views
         
         private void InitializeComponents()
         {
-            Text = "Assign Furniture to Department";
+            Text = "Назначение мебели отделу";
             Size = new Size(500, 300);
             StartPosition = FormStartPosition.CenterParent;
             
@@ -43,7 +43,7 @@ namespace FurnitureAccounting.Views
             mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
             mainPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             
-            mainPanel.Controls.Add(new Label { Text = "Furniture:", Anchor = AnchorStyles.Right }, 0, 0);
+            mainPanel.Controls.Add(new Label { Text = "Мебель:", Anchor = AnchorStyles.Right }, 0, 0);
             furnitureComboBox = new ComboBox 
             { 
                 Dock = DockStyle.Fill,
@@ -53,16 +53,16 @@ namespace FurnitureAccounting.Views
             furnitureComboBox.SelectedIndexChanged += FurnitureComboBox_SelectedIndexChanged;
             mainPanel.Controls.Add(furnitureComboBox, 1, 0);
             
-            mainPanel.Controls.Add(new Label { Text = "Current Assignment:", Anchor = AnchorStyles.Right }, 0, 1);
+            mainPanel.Controls.Add(new Label { Text = "Текущее назначение:", Anchor = AnchorStyles.Right }, 0, 1);
             currentAssignmentLabel = new Label 
             { 
-                Text = "Not assigned",
+                Text = "Не назначено",
                 ForeColor = Color.Gray,
                 Anchor = AnchorStyles.Left
             };
             mainPanel.Controls.Add(currentAssignmentLabel, 1, 1);
             
-            mainPanel.Controls.Add(new Label { Text = "Assign to Department:", Anchor = AnchorStyles.Right }, 0, 2);
+            mainPanel.Controls.Add(new Label { Text = "Назначить отделу:", Anchor = AnchorStyles.Right }, 0, 2);
             departmentComboBox = new ComboBox 
             { 
                 Dock = DockStyle.Fill,
@@ -77,9 +77,9 @@ namespace FurnitureAccounting.Views
                 Dock = DockStyle.Fill
             };
             
-            assignButton = new Button { Text = "Assign", Width = 100 };
+            assignButton = new Button { Text = "Назначить", Width = 120 };
             assignButton.Click += AssignButton_Click;
-            clearAssignmentButton = new Button { Text = "Clear Assignment", Width = 120 };
+            clearAssignmentButton = new Button { Text = "Отменить назначение", Width = 150 };
             clearAssignmentButton.Click += ClearAssignmentButton_Click;
             
             buttonPanel.Controls.Add(assignButton);
@@ -131,7 +131,7 @@ namespace FurnitureAccounting.Views
                     }
                     else
                     {
-                        currentAssignmentLabel.Text = "Not assigned";
+                        currentAssignmentLabel.Text = "Не назначено";
                         currentAssignmentLabel.ForeColor = Color.Gray;
                         clearAssignmentButton.Enabled = false;
                     }
@@ -143,7 +143,7 @@ namespace FurnitureAccounting.Views
         {
             if (furnitureComboBox.SelectedItem == null || departmentComboBox.SelectedItem == null)
             {
-                MessageBox.Show("Please select both furniture and department!", "Validation Error", 
+                MessageBox.Show("Пожалуйста, выберите мебель и отдел!", "Ошибка", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -155,7 +155,7 @@ namespace FurnitureAccounting.Views
             {
                 _dataService.AssignFurnitureToDepartment(selectedFurniture.Id, department.Id);
                 
-                MessageBox.Show($"Furniture assigned to {department.Name} successfully!", "Success", 
+                MessageBox.Show($"Мебель успешно назначена отделу {department.Name}!", "Успех", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
                 LoadData();
@@ -178,7 +178,7 @@ namespace FurnitureAccounting.Views
                     furniture.DepartmentId = null;
                     _dataService.UpdateFurniture(furniture);
                     
-                    MessageBox.Show("Assignment cleared successfully!", "Success", 
+                    MessageBox.Show("Назначение успешно отменено!", "Успех", 
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
                     LoadData();

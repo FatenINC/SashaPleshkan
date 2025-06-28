@@ -25,7 +25,7 @@ namespace FurnitureAccounting.Views
         
         private void InitializeComponents()
         {
-            Text = "Action Logs";
+            Text = "Журнал действий";
             Size = new Size(900, 600);
             StartPosition = FormStartPosition.CenterParent;
             Load += LogsForm_Load;
@@ -155,7 +155,7 @@ namespace FurnitureAccounting.Views
                 .OrderByDescending(l => l.Timestamp)
                 .ToList();
                 
-            if (actionFilterComboBox.Text != "All Actions")
+            if (actionFilterComboBox.Text != "Все действия")
             {
                 logs = logs.Where(l => l.Action == actionFilterComboBox.Text).ToList();
             }

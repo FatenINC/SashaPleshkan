@@ -29,7 +29,7 @@ namespace FurnitureAccounting.Views
         
         private void InitializeComponents()
         {
-            Text = "Generate Reports";
+            Text = "Создание отчетов";
             Size = new Size(800, 600);
             StartPosition = FormStartPosition.CenterParent;
             
@@ -48,7 +48,7 @@ namespace FurnitureAccounting.Views
                 Height = 40
             };
             
-            controlPanel.Controls.Add(new Label { Text = "Report Type:", AutoSize = true, Anchor = AnchorStyles.Left });
+            controlPanel.Controls.Add(new Label { Text = "Тип отчета:", AutoSize = true, Anchor = AnchorStyles.Left });
             
             reportTypeComboBox = new ComboBox
             {
@@ -57,25 +57,25 @@ namespace FurnitureAccounting.Views
             };
             reportTypeComboBox.Items.AddRange(new[] 
             { 
-                "Furniture by Department",
-                "All Furniture",
-                "Written-off Furniture",
-                "Unassigned Furniture",
-                "Department Summary",
-                "Total Value Report"
+                "Мебель по отделам",
+                "Вся мебель",
+                "Списанная мебель",
+                "Нераспределенная мебель",
+                "Сводка по отделам",
+                "Отчет об общей стоимости"
             });
             reportTypeComboBox.SelectedIndex = 0;
             controlPanel.Controls.Add(reportTypeComboBox);
             
-            generateButton = new Button { Text = "Generate", Width = 100 };
+            generateButton = new Button { Text = "Создать", Width = 100 };
             generateButton.Click += GenerateButton_Click;
             controlPanel.Controls.Add(generateButton);
             
-            saveButton = new Button { Text = "Save", Width = 80, Enabled = false };
+            saveButton = new Button { Text = "Сохранить", Width = 80, Enabled = false };
             saveButton.Click += SaveButton_Click;
             controlPanel.Controls.Add(saveButton);
             
-            printButton = new Button { Text = "Print", Width = 80, Enabled = false };
+            printButton = new Button { Text = "Печать", Width = 80, Enabled = false };
             printButton.Click += PrintButton_Click;
             controlPanel.Controls.Add(printButton);
             
@@ -106,31 +106,31 @@ namespace FurnitureAccounting.Views
             var sb = new StringBuilder();
             var reportType = reportTypeComboBox.Text;
             
-            sb.AppendLine("FURNITURE ACCOUNTING SYSTEM");
-            sb.AppendLine($"Report: {reportType}");
-            sb.AppendLine($"Generated: {DateTime.Now:F}");
-            sb.AppendLine($"User: {Environment.UserName}");
+            sb.AppendLine("СИСТЕМА УЧЕТА МЕБЕЛИ");
+            sb.AppendLine($"Отчет: {reportType}");
+            sb.AppendLine($"Создан: {DateTime.Now:F}");
+            sb.AppendLine($"Пользователь: {Environment.UserName}");
             sb.AppendLine(new string('=', 80));
             sb.AppendLine();
             
             switch (reportType)
             {
-                case "Furniture by Department":
+                case "Мебель по отделам":
                     GenerateFurnitureByDepartmentReport(sb);
                     break;
-                case "All Furniture":
+                case "Вся мебель":
                     GenerateAllFurnitureReport(sb);
                     break;
-                case "Written-off Furniture":
+                case "Списанная мебель":
                     GenerateWrittenOffReport(sb);
                     break;
-                case "Unassigned Furniture":
+                case "Нераспределенная мебель":
                     GenerateUnassignedReport(sb);
                     break;
-                case "Department Summary":
+                case "Сводка по отделам":
                     GenerateDepartmentSummaryReport(sb);
                     break;
-                case "Total Value Report":
+                case "Отчет об общей стоимости":
                     GenerateTotalValueReport(sb);
                     break;
             }
@@ -146,15 +146,15 @@ namespace FurnitureAccounting.Views
             {
                 var furniture = _dataService.GetFurnitureByDepartment(dept.Id);
                 
-                sb.AppendLine($"Department: {dept.Name}");
-                sb.AppendLine($"Description: {dept.Description ?? "N/A"}");
-                sb.AppendLine($"Total Items: {furniture.Count}");
-                sb.AppendLine($"Total Value: ${furniture.Sum(f => f.Price):N2}");
+                sb.AppendLine($"Отдел: {dept.Name}");
+                sb.AppendLine($"Описание: {dept.Description ?? "Н/Д"}");
+                sb.AppendLine($"Всего предметов: {furniture.Count}");
+                sb.AppendLine($"Общая стоимость: ${furniture.Sum(f => f.Price):N2}");
                 sb.AppendLine();
                 
                 if (furniture.Any())
                 {
-                    sb.AppendLine("  Inventory#     | Name                         | Type      | Price");
+                    sb.AppendLine("  Инвентарный №  | Название                     | Тип       | Цена");
                     sb.AppendLine("  " + new string('-', 70));
                     
                     foreach (var item in furniture.OrderBy(f => f.Name))
@@ -164,7 +164,7 @@ namespace FurnitureAccounting.Views
                 }
                 else
                 {
-                    sb.AppendLine("  No furniture assigned to this department.");
+                    sb.AppendLine("  В этом отделе нет мебели.");
                 }
                 
                 sb.AppendLine();
@@ -177,18 +177,18 @@ namespace FurnitureAccounting.Views
         {
             var furniture = _dataService.GetFurniture().Where(f => !f.IsWrittenOff).OrderBy(f => f.Name);
             
-            sb.AppendLine($"Total Active Furniture Items: {furniture.Count()}");
-            sb.AppendLine($"Total Value: ${furniture.Sum(f => f.Price):N2}");
+            sb.AppendLine($"Всего активной мебели: {furniture.Count()}");
+            sb.AppendLine($"Общая стоимость: ${furniture.Sum(f => f.Price):N2}");
             sb.AppendLine();
             
-            sb.AppendLine("Inventory#     | Name                         | Type      | Department          | Price");
+            sb.AppendLine("Инвентарный №  | Название                     | Тип       | Отдел               | Цена");
             sb.AppendLine(new string('-', 90));
             
             foreach (var item in furniture)
             {
                 var deptName = item.DepartmentId.HasValue 
-                    ? _dataService.GetDepartment(item.DepartmentId.Value)?.Name ?? "N/A"
-                    : "Unassigned";
+                    ? _dataService.GetDepartment(item.DepartmentId.Value)?.Name ?? "Н/Д"
+                    : "Не назначен";
                     
                 sb.AppendLine($"{item.InventoryNumber,-15} | {item.Name,-28} | {item.Type,-9} | {deptName,-18} | ${item.Price,8:N2}");
             }
@@ -198,23 +198,23 @@ namespace FurnitureAccounting.Views
         {
             var furniture = _dataService.GetFurniture().Where(f => f.IsWrittenOff).OrderBy(f => f.WriteOffDate);
             
-            sb.AppendLine($"Total Written-off Items: {furniture.Count()}");
-            sb.AppendLine($"Total Written-off Value: ${furniture.Sum(f => f.Price):N2}");
+            sb.AppendLine($"Всего списанных предметов: {furniture.Count()}");
+            sb.AppendLine($"Общая стоимость списанных: ${furniture.Sum(f => f.Price):N2}");
             sb.AppendLine();
             
             if (furniture.Any())
             {
-                sb.AppendLine("Inventory#     | Name                    | Write-off Date | Reason");
+                sb.AppendLine("Инвентарный №  | Название                | Дата списания  | Причина");
                 sb.AppendLine(new string('-', 80));
                 
                 foreach (var item in furniture)
                 {
-                    sb.AppendLine($"{item.InventoryNumber,-15} | {item.Name,-23} | {item.WriteOffDate?.ToString("yyyy-MM-dd") ?? "N/A",-14} | {item.WriteOffReason}");
+                    sb.AppendLine($"{item.InventoryNumber,-15} | {item.Name,-23} | {item.WriteOffDate?.ToString("yyyy-MM-dd") ?? "Н/Д",-14} | {item.WriteOffReason}");
                 }
             }
             else
             {
-                sb.AppendLine("No written-off furniture found.");
+                sb.AppendLine("Списанная мебель не найдена.");
             }
         }
         
@@ -224,13 +224,13 @@ namespace FurnitureAccounting.Views
                 .Where(f => !f.IsWrittenOff && !f.DepartmentId.HasValue)
                 .OrderBy(f => f.Name);
             
-            sb.AppendLine($"Total Unassigned Items: {furniture.Count()}");
-            sb.AppendLine($"Total Unassigned Value: ${furniture.Sum(f => f.Price):N2}");
+            sb.AppendLine($"Всего нераспределенных предметов: {furniture.Count()}");
+            sb.AppendLine($"Общая стоимость нераспределенных: ${furniture.Sum(f => f.Price):N2}");
             sb.AppendLine();
             
             if (furniture.Any())
             {
-                sb.AppendLine("Inventory#     | Name                         | Type      | Purchase Date | Price");
+                sb.AppendLine("Инвентарный №  | Название                     | Тип       | Дата покупки  | Цена");
                 sb.AppendLine(new string('-', 85));
                 
                 foreach (var item in furniture)
@@ -240,7 +240,7 @@ namespace FurnitureAccounting.Views
             }
             else
             {
-                sb.AppendLine("All furniture items are assigned to departments.");
+                sb.AppendLine("Вся мебель распределена по отделам.");
             }
         }
         
@@ -248,7 +248,7 @@ namespace FurnitureAccounting.Views
         {
             var departments = _dataService.GetDepartments().OrderBy(d => d.Name);
             
-            sb.AppendLine("Department Name              | Items | Active Value  | Written-off");
+            sb.AppendLine("Название отдела              | Предм.| Активная стоим.| Списано");
             sb.AppendLine(new string('-', 70));
             
             decimal totalActiveValue = 0;
@@ -272,7 +272,7 @@ namespace FurnitureAccounting.Views
             }
             
             sb.AppendLine(new string('-', 70));
-            sb.AppendLine($"{"TOTAL",-28} | {totalItems,5} | ${totalActiveValue,12:N2} | ${totalWrittenOffValue,10:N2}");
+            sb.AppendLine($"{"ИТОГО",-28} | {totalItems,5} | ${totalActiveValue,12:N2} | ${totalWrittenOffValue,10:N2}");
         }
         
         private void GenerateTotalValueReport(StringBuilder sb)
@@ -281,19 +281,19 @@ namespace FurnitureAccounting.Views
             var activeFurniture = allFurniture.Where(f => !f.IsWrittenOff);
             var writtenOffFurniture = allFurniture.Where(f => f.IsWrittenOff);
             
-            sb.AppendLine("TOTAL VALUE SUMMARY");
+            sb.AppendLine("СВОДКА ПО ОБЩЕЙ СТОИМОСТИ");
             sb.AppendLine(new string('-', 40));
-            sb.AppendLine($"Active Furniture Items:     {activeFurniture.Count(),6}");
-            sb.AppendLine($"Active Furniture Value:     ${activeFurniture.Sum(f => f.Price),12:N2}");
+            sb.AppendLine($"Активная мебель:            {activeFurniture.Count(),6}");
+            sb.AppendLine($"Стоимость активной мебели:  ${activeFurniture.Sum(f => f.Price),12:N2}");
             sb.AppendLine();
-            sb.AppendLine($"Written-off Items:          {writtenOffFurniture.Count(),6}");
-            sb.AppendLine($"Written-off Value:          ${writtenOffFurniture.Sum(f => f.Price),12:N2}");
+            sb.AppendLine($"Списанные предметы:         {writtenOffFurniture.Count(),6}");
+            sb.AppendLine($"Стоимость списанных:        ${writtenOffFurniture.Sum(f => f.Price),12:N2}");
             sb.AppendLine();
-            sb.AppendLine($"Total Items:                {allFurniture.Count(),6}");
-            sb.AppendLine($"Total Original Value:       ${allFurniture.Sum(f => f.Price),12:N2}");
+            sb.AppendLine($"Всего предметов:            {allFurniture.Count(),6}");
+            sb.AppendLine($"Общая первоначальная стоим.:${allFurniture.Sum(f => f.Price),12:N2}");
             sb.AppendLine();
             
-            sb.AppendLine("VALUE BY TYPE");
+            sb.AppendLine("СТОИМОСТЬ ПО ТИПАМ");
             sb.AppendLine(new string('-', 40));
             
             var byType = activeFurniture.GroupBy(f => f.Type)
@@ -301,7 +301,7 @@ namespace FurnitureAccounting.Views
                 
             foreach (var group in byType)
             {
-                sb.AppendLine($"{group.Key,-20} {group.Count(),5} items   ${group.Sum(f => f.Price),12:N2}");
+                sb.AppendLine($"{group.Key,-20} {group.Count(),5} предм.  ${group.Sum(f => f.Price),12:N2}");
             }
         }
         
@@ -309,8 +309,8 @@ namespace FurnitureAccounting.Views
         {
             using (var dialog = new SaveFileDialog())
             {
-                dialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                dialog.Title = "Save Report";
+                dialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+                dialog.Title = "Сохранить отчет";
                 dialog.FileName = $"{reportTypeComboBox.Text.Replace(" ", "_")}_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
                 
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -318,12 +318,12 @@ namespace FurnitureAccounting.Views
                     try
                     {
                         System.IO.File.WriteAllText(dialog.FileName, currentReport);
-                        MessageBox.Show("Report saved successfully!", "Success", 
+                        MessageBox.Show("Отчет успешно сохранен!", "Успех", 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Save failed: {ex.Message}", "Error", 
+                        MessageBox.Show($"Ошибка сохранения: {ex.Message}", "Ошибка", 
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -344,7 +344,7 @@ namespace FurnitureAccounting.Views
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Print failed: {ex.Message}", "Error", 
+                        MessageBox.Show($"Ошибка печати: {ex.Message}", "Ошибка", 
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

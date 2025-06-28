@@ -24,7 +24,7 @@ namespace FurnitureAccounting.Views
         
         private void InitializeComponents()
         {
-            Text = "Write-off Furniture";
+            Text = "Списание мебели";
             Size = new Size(500, 350);
             StartPosition = FormStartPosition.CenterParent;
             
@@ -126,7 +126,7 @@ namespace FurnitureAccounting.Views
             }
             else
             {
-                furnitureDetailsLabel.Text = "Select furniture to see details";
+                furnitureDetailsLabel.Text = "Выберите мебель для просмотра деталей";
                 furnitureDetailsLabel.ForeColor = Color.Gray;
                 writeOffButton.Enabled = false;
             }
@@ -160,7 +160,7 @@ namespace FurnitureAccounting.Views
                         
                     LoadData();
                     reasonTextBox.Clear();
-                    furnitureDetailsLabel.Text = "Select furniture to see details";
+                    furnitureDetailsLabel.Text = "Выберите мебель для просмотра деталей";
                     furnitureDetailsLabel.ForeColor = Color.Gray;
                     writeOffButton.Enabled = false;
                 }

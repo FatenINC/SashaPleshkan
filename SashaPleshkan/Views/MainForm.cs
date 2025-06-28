@@ -346,21 +346,21 @@ namespace FurnitureAccounting.Views
         {
             using (var dialog = new OpenFileDialog())
             {
-                dialog.Filter = "JSON files (*.json)|*.json";
-                dialog.Title = "Import Data";
+                dialog.Filter = "JSON файлы (*.json)|*.json";
+                dialog.Title = "Импорт данных";
                 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
                         _dataService.ImportData(dialog.FileName);
-                        MessageBox.Show("Data imported successfully!", "Success", 
+                        MessageBox.Show("Данные успешно импортированы!", "Успех", 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ShowDashboard(); // Refresh dashboard after import
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Import failed: {ex.Message}", "Error", 
+                        MessageBox.Show($"Ошибка импорта: {ex.Message}", "Ошибка", 
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -371,8 +371,8 @@ namespace FurnitureAccounting.Views
         {
             using (var dialog = new SaveFileDialog())
             {
-                dialog.Filter = "JSON files (*.json)|*.json";
-                dialog.Title = "Export Data";
+                dialog.Filter = "JSON файлы (*.json)|*.json";
+                dialog.Title = "Экспорт данных";
                 dialog.FileName = $"furniture_data_{DateTime.Now:yyyyMMdd_HHmmss}.json";
                 
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -380,12 +380,12 @@ namespace FurnitureAccounting.Views
                     try
                     {
                         _dataService.ExportData(dialog.FileName);
-                        MessageBox.Show("Data exported successfully!", "Success", 
+                        MessageBox.Show("Данные успешно экспортированы!", "Успех", 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Export failed: {ex.Message}", "Error", 
+                        MessageBox.Show($"Ошибка экспорта: {ex.Message}", "Ошибка", 
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

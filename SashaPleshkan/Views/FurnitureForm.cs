@@ -30,7 +30,7 @@ namespace FurnitureAccounting.Views
         
         private void InitializeComponents()
         {
-            Text = "Manage Furniture";
+            Text = "Управление мебелью";
             Size = new Size(800, 600);
             StartPosition = FormStartPosition.CenterParent;
             Load += FurnitureForm_Load;
@@ -45,7 +45,7 @@ namespace FurnitureAccounting.Views
             
             var inputPanel = new GroupBox
             {
-                Text = "Furniture Details",
+                Text = "Данные мебели",
                 Height = 200,
                 Dock = DockStyle.Top
             };
@@ -58,24 +58,24 @@ namespace FurnitureAccounting.Views
                 Padding = new Padding(5)
             };
             
-            inputLayout.Controls.Add(new Label { Text = "Name:", Anchor = AnchorStyles.Right }, 0, 0);
+            inputLayout.Controls.Add(new Label { Text = "Название:", Anchor = AnchorStyles.Right }, 0, 0);
             nameTextBox = new TextBox { Dock = DockStyle.Fill };
             inputLayout.Controls.Add(nameTextBox, 1, 0);
             
-            inputLayout.Controls.Add(new Label { Text = "Type:", Anchor = AnchorStyles.Right }, 2, 0);
+            inputLayout.Controls.Add(new Label { Text = "Тип:", Anchor = AnchorStyles.Right }, 2, 0);
             typeComboBox = new ComboBox 
             { 
                 Dock = DockStyle.Fill,
                 DropDownStyle = ComboBoxStyle.DropDownList
             };
-            typeComboBox.Items.AddRange(new[] { "Table", "Chair", "Cabinet", "Shelf", "Desk", "Other" });
+            typeComboBox.Items.AddRange(new[] { "Стол", "Стул", "Шкаф", "Полка", "Письменный стол", "Другое" });
             inputLayout.Controls.Add(typeComboBox, 3, 0);
             
-            inputLayout.Controls.Add(new Label { Text = "Inventory #:", Anchor = AnchorStyles.Right }, 0, 1);
+            inputLayout.Controls.Add(new Label { Text = "Инв. номер:", Anchor = AnchorStyles.Right }, 0, 1);
             inventoryNumberTextBox = new TextBox { Dock = DockStyle.Fill };
             inputLayout.Controls.Add(inventoryNumberTextBox, 1, 1);
             
-            inputLayout.Controls.Add(new Label { Text = "Price:", Anchor = AnchorStyles.Right }, 2, 1);
+            inputLayout.Controls.Add(new Label { Text = "Цена:", Anchor = AnchorStyles.Right }, 2, 1);
             priceNumeric = new NumericUpDown 
             { 
                 Dock = DockStyle.Fill,
@@ -85,13 +85,13 @@ namespace FurnitureAccounting.Views
             };
             inputLayout.Controls.Add(priceNumeric, 3, 1);
             
-            inputLayout.Controls.Add(new Label { Text = "Purchase Date:", Anchor = AnchorStyles.Right }, 0, 2);
+            inputLayout.Controls.Add(new Label { Text = "Дата покупки:", Anchor = AnchorStyles.Right }, 0, 2);
             purchaseDatePicker = new DateTimePicker { Dock = DockStyle.Fill };
             inputLayout.Controls.Add(purchaseDatePicker, 1, 2);
             
             showWrittenOffCheckBox = new CheckBox 
             { 
-                Text = "Show written-off items",
+                Text = "Показать списанные",
                 Anchor = AnchorStyles.Left
             };
             showWrittenOffCheckBox.CheckedChanged += (s, e) => LoadData();
@@ -104,11 +104,11 @@ namespace FurnitureAccounting.Views
                 Dock = DockStyle.Fill
             };
             
-            addButton = new Button { Text = "Add", Width = 80 };
+            addButton = new Button { Text = "Добавить", Width = 100 };
             addButton.Click += AddButton_Click;
-            updateButton = new Button { Text = "Update", Width = 80, Enabled = false };
+            updateButton = new Button { Text = "Изменить", Width = 100, Enabled = false };
             updateButton.Click += UpdateButton_Click;
-            deleteButton = new Button { Text = "Delete", Width = 80, Enabled = false };
+            deleteButton = new Button { Text = "Удалить", Width = 100, Enabled = false };
             deleteButton.Click += DeleteButton_Click;
             
             buttonPanel.Controls.Add(addButton);
@@ -214,7 +214,7 @@ namespace FurnitureAccounting.Views
                 _dataService.AddFurniture(furniture);
                 LoadData();
                 ClearForm();
-                MessageBox.Show("Furniture added successfully!", "Success", 
+                MessageBox.Show("Мебель успешно добавлена!", "Успех", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -232,7 +232,7 @@ namespace FurnitureAccounting.Views
                 _dataService.UpdateFurniture(_selectedFurniture);
                 LoadData();
                 ClearForm();
-                MessageBox.Show("Furniture updated successfully!", "Success", 
+                MessageBox.Show("Мебель успешно обновлена!", "Успех", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -241,15 +241,15 @@ namespace FurnitureAccounting.Views
         {
             if (_selectedFurniture != null)
             {
-                var result = MessageBox.Show($"Are you sure you want to delete '{_selectedFurniture.Name}'?", 
-                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show($"Вы уверены, что хотите удалить '{_selectedFurniture.Name}'?", 
+                    "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     
                 if (result == DialogResult.Yes)
                 {
                     _dataService.DeleteFurniture(_selectedFurniture.Id);
                     LoadData();
                     ClearForm();
-                    MessageBox.Show("Furniture deleted successfully!", "Success", 
+                    MessageBox.Show("Мебель успешно удалена!", "Успех", 
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -259,7 +259,7 @@ namespace FurnitureAccounting.Views
         {
             if (string.IsNullOrWhiteSpace(nameTextBox.Text))
             {
-                MessageBox.Show("Please enter furniture name!", "Validation Error", 
+                MessageBox.Show("Пожалуйста, введите название мебели!", "Ошибка валидации", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 nameTextBox.Focus();
                 return false;
@@ -267,7 +267,7 @@ namespace FurnitureAccounting.Views
             
             if (string.IsNullOrWhiteSpace(typeComboBox.Text))
             {
-                MessageBox.Show("Please select furniture type!", "Validation Error", 
+                MessageBox.Show("Пожалуйста, выберите тип мебели!", "Ошибка валидации", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 typeComboBox.Focus();
                 return false;
@@ -275,7 +275,7 @@ namespace FurnitureAccounting.Views
             
             if (string.IsNullOrWhiteSpace(inventoryNumberTextBox.Text))
             {
-                MessageBox.Show("Please enter inventory number!", "Validation Error", 
+                MessageBox.Show("Пожалуйста, введите инвентарный номер!", "Ошибка валидации", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 inventoryNumberTextBox.Focus();
                 return false;
@@ -287,7 +287,7 @@ namespace FurnitureAccounting.Views
                     
             if (existingFurniture != null)
             {
-                MessageBox.Show("Inventory number already exists!", "Validation Error", 
+                MessageBox.Show("Инвентарный номер уже существует!", "Ошибка валидации", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 inventoryNumberTextBox.Focus();
                 return false;
