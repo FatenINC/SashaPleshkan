@@ -119,20 +119,28 @@ namespace FurnitureAccounting.Views
         {
             if (ValidateInput())
             {
-                var furniture = new Furniture
+                try
                 {
-                    Name = nameTextBox.Text.Trim(),
-                    Type = typeComboBox.Text,
-                    InventoryNumber = inventoryTextBox.Text.Trim(),
-                    Price = priceNumericUpDown.Value,
-                    PurchaseDate = purchaseDateTimePicker.Value
-                };
-                
-                _dataService.AddFurniture(furniture);
-                LoadData();
-                ClearForm();
-                MessageBox.Show("Мебель успешно добавлена!", "Успех", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var furniture = new Furniture
+                    {
+                        Name = nameTextBox.Text.Trim(),
+                        Type = typeComboBox.Text,
+                        InventoryNumber = inventoryTextBox.Text.Trim(),
+                        Price = priceNumericUpDown.Value,
+                        PurchaseDate = purchaseDateTimePicker.Value
+                    };
+                    
+                    _dataService.AddFurniture(furniture);
+                    LoadData();
+                    ClearForm();
+                    MessageBox.Show("Мебель успешно добавлена!", "Успех", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         
@@ -140,17 +148,25 @@ namespace FurnitureAccounting.Views
         {
             if (_selectedFurniture != null && ValidateInput())
             {
-                _selectedFurniture.Name = nameTextBox.Text.Trim();
-                _selectedFurniture.Type = typeComboBox.Text;
-                _selectedFurniture.InventoryNumber = inventoryTextBox.Text.Trim();
-                _selectedFurniture.Price = priceNumericUpDown.Value;
-                _selectedFurniture.PurchaseDate = purchaseDateTimePicker.Value;
-                
-                _dataService.UpdateFurniture(_selectedFurniture);
-                LoadData();
-                ClearForm();
-                MessageBox.Show("Мебель успешно обновлена!", "Успех", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    _selectedFurniture.Name = nameTextBox.Text.Trim();
+                    _selectedFurniture.Type = typeComboBox.Text;
+                    _selectedFurniture.InventoryNumber = inventoryTextBox.Text.Trim();
+                    _selectedFurniture.Price = priceNumericUpDown.Value;
+                    _selectedFurniture.PurchaseDate = purchaseDateTimePicker.Value;
+                    
+                    _dataService.UpdateFurniture(_selectedFurniture);
+                    LoadData();
+                    ClearForm();
+                    MessageBox.Show("Мебель успешно обновлена!", "Успех", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         
