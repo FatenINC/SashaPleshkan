@@ -42,7 +42,7 @@ namespace FurnitureAccounting.Views
             mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 80));
             mainPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             
-            mainPanel.Controls.Add(new Label { Text = "Select Furniture:", Anchor = AnchorStyles.Right }, 0, 0);
+            mainPanel.Controls.Add(new Label { Text = "Выберите мебель:", Anchor = AnchorStyles.Right }, 0, 0);
             furnitureComboBox = new ComboBox 
             { 
                 Dock = DockStyle.Fill,
@@ -52,17 +52,17 @@ namespace FurnitureAccounting.Views
             furnitureComboBox.SelectedIndexChanged += FurnitureComboBox_SelectedIndexChanged;
             mainPanel.Controls.Add(furnitureComboBox, 1, 0);
             
-            mainPanel.Controls.Add(new Label { Text = "Details:", Anchor = AnchorStyles.Right | AnchorStyles.Top }, 0, 1);
+            mainPanel.Controls.Add(new Label { Text = "Детали:", Anchor = AnchorStyles.Right | AnchorStyles.Top }, 0, 1);
             furnitureDetailsLabel = new Label 
             { 
-                Text = "Select furniture to see details",
+                Text = "Выберите мебель для просмотра деталей",
                 ForeColor = Color.Gray,
                 AutoSize = true,
                 MaximumSize = new Size(300, 0)
             };
             mainPanel.Controls.Add(furnitureDetailsLabel, 1, 1);
             
-            mainPanel.Controls.Add(new Label { Text = "Write-off Reason:", Anchor = AnchorStyles.Right | AnchorStyles.Top }, 0, 3);
+            mainPanel.Controls.Add(new Label { Text = "Причина списания:", Anchor = AnchorStyles.Right | AnchorStyles.Top }, 0, 3);
             reasonTextBox = new TextBox 
             { 
                 Dock = DockStyle.Fill,
@@ -73,7 +73,7 @@ namespace FurnitureAccounting.Views
             
             writeOffButton = new Button 
             { 
-                Text = "Write-off",
+                Text = "Списать",
                 Width = 100,
                 Height = 30,
                 Enabled = false
@@ -112,13 +112,13 @@ namespace FurnitureAccounting.Views
                     if (furniture != null)
                     {
                         var department = furniture.DepartmentId.HasValue 
-                            ? _dataService.GetDepartment(furniture.DepartmentId.Value)?.Name ?? "Not assigned"
-                            : "Not assigned";
+                            ? _dataService.GetDepartment(furniture.DepartmentId.Value)?.Name ?? "Не назначен"
+                            : "Не назначен";
                             
-                        furnitureDetailsLabel.Text = $"Type: {furniture.Type}\n" +
-                                                   $"Price: ${furniture.Price:N2}\n" +
-                                                   $"Purchase Date: {furniture.PurchaseDate:d}\n" +
-                                                   $"Department: {department}";
+                        furnitureDetailsLabel.Text = $"Тип: {furniture.Type}\n" +
+                                                   $"Цена: ${furniture.Price:N2}\n" +
+                                                   $"Дата покупки: {furniture.PurchaseDate:d}\n" +
+                                                   $"Отдел: {department}";
                         furnitureDetailsLabel.ForeColor = Color.Black;
                         writeOffButton.Enabled = true;
                     }
@@ -139,14 +139,14 @@ namespace FurnitureAccounting.Views
                 
             if (string.IsNullOrWhiteSpace(reasonTextBox.Text))
             {
-                MessageBox.Show("Please provide a reason for write-off!", "Validation Error", 
+                MessageBox.Show("Пожалуйста, укажите причину списания!", "Ошибка валидации", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 reasonTextBox.Focus();
                 return;
             }
             
-            var result = MessageBox.Show("Are you sure you want to write-off this furniture?", 
-                "Confirm Write-off", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("Вы уверены, что хотите списать эту мебель?", 
+                "Подтвердите списание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 
             if (result == DialogResult.Yes)
             {
@@ -155,7 +155,7 @@ namespace FurnitureAccounting.Views
                 {
                     _dataService.WriteOffFurniture(selected.Id, reasonTextBox.Text.Trim());
                     
-                    MessageBox.Show("Furniture written off successfully!", "Success", 
+                    MessageBox.Show("Мебель успешно списана!", "Успех", 
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
                     LoadData();

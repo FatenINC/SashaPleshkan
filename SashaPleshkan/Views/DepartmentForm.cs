@@ -188,7 +188,16 @@ namespace FurnitureAccounting.Views
                     try
                     {
                         if (gridView.Columns.Contains("Id"))
+                        {
                             gridView.Columns["Id"].Width = 50;
+                            gridView.Columns["Id"].HeaderText = "ID";
+                        }
+                        if (gridView.Columns.Contains("Name"))
+                            gridView.Columns["Name"].HeaderText = "Название";
+                        if (gridView.Columns.Contains("Description"))
+                            gridView.Columns["Description"].HeaderText = "Описание";
+                        if (gridView.Columns.Contains("CreatedDate"))
+                            gridView.Columns["CreatedDate"].HeaderText = "Дата создания";
                     }
                     catch
                     {

@@ -161,7 +161,24 @@ namespace FurnitureAccounting.Views
                     try
                     {
                         if (gridView.Columns.Contains("Id"))
+                        {
                             gridView.Columns["Id"].Width = 50;
+                            gridView.Columns["Id"].HeaderText = "ID";
+                        }
+                        if (gridView.Columns.Contains("Name"))
+                            gridView.Columns["Name"].HeaderText = "Название";
+                        if (gridView.Columns.Contains("Type"))
+                            gridView.Columns["Type"].HeaderText = "Тип";
+                        if (gridView.Columns.Contains("InventoryNumber"))
+                            gridView.Columns["InventoryNumber"].HeaderText = "Инв. номер";
+                        if (gridView.Columns.Contains("Price"))
+                            gridView.Columns["Price"].HeaderText = "Цена";
+                        if (gridView.Columns.Contains("PurchaseDate"))
+                            gridView.Columns["PurchaseDate"].HeaderText = "Дата покупки";
+                        if (gridView.Columns.Contains("IsWrittenOff"))
+                            gridView.Columns["IsWrittenOff"].HeaderText = "Списано";
+                        if (gridView.Columns.Contains("WriteOffDate"))
+                            gridView.Columns["WriteOffDate"].HeaderText = "Дата списания";
                         if (gridView.Columns.Contains("DepartmentId"))
                             gridView.Columns["DepartmentId"].Visible = false;
                         if (gridView.Columns.Contains("WriteOffReason"))

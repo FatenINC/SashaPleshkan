@@ -68,7 +68,7 @@ namespace FurnitureAccounting.Services
             department.Id = _departments.Any() ? _departments.Max(d => d.Id) + 1 : 1;
             _departments.Add(department);
             SaveToFile(_departmentsFile, _departments);
-            _loggingService.LogAction("Добавить отдел", $"Added department: {department.Name}");
+            _loggingService.LogAction("Добавить отдел", $"Добавлен отдел: {department.Name}");
         }
         
         public void UpdateDepartment(Department department)
@@ -78,7 +78,7 @@ namespace FurnitureAccounting.Services
             {
                 _departments[index] = department;
                 SaveToFile(_departmentsFile, _departments);
-                _loggingService.LogAction("Обновить отдел", $"Updated department: {department.Name}");
+                _loggingService.LogAction("Обновить отдел", $"Обновлен отдел: {department.Name}");
             }
         }
         
@@ -89,7 +89,7 @@ namespace FurnitureAccounting.Services
             {
                 _departments.Remove(department);
                 SaveToFile(_departmentsFile, _departments);
-                _loggingService.LogAction("Удалить отдел", $"Deleted department: {department.Name}");
+                _loggingService.LogAction("Удалить отдел", $"Удален отдел: {department.Name}");
             }
         }
         
@@ -105,7 +105,7 @@ namespace FurnitureAccounting.Services
             furniture.Id = _furniture.Any() ? _furniture.Max(f => f.Id) + 1 : 1;
             _furniture.Add(furniture);
             SaveToFile(_furnitureFile, _furniture);
-            _loggingService.LogAction("Добавить мебель", $"Added furniture: {furniture.Name} ({furniture.InventoryNumber})");
+            _loggingService.LogAction("Добавить мебель", $"Добавлена мебель: {furniture.Name} ({furniture.InventoryNumber})");
         }
         
         public void UpdateFurniture(Furniture furniture)
@@ -115,7 +115,7 @@ namespace FurnitureAccounting.Services
             {
                 _furniture[index] = furniture;
                 SaveToFile(_furnitureFile, _furniture);
-                _loggingService.LogAction("Обновить мебель", $"Updated furniture: {furniture.Name} ({furniture.InventoryNumber})");
+                _loggingService.LogAction("Обновить мебель", $"Обновлена мебель: {furniture.Name} ({furniture.InventoryNumber})");
             }
         }
         
@@ -126,7 +126,7 @@ namespace FurnitureAccounting.Services
             {
                 _furniture.Remove(furniture);
                 SaveToFile(_furnitureFile, _furniture);
-                _loggingService.LogAction("Удалить мебель", $"Deleted furniture: {furniture.Name} ({furniture.InventoryNumber})");
+                _loggingService.LogAction("Удалить мебель", $"Удалена мебель: {furniture.Name} ({furniture.InventoryNumber})");
             }
         }
         
@@ -140,7 +140,7 @@ namespace FurnitureAccounting.Services
                 furniture.DepartmentId = departmentId;
                 UpdateFurniture(furniture);
                 _loggingService.LogAction("Назначить мебель", 
-                    $"Assigned {furniture.Name} to {department.Name}");
+                    $"Назначена {furniture.Name} отделу {department.Name}");
             }
         }
         
@@ -154,7 +154,7 @@ namespace FurnitureAccounting.Services
                 furniture.WriteOffReason = reason;
                 UpdateFurniture(furniture);
                 _loggingService.LogAction("Списать мебель", 
-                    $"Written off: {furniture.Name} ({furniture.InventoryNumber}). Reason: {reason}");
+                    $"Списана: {furniture.Name} ({furniture.InventoryNumber}). Причина: {reason}");
             }
         }
         
@@ -179,7 +179,7 @@ namespace FurnitureAccounting.Services
             
             var json = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(filePath, json);
-            _loggingService.LogAction("Экспорт данных", $"Exported data to: {filePath}");
+            _loggingService.LogAction("Экспорт данных", $"Данные экспортированы в: {filePath}");
         }
         
         public void ImportData(string filePath)
@@ -195,11 +195,11 @@ namespace FurnitureAccounting.Services
                 SaveToFile(_departmentsFile, _departments);
                 SaveToFile(_furnitureFile, _furniture);
                 
-                _loggingService.LogAction("Импорт данных", $"Imported data from: {filePath}");
+                _loggingService.LogAction("Импорт данных", $"Данные импортированы из: {filePath}");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Failed to import data: {ex.Message}");
+                throw new Exception($"Не удалось импортировать данные: {ex.Message}");
             }
         }
     }

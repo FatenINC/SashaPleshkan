@@ -234,6 +234,13 @@ namespace FurnitureAccounting.Views
                 activityGrid.Columns["Id"].Visible = false;
                 activityGrid.Columns["Timestamp"].DefaultCellStyle.Format = "g";
                 activityGrid.Columns["Timestamp"].Width = 150;
+                activityGrid.Columns["Timestamp"].HeaderText = "Время";
+                if (activityGrid.Columns.Contains("Username"))
+                    activityGrid.Columns["Username"].HeaderText = "Пользователь";
+                if (activityGrid.Columns.Contains("Action"))
+                    activityGrid.Columns["Action"].HeaderText = "Действие";
+                if (activityGrid.Columns.Contains("Details"))
+                    activityGrid.Columns["Details"].HeaderText = "Детали";
             }
             
             activityPanel.Controls.Add(activityGrid);

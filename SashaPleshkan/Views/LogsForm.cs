@@ -40,7 +40,7 @@ namespace FurnitureAccounting.Views
             
             var filterPanel = new GroupBox
             {
-                Text = "Filter Options",
+                Text = "Параметры фильтра",
                 Height = 100,
                 Dock = DockStyle.Top
             };
@@ -52,15 +52,15 @@ namespace FurnitureAccounting.Views
                 Padding = new Padding(10)
             };
             
-            filterLayout.Controls.Add(new Label { Text = "From:", AutoSize = true, Anchor = AnchorStyles.Left });
+            filterLayout.Controls.Add(new Label { Text = "С:", AutoSize = true, Anchor = AnchorStyles.Left });
             fromDatePicker = new DateTimePicker { Width = 120 };
             filterLayout.Controls.Add(fromDatePicker);
             
-            filterLayout.Controls.Add(new Label { Text = "To:", AutoSize = true, Anchor = AnchorStyles.Left });
+            filterLayout.Controls.Add(new Label { Text = "По:", AutoSize = true, Anchor = AnchorStyles.Left });
             toDatePicker = new DateTimePicker { Width = 120 };
             filterLayout.Controls.Add(toDatePicker);
             
-            filterLayout.Controls.Add(new Label { Text = "Action:", AutoSize = true, Anchor = AnchorStyles.Left });
+            filterLayout.Controls.Add(new Label { Text = "Действие:", AutoSize = true, Anchor = AnchorStyles.Left });
             actionFilterComboBox = new ComboBox 
             { 
                 Width = 150,
@@ -68,15 +68,15 @@ namespace FurnitureAccounting.Views
             };
             filterLayout.Controls.Add(actionFilterComboBox);
             
-            filterButton = new Button { Text = "Apply Filter", Width = 100 };
+            filterButton = new Button { Text = "Применить", Width = 100 };
             filterButton.Click += FilterButton_Click;
             filterLayout.Controls.Add(filterButton);
             
-            clearFilterButton = new Button { Text = "Clear Filter", Width = 100 };
+            clearFilterButton = new Button { Text = "Очистить", Width = 100 };
             clearFilterButton.Click += ClearFilterButton_Click;
             filterLayout.Controls.Add(clearFilterButton);
             
-            exportButton = new Button { Text = "Export Logs", Width = 100 };
+            exportButton = new Button { Text = "Экспорт", Width = 100 };
             exportButton.Click += ExportButton_Click;
             filterLayout.Controls.Add(exportButton);
             
@@ -117,16 +117,30 @@ namespace FurnitureAccounting.Views
                     try
                     {
                         if (gridView.Columns.Contains("Id"))
+                        {
                             gridView.Columns["Id"].Width = 50;
+                            gridView.Columns["Id"].HeaderText = "ID";
+                        }
                         if (gridView.Columns.Contains("Timestamp"))
                         {
                             gridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
                             gridView.Columns["Timestamp"].Width = 150;
+                            gridView.Columns["Timestamp"].HeaderText = "Время";
                         }
                         if (gridView.Columns.Contains("Username"))
+                        {
                             gridView.Columns["Username"].Width = 100;
+                            gridView.Columns["Username"].HeaderText = "Пользователь";
+                        }
                         if (gridView.Columns.Contains("Action"))
+                        {
                             gridView.Columns["Action"].Width = 150;
+                            gridView.Columns["Action"].HeaderText = "Действие";
+                        }
+                        if (gridView.Columns.Contains("Details"))
+                        {
+                            gridView.Columns["Details"].HeaderText = "Детали";
+                        }
                     }
                     catch
                     {
@@ -136,7 +150,7 @@ namespace FurnitureAccounting.Views
             }
             
             var actions = logs.Select(l => l.Action).Distinct().OrderBy(a => a).ToList();
-            actions.Insert(0, "All Actions");
+            actions.Insert(0, "Все действия");
             actionFilterComboBox.DataSource = actions;
             actionFilterComboBox.SelectedIndex = 0;
             
@@ -173,7 +187,7 @@ namespace FurnitureAccounting.Views
             using (var dialog = new SaveFileDialog())
             {
                 dialog.Filter = "CSV files (*.csv)|*.csv|Text files (*.txt)|*.txt";
-                dialog.Title = "Export Logs";
+                dialog.Title = "Экспорт журнала";
                 dialog.FileName = $"action_logs_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
                 
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -183,7 +197,7 @@ namespace FurnitureAccounting.Views
                         var logs = gridView.DataSource as System.Collections.Generic.List<FurnitureAccounting.Models.ActionLog>;
                         var lines = new System.Collections.Generic.List<string>();
                         
-                        lines.Add("ID,Username,Action,Details,Timestamp");
+                        lines.Add("ID,Пользователь,Действие,Детали,Время");
                         
                         foreach (var log in logs)
                         {
@@ -192,12 +206,12 @@ namespace FurnitureAccounting.Views
                         
                         System.IO.File.WriteAllLines(dialog.FileName, lines);
                         
-                        MessageBox.Show("Logs exported successfully!", "Success", 
+                        MessageBox.Show("Журнал успешно экспортирован!", "Успех", 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Export failed: {ex.Message}", "Error", 
+                        MessageBox.Show($"Ошибка экспорта: {ex.Message}", "Ошибка", 
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
