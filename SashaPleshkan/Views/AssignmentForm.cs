@@ -44,6 +44,8 @@ namespace FurnitureAccounting.Views
             
             var departments = _dataService.GetDepartments();
             departmentComboBox.DataSource = departments;
+            departmentComboBox.DisplayMember = "Name";
+            departmentComboBox.ValueMember = "Id";
         }
         
         private void FurnitureComboBox_SelectedIndexChanged(object sender, EventArgs e)
