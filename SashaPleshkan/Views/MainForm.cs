@@ -102,26 +102,37 @@ namespace FurnitureAccounting.Views
             
             recentActionsDataGridView.DataSource = displayLogs;
             
-            if (recentActionsDataGridView.Columns.Count > 0)
+            // Use BeginInvoke to ensure columns are created
+            if (IsHandleCreated && displayLogs.Any())
             {
-                if (recentActionsDataGridView.Columns.Contains("Id"))
-                    recentActionsDataGridView.Columns["Id"].Visible = false;
-                    
-                if (recentActionsDataGridView.Columns.Contains("Timestamp"))
+                BeginInvoke(new Action(() =>
                 {
-                    recentActionsDataGridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
-                    recentActionsDataGridView.Columns["Timestamp"].Width = 150;
-                    recentActionsDataGridView.Columns["Timestamp"].HeaderText = "Время";
-                }
-                
-                if (recentActionsDataGridView.Columns.Contains("Username"))
-                    recentActionsDataGridView.Columns["Username"].HeaderText = "Пользователь";
-                    
-                if (recentActionsDataGridView.Columns.Contains("Action"))
-                    recentActionsDataGridView.Columns["Action"].HeaderText = "Действие";
-                    
-                if (recentActionsDataGridView.Columns.Contains("Details"))
-                    recentActionsDataGridView.Columns["Details"].HeaderText = "Детали";
+                    try
+                    {
+                        if (recentActionsDataGridView.Columns.Contains("Id"))
+                            recentActionsDataGridView.Columns["Id"].Visible = false;
+                            
+                        if (recentActionsDataGridView.Columns.Contains("Timestamp"))
+                        {
+                            recentActionsDataGridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
+                            recentActionsDataGridView.Columns["Timestamp"].Width = 150;
+                            recentActionsDataGridView.Columns["Timestamp"].HeaderText = "Время";
+                        }
+                        
+                        if (recentActionsDataGridView.Columns.Contains("Username"))
+                            recentActionsDataGridView.Columns["Username"].HeaderText = "Пользователь";
+                            
+                        if (recentActionsDataGridView.Columns.Contains("Action"))
+                            recentActionsDataGridView.Columns["Action"].HeaderText = "Действие";
+                            
+                        if (recentActionsDataGridView.Columns.Contains("Details"))
+                            recentActionsDataGridView.Columns["Details"].HeaderText = "Детали";
+                    }
+                    catch
+                    {
+                        // Ignore any column formatting errors
+                    }
+                }));
             }
         }
         
