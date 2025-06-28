@@ -26,7 +26,7 @@ namespace FurnitureAccounting.Views
         
         private void InitializeComponents()
         {
-            Text = "Manage Departments";
+            Text = "Управление отделами";
             Size = new Size(800, 600);
             StartPosition = FormStartPosition.CenterParent;
             BackColor = Color.FromArgb(245, 247, 250);
@@ -52,7 +52,7 @@ namespace FurnitureAccounting.Views
             
             var titleLabel = new Label
             {
-                Text = "Department Details",
+                Text = "Данные отдела",
                 Font = new Font("Segoe UI", 14, FontStyle.Bold),
                 ForeColor = Color.FromArgb(44, 62, 80),
                 AutoSize = true,
@@ -69,11 +69,17 @@ namespace FurnitureAccounting.Views
                 BackColor = Color.White
             };
             
-            inputLayout.Controls.Add(new Label { Text = "Name:", Anchor = AnchorStyles.Right, Font = new Font("Segoe UI", 10) }, 0, 0);
+            var nameLabel = new Label { Text = "Название:", Anchor = AnchorStyles.Right, Font = new Font("Segoe UI", 10) };
+            var nameTooltip = new ToolTip();
+            nameTooltip.SetToolTip(nameLabel, "Введите название отдела (обязательно)");
+            inputLayout.Controls.Add(nameLabel, 0, 0);
             nameTextBox = new TextBox { Dock = DockStyle.Fill, Font = new Font("Segoe UI", 10), BorderStyle = BorderStyle.FixedSingle };
             inputLayout.Controls.Add(nameTextBox, 1, 0);
             
-            inputLayout.Controls.Add(new Label { Text = "Description:", Anchor = AnchorStyles.Right, Font = new Font("Segoe UI", 10) }, 0, 1);
+            var descLabel = new Label { Text = "Описание:", Anchor = AnchorStyles.Right, Font = new Font("Segoe UI", 10) };
+            var descTooltip = new ToolTip();
+            descTooltip.SetToolTip(descLabel, "Описание отдела (необязательно)");
+            inputLayout.Controls.Add(descLabel, 0, 1);
             descriptionTextBox = new TextBox { Dock = DockStyle.Fill, Multiline = true, Height = 50, Font = new Font("Segoe UI", 10), BorderStyle = BorderStyle.FixedSingle, ScrollBars = ScrollBars.Vertical };
             inputLayout.Controls.Add(descriptionTextBox, 1, 1);
             
@@ -85,7 +91,7 @@ namespace FurnitureAccounting.Views
             
             addButton = new Button 
             { 
-                Text = "➕ Add", 
+                Text = "➕ Добавить", 
                 Width = 100, 
                 Height = 35,
                 BackColor = Color.FromArgb(46, 204, 113),
@@ -99,7 +105,7 @@ namespace FurnitureAccounting.Views
             
             updateButton = new Button 
             { 
-                Text = "✏️ Update", 
+                Text = "✏️ Изменить", 
                 Width = 100,
                 Height = 35,
                 BackColor = Color.FromArgb(52, 152, 219),
@@ -114,7 +120,7 @@ namespace FurnitureAccounting.Views
             
             deleteButton = new Button 
             { 
-                Text = "🗑️ Delete", 
+                Text = "🗑️ Удалить", 
                 Width = 100,
                 Height = 35,
                 BackColor = Color.FromArgb(231, 76, 60),
@@ -224,7 +230,7 @@ namespace FurnitureAccounting.Views
                 _dataService.AddDepartment(department);
                 LoadData();
                 ClearForm();
-                MessageBox.Show("Department added successfully!", "Success", 
+                MessageBox.Show("Отдел успешно добавлен!", "Успех", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -239,7 +245,7 @@ namespace FurnitureAccounting.Views
                 _dataService.UpdateDepartment(_selectedDepartment);
                 LoadData();
                 ClearForm();
-                MessageBox.Show("Department updated successfully!", "Success", 
+                MessageBox.Show("Отдел успешно обновлен!", "Успех", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -251,20 +257,20 @@ namespace FurnitureAccounting.Views
                 var furniture = _dataService.GetFurnitureByDepartment(_selectedDepartment.Id);
                 if (furniture.Any())
                 {
-                    MessageBox.Show("Cannot delete department with assigned furniture!", "Error", 
+                    MessageBox.Show("Невозможно удалить отдел с назначенной мебелью!", "Ошибка", 
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 
-                var result = MessageBox.Show($"Are you sure you want to delete '{_selectedDepartment.Name}'?", 
-                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show($"Вы уверены, что хотите удалить '{_selectedDepartment.Name}'?", 
+                    "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     
                 if (result == DialogResult.Yes)
                 {
                     _dataService.DeleteDepartment(_selectedDepartment.Id);
                     LoadData();
                     ClearForm();
-                    MessageBox.Show("Department deleted successfully!", "Success", 
+                    MessageBox.Show("Отдел успешно удален!", "Успех", 
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -274,7 +280,7 @@ namespace FurnitureAccounting.Views
         {
             if (string.IsNullOrWhiteSpace(nameTextBox.Text))
             {
-                MessageBox.Show("Please enter department name!", "Validation Error", 
+                MessageBox.Show("Пожалуйста, введите название отдела!", "Ошибка проверки", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 nameTextBox.Focus();
                 return false;

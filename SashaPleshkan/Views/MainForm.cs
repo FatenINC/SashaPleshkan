@@ -31,10 +31,11 @@ namespace FurnitureAccounting.Views
         
         private void InitializeComponents()
         {
-            Text = "Furniture Accounting System";
+            Text = "Система учета мебели";
             Size = new Size(1200, 800);
             StartPosition = FormStartPosition.CenterScreen;
             BackColor = backgroundColor;
+            Activated += MainForm_Activated;
             
             // Create sidebar
             sidebarPanel = new Panel
@@ -55,7 +56,7 @@ namespace FurnitureAccounting.Views
             
             var titleLabel = new Label
             {
-                Text = "FURNITURE\nACCOUNTING",
+                Text = "СИСТЕМА\nУЧЕТА МЕБЕЛИ",
                 Font = new Font("Segoe UI", 11, FontStyle.Bold),
                 ForeColor = Color.White,
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -72,16 +73,16 @@ namespace FurnitureAccounting.Views
                 AutoScroll = true
             };
             
-            AddNavButton(navPanel, "📊 Dashboard", ShowDashboard);
-            AddNavButton(navPanel, "🏢 Departments", () => OpenDepartmentForm());
-            AddNavButton(navPanel, "🪑 Furniture", () => OpenFurnitureForm());
-            AddNavButton(navPanel, "📎 Assign Items", () => OpenAssignmentForm());
-            AddNavButton(navPanel, "❌ Write-off", () => OpenWriteOffForm());
-            AddNavButton(navPanel, "📋 View Logs", () => OpenLogsForm());
-            AddNavButton(navPanel, "📈 Reports", () => OpenReportForm());
+            AddNavButton(navPanel, "📊 Главная", ShowDashboard, "Общая статистика и последние действия");
+            AddNavButton(navPanel, "🏢 Отделы", () => OpenDepartmentForm(), "Управление отделами организации");
+            AddNavButton(navPanel, "🪑 Мебель", () => OpenFurnitureForm(), "Добавление и редактирование мебели");
+            AddNavButton(navPanel, "📎 Назначить", () => OpenAssignmentForm(), "Закрепить мебель за отделом");
+            AddNavButton(navPanel, "❌ Списать", () => OpenWriteOffForm(), "Списание негодной мебели");
+            AddNavButton(navPanel, "📋 Журнал", () => OpenLogsForm(), "Просмотр истории действий");
+            AddNavButton(navPanel, "📈 Отчеты", () => OpenReportForm(), "Формирование отчетов");
             AddNavSeparator(navPanel);
-            AddNavButton(navPanel, "📥 Import Data", ImportData);
-            AddNavButton(navPanel, "📤 Export Data", ExportData);
+            AddNavButton(navPanel, "📥 Импорт", ImportData, "Загрузить данные из файла");
+            AddNavButton(navPanel, "📤 Экспорт", ExportData, "Сохранить данные в файл");
             
             // Add controls in correct order
             sidebarPanel.Controls.Add(navPanel);
@@ -100,7 +101,7 @@ namespace FurnitureAccounting.Views
             {
                 BackColor = Color.White
             };
-            statusLabel = new ToolStripStatusLabel($"👤 User: {Environment.UserName} | 📅 {DateTime.Now:dddd, MMMM d, yyyy}");
+            statusLabel = new ToolStripStatusLabel($"👤 Пользователь: {Environment.UserName} | 📅 {DateTime.Now:dddd, d MMMM yyyy}");
             statusStrip.Items.Add(statusLabel);
             
             Controls.Add(mainContentPanel);
@@ -108,7 +109,7 @@ namespace FurnitureAccounting.Views
             Controls.Add(statusStrip);
         }
         
-        private void AddNavButton(FlowLayoutPanel parent, string text, Action onClick)
+        private void AddNavButton(FlowLayoutPanel parent, string text, Action onClick, string tooltip = null)
         {
             var button = new Button
             {
@@ -127,6 +128,12 @@ namespace FurnitureAccounting.Views
             button.FlatAppearance.BorderSize = 0;
             button.FlatAppearance.MouseOverBackColor = secondaryColor;
             button.Click += (s, e) => onClick();
+            
+            if (!string.IsNullOrEmpty(tooltip))
+            {
+                var toolTip = new ToolTip();
+                toolTip.SetToolTip(button, tooltip);
+            }
             
             parent.Controls.Add(button);
         }
@@ -155,7 +162,7 @@ namespace FurnitureAccounting.Views
             // Title
             var titleLabel = new Label
             {
-                Text = "Dashboard Overview",
+                Text = "Обзор системы",
                 Font = new Font("Segoe UI", 24, FontStyle.Bold),
                 ForeColor = textColor,
                 AutoSize = true,
@@ -179,10 +186,10 @@ namespace FurnitureAccounting.Views
             var writtenOffFurniture = furniture.Where(f => f.IsWrittenOff).ToList();
             var totalValue = activeFurniture.Sum(f => f.Price);
             
-            CreateStatCard(cardsPanel, "Total Departments", departments.Count.ToString(), "🏢", primaryColor);
-            CreateStatCard(cardsPanel, "Active Furniture", activeFurniture.Count.ToString(), "🪑", successColor);
-            CreateStatCard(cardsPanel, "Written Off", writtenOffFurniture.Count.ToString(), "❌", warningColor);
-            CreateStatCard(cardsPanel, "Total Value", $"${totalValue:N2}", "💰", secondaryColor);
+            CreateStatCard(cardsPanel, "Всего отделов", departments.Count.ToString(), "🏢", primaryColor);
+            CreateStatCard(cardsPanel, "Активная мебель", activeFurniture.Count.ToString(), "🪑", successColor);
+            CreateStatCard(cardsPanel, "Списано", writtenOffFurniture.Count.ToString(), "❌", warningColor);
+            CreateStatCard(cardsPanel, "Общая стоимость", $"${totalValue:N2}", "💰", secondaryColor);
             
             dashboardPanel.Controls.Add(cardsPanel);
             
@@ -196,7 +203,7 @@ namespace FurnitureAccounting.Views
             
             var activityTitle = new Label
             {
-                Text = "Recent Activity",
+                Text = "Последние действия",
                 Font = new Font("Segoe UI", 16, FontStyle.Bold),
                 ForeColor = textColor,
                 Location = new Point(0, 0),
@@ -286,28 +293,41 @@ namespace FurnitureAccounting.Views
             parent.Controls.Add(card);
         }
         
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            // Refresh dashboard when main form is activated
+            if (mainContentPanel.Controls.Contains(dashboardPanel))
+            {
+                ShowDashboard();
+            }
+        }
+        
         private void OpenDepartmentForm()
         {
             var form = new DepartmentForm(_dataService);
             form.ShowDialog();
+            ShowDashboard(); // Refresh dashboard after changes
         }
         
         private void OpenFurnitureForm()
         {
             var form = new FurnitureForm(_dataService);
             form.ShowDialog();
+            ShowDashboard(); // Refresh dashboard after changes
         }
         
         private void OpenAssignmentForm()
         {
             var form = new AssignmentForm(_dataService);
             form.ShowDialog();
+            ShowDashboard(); // Refresh dashboard after changes
         }
         
         private void OpenWriteOffForm()
         {
             var form = new WriteOffForm(_dataService);
             form.ShowDialog();
+            ShowDashboard(); // Refresh dashboard after changes
         }
         
         private void OpenLogsForm()
@@ -336,6 +356,7 @@ namespace FurnitureAccounting.Views
                         _dataService.ImportData(dialog.FileName);
                         MessageBox.Show("Data imported successfully!", "Success", 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ShowDashboard(); // Refresh dashboard after import
                     }
                     catch (Exception ex)
                     {

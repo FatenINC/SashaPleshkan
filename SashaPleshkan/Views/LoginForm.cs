@@ -22,7 +22,7 @@ namespace FurnitureAccounting.Views
         
         private void InitializeComponents()
         {
-            Text = "Furniture Accounting - Login";
+            Text = "Система учета мебели - Вход";
             Size = new Size(450, 550);
             StartPosition = FormStartPosition.CenterScreen;
             BackColor = Color.FromArgb(52, 152, 219);
@@ -61,29 +61,29 @@ namespace FurnitureAccounting.Views
             // Title
             titleLabel = new Label
             {
-                Text = "Welcome Back!",
+                Text = "Добро пожаловать!",
                 Font = new Font("Segoe UI", 20, FontStyle.Bold),
                 ForeColor = Color.FromArgb(44, 62, 80),
                 AutoSize = true,
-                Location = new Point(80, 120)
+                Location = new Point(50, 120)
             };
             loginPanel.Controls.Add(titleLabel);
             
             // Subtitle
             subtitleLabel = new Label
             {
-                Text = "Please login to your account",
+                Text = "Пожалуйста, войдите в систему",
                 Font = new Font("Segoe UI", 10),
                 ForeColor = Color.Gray,
                 AutoSize = true,
-                Location = new Point(90, 155)
+                Location = new Point(70, 155)
             };
             loginPanel.Controls.Add(subtitleLabel);
             
             // Username field
             var usernameLabel = new Label
             {
-                Text = "Username",
+                Text = "Имя пользователя",
                 Font = new Font("Segoe UI", 10),
                 ForeColor = Color.FromArgb(44, 62, 80),
                 Location = new Point(50, 200),
@@ -105,7 +105,7 @@ namespace FurnitureAccounting.Views
             // Password field
             var passwordLabel = new Label
             {
-                Text = "Password",
+                Text = "Пароль",
                 Font = new Font("Segoe UI", 10),
                 ForeColor = Color.FromArgb(44, 62, 80),
                 Location = new Point(50, 270),
@@ -132,7 +132,7 @@ namespace FurnitureAccounting.Views
             // Login button
             loginButton = new Button
             {
-                Text = "LOGIN",
+                Text = "ВОЙТИ",
                 Width = 250,
                 Height = 45,
                 Location = new Point(50, 350),
@@ -153,11 +153,11 @@ namespace FurnitureAccounting.Views
             // Footer
             var footerLabel = new Label
             {
-                Text = "Furniture Accounting System © 2025",
+                Text = "Система учета мебели © 2025",
                 Font = new Font("Segoe UI", 9),
                 ForeColor = Color.White,
                 AutoSize = true,
-                Location = new Point(130, 480)
+                Location = new Point(140, 480)
             };
             Controls.Add(footerLabel);
         }
@@ -166,7 +166,7 @@ namespace FurnitureAccounting.Views
         {
             if (string.IsNullOrWhiteSpace(usernameTextBox.Text))
             {
-                MessageBox.Show("Please enter username!", "Validation Error", 
+                MessageBox.Show("Пожалуйста, введите имя пользователя!", "Ошибка", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 usernameTextBox.Focus();
                 return;
