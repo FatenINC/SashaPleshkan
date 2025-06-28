@@ -27,7 +27,6 @@ namespace FurnitureAccounting.Views
             printButton.Click += PrintButton_Click;
             printDocument.PrintPage += PrintDocument_PrintPage;
             
-            // Add report types to combo box
             reportTypeComboBox.Items.AddRange(new[] 
             { 
                 "Мебель по отделам",
@@ -39,7 +38,6 @@ namespace FurnitureAccounting.Views
             });
             reportTypeComboBox.SelectedIndex = 0;
             
-            // Set initial state
             saveButton.Enabled = false;
             printButton.Enabled = false;
         }

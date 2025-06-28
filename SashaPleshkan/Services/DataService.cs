@@ -102,7 +102,6 @@ namespace FurnitureAccounting.Services
         
         public void AddFurniture(Furniture furniture)
         {
-            // Check if inventory number already exists (skip check for empty/zero inventory numbers)
             if (!string.IsNullOrWhiteSpace(furniture.InventoryNumber) && furniture.InventoryNumber != "0" &&
                 _furniture.Any(f => f.InventoryNumber == furniture.InventoryNumber))
             {
@@ -117,7 +116,6 @@ namespace FurnitureAccounting.Services
         
         public void UpdateFurniture(Furniture furniture)
         {
-            // Check if inventory number already exists for another item (skip check for empty/zero inventory numbers)
             if (!string.IsNullOrWhiteSpace(furniture.InventoryNumber) && furniture.InventoryNumber != "0" &&
                 _furniture.Any(f => f.InventoryNumber == furniture.InventoryNumber && f.Id != furniture.Id))
             {

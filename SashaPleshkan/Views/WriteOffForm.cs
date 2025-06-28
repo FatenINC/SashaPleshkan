@@ -24,7 +24,6 @@ namespace FurnitureAccounting.Views
             furnitureComboBox.SelectedIndexChanged += FurnitureComboBox_SelectedIndexChanged;
             writeOffButton.Click += WriteOffButton_Click;
             
-            // Set initial state
             writeOffButton.Enabled = false;
             detailsLabel.Text = "Выберите мебель для просмотра деталей";
             detailsLabel.ForeColor = Color.Gray;

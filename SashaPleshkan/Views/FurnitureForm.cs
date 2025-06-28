@@ -28,10 +28,8 @@ namespace FurnitureAccounting.Views
             deleteButton.Click += DeleteButton_Click;
             showWrittenOffCheckBox.CheckedChanged += (s, e) => LoadData();
             
-            // Add furniture types to combo box
             typeComboBox.Items.AddRange(new[] { "Стол", "Стул", "Шкаф", "Полка", "Письменный стол", "Другое" });
             
-            // Set initial state
             updateButton.Enabled = false;
             deleteButton.Enabled = false;
         }
@@ -53,7 +51,6 @@ namespace FurnitureAccounting.Views
             furnitureDataGridView.DataSource = null;
             furnitureDataGridView.DataSource = furniture;
             
-            // Use BeginInvoke only if handle is created
             if (furniture.Any() && IsHandleCreated)
             {
                 BeginInvoke(new Action(() =>
@@ -86,7 +83,6 @@ namespace FurnitureAccounting.Views
                     }
                     catch
                     {
-                        // Ignore column formatting errors
                     }
                 }));
             }
