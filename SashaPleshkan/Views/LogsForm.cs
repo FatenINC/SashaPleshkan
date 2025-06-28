@@ -104,19 +104,30 @@ namespace FurnitureAccounting.Views
             var logs = _dataService.GetLogs().OrderByDescending(l => l.Timestamp).ToList();
             gridView.DataSource = logs;
             
-            if (gridView.Columns != null && gridView.Columns.Count > 0)
+            // Use BeginInvoke to ensure columns are created before accessing them
+            if (logs.Any())
             {
-                if (gridView.Columns["Id"] != null)
-                    gridView.Columns["Id"].Width = 50;
-                if (gridView.Columns["Timestamp"] != null)
+                BeginInvoke(new Action(() =>
                 {
-                    gridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
-                    gridView.Columns["Timestamp"].Width = 150;
-                }
-                if (gridView.Columns["Username"] != null)
-                    gridView.Columns["Username"].Width = 100;
-                if (gridView.Columns["Action"] != null)
-                    gridView.Columns["Action"].Width = 150;
+                    try
+                    {
+                        if (gridView.Columns.Contains("Id"))
+                            gridView.Columns["Id"].Width = 50;
+                        if (gridView.Columns.Contains("Timestamp"))
+                        {
+                            gridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
+                            gridView.Columns["Timestamp"].Width = 150;
+                        }
+                        if (gridView.Columns.Contains("Username"))
+                            gridView.Columns["Username"].Width = 100;
+                        if (gridView.Columns.Contains("Action"))
+                            gridView.Columns["Action"].Width = 150;
+                    }
+                    catch
+                    {
+                        // Ignore column formatting errors
+                    }
+                }));
             }
             
             var actions = logs.Select(l => l.Action).Distinct().OrderBy(a => a).ToList();

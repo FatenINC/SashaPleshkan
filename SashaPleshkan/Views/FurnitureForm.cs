@@ -148,14 +148,25 @@ namespace FurnitureAccounting.Views
             gridView.DataSource = null;
             gridView.DataSource = furniture;
             
-            if (gridView.Columns != null && gridView.Columns.Count > 0)
+            // Use BeginInvoke to ensure columns are created before accessing them
+            if (furniture.Any())
             {
-                if (gridView.Columns["Id"] != null)
-                    gridView.Columns["Id"].Width = 50;
-                if (gridView.Columns["DepartmentId"] != null)
-                    gridView.Columns["DepartmentId"].Visible = false;
-                if (gridView.Columns["WriteOffReason"] != null)
-                    gridView.Columns["WriteOffReason"].Visible = false;
+                BeginInvoke(new Action(() =>
+                {
+                    try
+                    {
+                        if (gridView.Columns.Contains("Id"))
+                            gridView.Columns["Id"].Width = 50;
+                        if (gridView.Columns.Contains("DepartmentId"))
+                            gridView.Columns["DepartmentId"].Visible = false;
+                        if (gridView.Columns.Contains("WriteOffReason"))
+                            gridView.Columns["WriteOffReason"].Visible = false;
+                    }
+                    catch
+                    {
+                        // Ignore column formatting errors
+                    }
+                }));
             }
         }
         
