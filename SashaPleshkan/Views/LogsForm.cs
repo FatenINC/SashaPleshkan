@@ -21,7 +21,6 @@ namespace FurnitureAccounting.Views
         {
             _dataService = dataService;
             InitializeComponents();
-            LoadData();
         }
         
         private void InitializeComponents()
@@ -29,6 +28,7 @@ namespace FurnitureAccounting.Views
             Text = "Action Logs";
             Size = new Size(900, 600);
             StartPosition = FormStartPosition.CenterParent;
+            Load += LogsForm_Load;
             
             var mainPanel = new TableLayoutPanel
             {
@@ -99,13 +99,18 @@ namespace FurnitureAccounting.Views
             Controls.Add(mainPanel);
         }
         
+        private void LogsForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        
         private void LoadData()
         {
             var logs = _dataService.GetLogs().OrderByDescending(l => l.Timestamp).ToList();
             gridView.DataSource = logs;
             
-            // Use BeginInvoke to ensure columns are created before accessing them
-            if (logs.Any())
+            // Use BeginInvoke only if handle is created
+            if (logs.Any() && IsHandleCreated)
             {
                 BeginInvoke(new Action(() =>
                 {

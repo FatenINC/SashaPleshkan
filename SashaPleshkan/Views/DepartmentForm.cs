@@ -22,7 +22,6 @@ namespace FurnitureAccounting.Views
         {
             _dataService = dataService;
             InitializeComponents();
-            LoadData();
         }
         
         private void InitializeComponents()
@@ -31,6 +30,7 @@ namespace FurnitureAccounting.Views
             Size = new Size(800, 600);
             StartPosition = FormStartPosition.CenterParent;
             BackColor = Color.FromArgb(245, 247, 250);
+            Load += DepartmentForm_Load;
             
             var mainPanel = new TableLayoutPanel
             {
@@ -162,13 +162,18 @@ namespace FurnitureAccounting.Views
             Controls.Add(mainPanel);
         }
         
+        private void DepartmentForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        
         private void LoadData()
         {
             var departments = _dataService.GetDepartments();
             gridView.DataSource = departments;
             
-            // Use BeginInvoke to ensure columns are created before accessing them
-            if (departments.Any())
+            // Use BeginInvoke only if handle is created
+            if (departments.Any() && IsHandleCreated)
             {
                 BeginInvoke(new Action(() =>
                 {

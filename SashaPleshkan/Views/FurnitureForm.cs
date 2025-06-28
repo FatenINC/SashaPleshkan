@@ -26,7 +26,6 @@ namespace FurnitureAccounting.Views
         {
             _dataService = dataService;
             InitializeComponents();
-            LoadData();
         }
         
         private void InitializeComponents()
@@ -34,6 +33,7 @@ namespace FurnitureAccounting.Views
             Text = "Manage Furniture";
             Size = new Size(800, 600);
             StartPosition = FormStartPosition.CenterParent;
+            Load += FurnitureForm_Load;
             
             var mainPanel = new TableLayoutPanel
             {
@@ -136,6 +136,11 @@ namespace FurnitureAccounting.Views
             Controls.Add(mainPanel);
         }
         
+        private void FurnitureForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        
         private void LoadData()
         {
             var furniture = _dataService.GetFurniture();
@@ -148,8 +153,8 @@ namespace FurnitureAccounting.Views
             gridView.DataSource = null;
             gridView.DataSource = furniture;
             
-            // Use BeginInvoke to ensure columns are created before accessing them
-            if (furniture.Any())
+            // Use BeginInvoke only if handle is created
+            if (furniture.Any() && IsHandleCreated)
             {
                 BeginInvoke(new Action(() =>
                 {
