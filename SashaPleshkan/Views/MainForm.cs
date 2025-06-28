@@ -47,7 +47,7 @@ namespace FurnitureAccounting.Views
             // Logo/Title Panel
             var titlePanel = new Panel
             {
-                Height = 100,
+                Height = 80,
                 Dock = DockStyle.Top,
                 BackColor = primaryColor
             };
@@ -55,7 +55,7 @@ namespace FurnitureAccounting.Views
             var titleLabel = new Label
             {
                 Text = "FURNITURE\nACCOUNTING",
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                Font = new Font("Segoe UI", 12, FontStyle.Bold),
                 ForeColor = Color.White,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Fill
@@ -68,7 +68,8 @@ namespace FurnitureAccounting.Views
             {
                 FlowDirection = FlowDirection.TopDown,
                 Dock = DockStyle.Fill,
-                Padding = new Padding(0, 20, 0, 0)
+                Padding = new Padding(0, 10, 0, 0),
+                AutoScroll = true
             };
             
             AddNavButton(navPanel, "📊 Dashboard", ShowDashboard);
