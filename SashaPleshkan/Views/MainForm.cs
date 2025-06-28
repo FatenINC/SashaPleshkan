@@ -59,6 +59,27 @@ namespace FurnitureAccounting.Views
             reportsButton.Click += (s, e) => OpenReportForm();
             logoutButton.Click += (s, e) => Application.Exit();
             
+            // Add hover effects to navigation buttons
+            var navButtons = new[] { dashboardButton, furnitureButton, departmentsButton, 
+                                   assignmentButton, writeOffButton, reportsButton, logsButton, logoutButton };
+            
+            foreach (var button in navButtons)
+            {
+                button.MouseEnter += (s, e) => 
+                {
+                    if (button != dashboardButton || button.BackColor != secondaryColor)
+                        button.BackColor = Color.FromArgb(52, 152, 219);
+                };
+                button.MouseLeave += (s, e) => 
+                {
+                    if (button != dashboardButton || button.BackColor != secondaryColor)
+                        button.BackColor = primaryColor;
+                };
+            }
+            
+            // Highlight dashboard button by default
+            dashboardButton.BackColor = secondaryColor;
+            
             // Import/Export - these buttons don't exist in Designer, so we'll handle in navigation setup
             
             // Update status label

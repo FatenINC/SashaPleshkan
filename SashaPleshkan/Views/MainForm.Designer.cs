@@ -149,8 +149,9 @@ namespace FurnitureAccounting.Views
             this.dashboardButton.Name = "dashboardButton";
             this.dashboardButton.Size = new System.Drawing.Size(250, 50);
             this.dashboardButton.TabIndex = 0;
-            this.dashboardButton.Text = "📊 Главная";
+            this.dashboardButton.Text = "    📊 Главная";
             this.dashboardButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dashboardButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.dashboardButton.UseVisualStyleBackColor = false;
             // 
             // furnitureButton
@@ -166,8 +167,9 @@ namespace FurnitureAccounting.Views
             this.furnitureButton.Name = "furnitureButton";
             this.furnitureButton.Size = new System.Drawing.Size(250, 50);
             this.furnitureButton.TabIndex = 1;
-            this.furnitureButton.Text = "🪑 Мебель";
+            this.furnitureButton.Text = "    🪑 Мебель";
             this.furnitureButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.furnitureButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.furnitureButton.UseVisualStyleBackColor = false;
             // 
             // departmentsButton
@@ -183,8 +185,9 @@ namespace FurnitureAccounting.Views
             this.departmentsButton.Name = "departmentsButton";
             this.departmentsButton.Size = new System.Drawing.Size(250, 50);
             this.departmentsButton.TabIndex = 2;
-            this.departmentsButton.Text = "🏢 Отделы";
+            this.departmentsButton.Text = "    🏢 Отделы";
             this.departmentsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.departmentsButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.departmentsButton.UseVisualStyleBackColor = false;
             // 
             // assignmentButton
@@ -200,8 +203,9 @@ namespace FurnitureAccounting.Views
             this.assignmentButton.Name = "assignmentButton";
             this.assignmentButton.Size = new System.Drawing.Size(250, 50);
             this.assignmentButton.TabIndex = 3;
-            this.assignmentButton.Text = "📍 Назначение";
+            this.assignmentButton.Text = "    📍 Назначение";
             this.assignmentButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.assignmentButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.assignmentButton.UseVisualStyleBackColor = false;
             // 
             // writeOffButton
@@ -217,8 +221,9 @@ namespace FurnitureAccounting.Views
             this.writeOffButton.Name = "writeOffButton";
             this.writeOffButton.Size = new System.Drawing.Size(250, 50);
             this.writeOffButton.TabIndex = 4;
-            this.writeOffButton.Text = "❌ Списание";
+            this.writeOffButton.Text = "    ❌ Списание";
             this.writeOffButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.writeOffButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.writeOffButton.UseVisualStyleBackColor = false;
             // 
             // reportsButton
@@ -234,8 +239,9 @@ namespace FurnitureAccounting.Views
             this.reportsButton.Name = "reportsButton";
             this.reportsButton.Size = new System.Drawing.Size(250, 50);
             this.reportsButton.TabIndex = 5;
-            this.reportsButton.Text = "📈 Отчеты";
+            this.reportsButton.Text = "    📈 Отчеты";
             this.reportsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportsButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.reportsButton.UseVisualStyleBackColor = false;
             // 
             // logsButton
@@ -251,8 +257,9 @@ namespace FurnitureAccounting.Views
             this.logsButton.Name = "logsButton";
             this.logsButton.Size = new System.Drawing.Size(250, 50);
             this.logsButton.TabIndex = 6;
-            this.logsButton.Text = "📋 Журнал";
+            this.logsButton.Text = "    📋 Журнал";
             this.logsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.logsButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.logsButton.UseVisualStyleBackColor = false;
             // 
             // dividerLabel
@@ -276,8 +283,9 @@ namespace FurnitureAccounting.Views
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(250, 50);
             this.logoutButton.TabIndex = 8;
-            this.logoutButton.Text = "🚪 Выход";
+            this.logoutButton.Text = "    🚪 Выход";
             this.logoutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.logoutButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.logoutButton.UseVisualStyleBackColor = false;
             // 
             // statusStrip
