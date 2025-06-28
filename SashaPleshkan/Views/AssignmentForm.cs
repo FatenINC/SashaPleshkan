@@ -7,87 +7,23 @@ using FurnitureAccounting.Services;
 
 namespace FurnitureAccounting.Views
 {
-    public class AssignmentForm : Form
+    public partial class AssignmentForm : Form
     {
         private DataService _dataService;
-        private ComboBox furnitureComboBox;
-        private ComboBox departmentComboBox;
-        private Label currentAssignmentLabel;
-        private Button assignButton;
-        private Button clearAssignmentButton;
         
         public AssignmentForm(DataService dataService)
         {
             _dataService = dataService;
-            InitializeComponents();
+            InitializeComponent();
+            SetupEventHandlers();
             LoadData();
         }
         
-        private void InitializeComponents()
+        private void SetupEventHandlers()
         {
-            Text = "Назначение мебели отделу";
-            Size = new Size(500, 300);
-            StartPosition = FormStartPosition.CenterParent;
-            
-            var mainPanel = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 5,
-                Padding = new Padding(20)
-            };
-            
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            
-            mainPanel.Controls.Add(new Label { Text = "Мебель:", Anchor = AnchorStyles.Right }, 0, 0);
-            furnitureComboBox = new ComboBox 
-            { 
-                Dock = DockStyle.Fill,
-                DropDownStyle = ComboBoxStyle.DropDownList,
-                DisplayMember = "DisplayText"
-            };
             furnitureComboBox.SelectedIndexChanged += FurnitureComboBox_SelectedIndexChanged;
-            mainPanel.Controls.Add(furnitureComboBox, 1, 0);
-            
-            mainPanel.Controls.Add(new Label { Text = "Текущее назначение:", Anchor = AnchorStyles.Right }, 0, 1);
-            currentAssignmentLabel = new Label 
-            { 
-                Text = "Не назначено",
-                ForeColor = Color.Gray,
-                Anchor = AnchorStyles.Left
-            };
-            mainPanel.Controls.Add(currentAssignmentLabel, 1, 1);
-            
-            mainPanel.Controls.Add(new Label { Text = "Назначить отделу:", Anchor = AnchorStyles.Right }, 0, 2);
-            departmentComboBox = new ComboBox 
-            { 
-                Dock = DockStyle.Fill,
-                DropDownStyle = ComboBoxStyle.DropDownList,
-                DisplayMember = "Name"
-            };
-            mainPanel.Controls.Add(departmentComboBox, 1, 2);
-            
-            var buttonPanel = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                Dock = DockStyle.Fill
-            };
-            
-            assignButton = new Button { Text = "Назначить", Width = 120 };
             assignButton.Click += AssignButton_Click;
-            clearAssignmentButton = new Button { Text = "Отменить назначение", Width = 150 };
-            clearAssignmentButton.Click += ClearAssignmentButton_Click;
-            
-            buttonPanel.Controls.Add(assignButton);
-            buttonPanel.Controls.Add(clearAssignmentButton);
-            
-            mainPanel.Controls.Add(buttonPanel, 1, 3);
-            
-            Controls.Add(mainPanel);
+            unassignButton.Click += UnassignButton_Click;
         }
         
         private void LoadData()
@@ -126,14 +62,14 @@ namespace FurnitureAccounting.Views
                         {
                             currentAssignmentLabel.Text = department.Name;
                             currentAssignmentLabel.ForeColor = Color.Black;
-                            clearAssignmentButton.Enabled = true;
+                            unassignButton.Enabled = true;
                         }
                     }
                     else
                     {
                         currentAssignmentLabel.Text = "Не назначено";
                         currentAssignmentLabel.ForeColor = Color.Gray;
-                        clearAssignmentButton.Enabled = false;
+                        unassignButton.Enabled = false;
                     }
                 }
             }
@@ -163,7 +99,7 @@ namespace FurnitureAccounting.Views
             }
         }
         
-        private void ClearAssignmentButton_Click(object sender, EventArgs e)
+        private void UnassignButton_Click(object sender, EventArgs e)
         {
             if (furnitureComboBox.SelectedItem == null)
                 return;

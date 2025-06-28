@@ -7,133 +7,33 @@ using FurnitureAccounting.Services;
 
 namespace FurnitureAccounting.Views
 {
-    public class FurnitureForm : Form
+    public partial class FurnitureForm : Form
     {
         private DataService _dataService;
-        private DataGridView gridView;
-        private TextBox nameTextBox;
-        private ComboBox typeComboBox;
-        private TextBox inventoryNumberTextBox;
-        private NumericUpDown priceNumeric;
-        private DateTimePicker purchaseDatePicker;
-        private CheckBox showWrittenOffCheckBox;
-        private Button addButton;
-        private Button updateButton;
-        private Button deleteButton;
         private Furniture _selectedFurniture;
         
         public FurnitureForm(DataService dataService)
         {
             _dataService = dataService;
-            InitializeComponents();
+            InitializeComponent();
+            SetupEventHandlers();
         }
         
-        private void InitializeComponents()
+        private void SetupEventHandlers()
         {
-            Text = "Управление мебелью";
-            Size = new Size(800, 600);
-            StartPosition = FormStartPosition.CenterParent;
             Load += FurnitureForm_Load;
-            
-            var mainPanel = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 3,
-                Padding = new Padding(10)
-            };
-            
-            var inputPanel = new GroupBox
-            {
-                Text = "Данные мебели",
-                Height = 200,
-                Dock = DockStyle.Top
-            };
-            
-            var inputLayout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 4,
-                RowCount = 4,
-                Padding = new Padding(5)
-            };
-            
-            inputLayout.Controls.Add(new Label { Text = "Название:", Anchor = AnchorStyles.Right }, 0, 0);
-            nameTextBox = new TextBox { Dock = DockStyle.Fill };
-            inputLayout.Controls.Add(nameTextBox, 1, 0);
-            
-            inputLayout.Controls.Add(new Label { Text = "Тип:", Anchor = AnchorStyles.Right }, 2, 0);
-            typeComboBox = new ComboBox 
-            { 
-                Dock = DockStyle.Fill,
-                DropDownStyle = ComboBoxStyle.DropDownList
-            };
-            typeComboBox.Items.AddRange(new[] { "Стол", "Стул", "Шкаф", "Полка", "Письменный стол", "Другое" });
-            inputLayout.Controls.Add(typeComboBox, 3, 0);
-            
-            inputLayout.Controls.Add(new Label { Text = "Инв. номер:", Anchor = AnchorStyles.Right }, 0, 1);
-            inventoryNumberTextBox = new TextBox { Dock = DockStyle.Fill };
-            inputLayout.Controls.Add(inventoryNumberTextBox, 1, 1);
-            
-            inputLayout.Controls.Add(new Label { Text = "Цена:", Anchor = AnchorStyles.Right }, 2, 1);
-            priceNumeric = new NumericUpDown 
-            { 
-                Dock = DockStyle.Fill,
-                DecimalPlaces = 2,
-                Maximum = 999999,
-                Minimum = 0
-            };
-            inputLayout.Controls.Add(priceNumeric, 3, 1);
-            
-            inputLayout.Controls.Add(new Label { Text = "Дата покупки:", Anchor = AnchorStyles.Right }, 0, 2);
-            purchaseDatePicker = new DateTimePicker { Dock = DockStyle.Fill };
-            inputLayout.Controls.Add(purchaseDatePicker, 1, 2);
-            
-            showWrittenOffCheckBox = new CheckBox 
-            { 
-                Text = "Показать списанные",
-                Anchor = AnchorStyles.Left
-            };
-            showWrittenOffCheckBox.CheckedChanged += (s, e) => LoadData();
-            inputLayout.Controls.Add(showWrittenOffCheckBox, 2, 2);
-            inputLayout.SetColumnSpan(showWrittenOffCheckBox, 2);
-            
-            var buttonPanel = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                Dock = DockStyle.Fill
-            };
-            
-            addButton = new Button { Text = "Добавить", Width = 100 };
+            furnitureDataGridView.SelectionChanged += GridView_SelectionChanged;
             addButton.Click += AddButton_Click;
-            updateButton = new Button { Text = "Изменить", Width = 100, Enabled = false };
             updateButton.Click += UpdateButton_Click;
-            deleteButton = new Button { Text = "Удалить", Width = 100, Enabled = false };
             deleteButton.Click += DeleteButton_Click;
+            showWrittenOffCheckBox.CheckedChanged += (s, e) => LoadData();
             
-            buttonPanel.Controls.Add(addButton);
-            buttonPanel.Controls.Add(updateButton);
-            buttonPanel.Controls.Add(deleteButton);
+            // Add furniture types to combo box
+            typeComboBox.Items.AddRange(new[] { "Стол", "Стул", "Шкаф", "Полка", "Письменный стол", "Другое" });
             
-            inputLayout.Controls.Add(buttonPanel, 1, 3);
-            inputLayout.SetColumnSpan(buttonPanel, 3);
-            
-            inputPanel.Controls.Add(inputLayout);
-            
-            gridView = new DataGridView
-            {
-                Dock = DockStyle.Fill,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                MultiSelect = false,
-                ReadOnly = true
-            };
-            gridView.SelectionChanged += GridView_SelectionChanged;
-            
-            mainPanel.Controls.Add(inputPanel, 0, 0);
-            mainPanel.Controls.Add(gridView, 0, 1);
-            
-            Controls.Add(mainPanel);
+            // Set initial state
+            updateButton.Enabled = false;
+            deleteButton.Enabled = false;
         }
         
         private void FurnitureForm_Load(object sender, EventArgs e)
@@ -150,8 +50,8 @@ namespace FurnitureAccounting.Views
                 furniture = furniture.Where(f => !f.IsWrittenOff).ToList();
             }
             
-            gridView.DataSource = null;
-            gridView.DataSource = furniture;
+            furnitureDataGridView.DataSource = null;
+            furnitureDataGridView.DataSource = furniture;
             
             // Use BeginInvoke only if handle is created
             if (furniture.Any() && IsHandleCreated)
@@ -160,29 +60,29 @@ namespace FurnitureAccounting.Views
                 {
                     try
                     {
-                        if (gridView.Columns.Contains("Id"))
+                        if (furnitureDataGridView.Columns.Contains("Id"))
                         {
-                            gridView.Columns["Id"].Width = 50;
-                            gridView.Columns["Id"].HeaderText = "ID";
+                            furnitureDataGridView.Columns["Id"].Width = 50;
+                            furnitureDataGridView.Columns["Id"].HeaderText = "ID";
                         }
-                        if (gridView.Columns.Contains("Name"))
-                            gridView.Columns["Name"].HeaderText = "Название";
-                        if (gridView.Columns.Contains("Type"))
-                            gridView.Columns["Type"].HeaderText = "Тип";
-                        if (gridView.Columns.Contains("InventoryNumber"))
-                            gridView.Columns["InventoryNumber"].HeaderText = "Инв. номер";
-                        if (gridView.Columns.Contains("Price"))
-                            gridView.Columns["Price"].HeaderText = "Цена";
-                        if (gridView.Columns.Contains("PurchaseDate"))
-                            gridView.Columns["PurchaseDate"].HeaderText = "Дата покупки";
-                        if (gridView.Columns.Contains("IsWrittenOff"))
-                            gridView.Columns["IsWrittenOff"].HeaderText = "Списано";
-                        if (gridView.Columns.Contains("WriteOffDate"))
-                            gridView.Columns["WriteOffDate"].HeaderText = "Дата списания";
-                        if (gridView.Columns.Contains("DepartmentId"))
-                            gridView.Columns["DepartmentId"].Visible = false;
-                        if (gridView.Columns.Contains("WriteOffReason"))
-                            gridView.Columns["WriteOffReason"].Visible = false;
+                        if (furnitureDataGridView.Columns.Contains("Name"))
+                            furnitureDataGridView.Columns["Name"].HeaderText = "Название";
+                        if (furnitureDataGridView.Columns.Contains("Type"))
+                            furnitureDataGridView.Columns["Type"].HeaderText = "Тип";
+                        if (furnitureDataGridView.Columns.Contains("InventoryNumber"))
+                            furnitureDataGridView.Columns["InventoryNumber"].HeaderText = "Инв. номер";
+                        if (furnitureDataGridView.Columns.Contains("Price"))
+                            furnitureDataGridView.Columns["Price"].HeaderText = "Цена";
+                        if (furnitureDataGridView.Columns.Contains("PurchaseDate"))
+                            furnitureDataGridView.Columns["PurchaseDate"].HeaderText = "Дата покупки";
+                        if (furnitureDataGridView.Columns.Contains("IsWrittenOff"))
+                            furnitureDataGridView.Columns["IsWrittenOff"].HeaderText = "Списано";
+                        if (furnitureDataGridView.Columns.Contains("WriteOffDate"))
+                            furnitureDataGridView.Columns["WriteOffDate"].HeaderText = "Дата списания";
+                        if (furnitureDataGridView.Columns.Contains("DepartmentId"))
+                            furnitureDataGridView.Columns["DepartmentId"].Visible = false;
+                        if (furnitureDataGridView.Columns.Contains("WriteOffReason"))
+                            furnitureDataGridView.Columns["WriteOffReason"].Visible = false;
                     }
                     catch
                     {
@@ -194,16 +94,16 @@ namespace FurnitureAccounting.Views
         
         private void GridView_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridView.SelectedRows.Count > 0)
+            if (furnitureDataGridView.SelectedRows.Count > 0)
             {
-                _selectedFurniture = gridView.SelectedRows[0].DataBoundItem as Furniture;
+                _selectedFurniture = furnitureDataGridView.SelectedRows[0].DataBoundItem as Furniture;
                 if (_selectedFurniture != null)
                 {
                     nameTextBox.Text = _selectedFurniture.Name;
                     typeComboBox.Text = _selectedFurniture.Type;
-                    inventoryNumberTextBox.Text = _selectedFurniture.InventoryNumber;
-                    priceNumeric.Value = _selectedFurniture.Price;
-                    purchaseDatePicker.Value = _selectedFurniture.PurchaseDate;
+                    inventoryTextBox.Text = _selectedFurniture.InventoryNumber;
+                    priceNumericUpDown.Value = _selectedFurniture.Price;
+                    purchaseDateTimePicker.Value = _selectedFurniture.PurchaseDate;
                     
                     updateButton.Enabled = !_selectedFurniture.IsWrittenOff;
                     deleteButton.Enabled = !_selectedFurniture.IsWrittenOff;
@@ -223,9 +123,9 @@ namespace FurnitureAccounting.Views
                 {
                     Name = nameTextBox.Text.Trim(),
                     Type = typeComboBox.Text,
-                    InventoryNumber = inventoryNumberTextBox.Text.Trim(),
-                    Price = priceNumeric.Value,
-                    PurchaseDate = purchaseDatePicker.Value
+                    InventoryNumber = inventoryTextBox.Text.Trim(),
+                    Price = priceNumericUpDown.Value,
+                    PurchaseDate = purchaseDateTimePicker.Value
                 };
                 
                 _dataService.AddFurniture(furniture);
@@ -242,9 +142,9 @@ namespace FurnitureAccounting.Views
             {
                 _selectedFurniture.Name = nameTextBox.Text.Trim();
                 _selectedFurniture.Type = typeComboBox.Text;
-                _selectedFurniture.InventoryNumber = inventoryNumberTextBox.Text.Trim();
-                _selectedFurniture.Price = priceNumeric.Value;
-                _selectedFurniture.PurchaseDate = purchaseDatePicker.Value;
+                _selectedFurniture.InventoryNumber = inventoryTextBox.Text.Trim();
+                _selectedFurniture.Price = priceNumericUpDown.Value;
+                _selectedFurniture.PurchaseDate = purchaseDateTimePicker.Value;
                 
                 _dataService.UpdateFurniture(_selectedFurniture);
                 LoadData();
@@ -290,23 +190,23 @@ namespace FurnitureAccounting.Views
                 return false;
             }
             
-            if (string.IsNullOrWhiteSpace(inventoryNumberTextBox.Text))
+            if (string.IsNullOrWhiteSpace(inventoryTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, введите инвентарный номер!", "Ошибка валидации", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                inventoryNumberTextBox.Focus();
+                inventoryTextBox.Focus();
                 return false;
             }
             
             var existingFurniture = _dataService.GetFurniture()
-                .FirstOrDefault(f => f.InventoryNumber == inventoryNumberTextBox.Text.Trim() 
+                .FirstOrDefault(f => f.InventoryNumber == inventoryTextBox.Text.Trim() 
                     && f.Id != (_selectedFurniture?.Id ?? 0));
                     
             if (existingFurniture != null)
             {
                 MessageBox.Show("Инвентарный номер уже существует!", "Ошибка валидации", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                inventoryNumberTextBox.Focus();
+                inventoryTextBox.Focus();
                 return false;
             }
             
@@ -317,9 +217,9 @@ namespace FurnitureAccounting.Views
         {
             nameTextBox.Clear();
             typeComboBox.SelectedIndex = -1;
-            inventoryNumberTextBox.Clear();
-            priceNumeric.Value = 0;
-            purchaseDatePicker.Value = DateTime.Now;
+            inventoryTextBox.Clear();
+            priceNumericUpDown.Value = 0;
+            purchaseDateTimePicker.Value = DateTime.Now;
             _selectedFurniture = null;
             updateButton.Enabled = false;
             deleteButton.Enabled = false;

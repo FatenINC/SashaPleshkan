@@ -6,21 +6,15 @@ using FurnitureAccounting.Services;
 
 namespace FurnitureAccounting.Views
 {
-    public class LogsForm : Form
+    public partial class LogsForm : Form
     {
         private DataService _dataService;
-        private DataGridView gridView;
-        private DateTimePicker fromDatePicker;
-        private DateTimePicker toDatePicker;
-        private ComboBox actionFilterComboBox;
-        private Button filterButton;
-        private Button clearFilterButton;
-        private Button exportButton;
         
         public LogsForm(DataService dataService)
         {
             _dataService = dataService;
-            InitializeComponents();
+            InitializeComponent();
+            SetupEventHandlers();
         }
         
         private string TranslateAction(string action)
@@ -43,80 +37,12 @@ namespace FurnitureAccounting.Views
             return translations.ContainsKey(action) ? translations[action] : action;
         }
         
-        private void InitializeComponents()
+        private void SetupEventHandlers()
         {
-            Text = "Журнал действий";
-            Size = new Size(900, 600);
-            StartPosition = FormStartPosition.CenterParent;
             Load += LogsForm_Load;
-            
-            var mainPanel = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 2,
-                Padding = new Padding(10)
-            };
-            
-            var filterPanel = new GroupBox
-            {
-                Text = "Параметры фильтра",
-                Height = 100,
-                Dock = DockStyle.Top
-            };
-            
-            var filterLayout = new FlowLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                FlowDirection = FlowDirection.LeftToRight,
-                Padding = new Padding(10)
-            };
-            
-            filterLayout.Controls.Add(new Label { Text = "С:", AutoSize = true, Anchor = AnchorStyles.Left });
-            fromDatePicker = new DateTimePicker { Width = 120 };
-            filterLayout.Controls.Add(fromDatePicker);
-            
-            filterLayout.Controls.Add(new Label { Text = "По:", AutoSize = true, Anchor = AnchorStyles.Left });
-            toDatePicker = new DateTimePicker { Width = 120 };
-            filterLayout.Controls.Add(toDatePicker);
-            
-            filterLayout.Controls.Add(new Label { Text = "Действие:", AutoSize = true, Anchor = AnchorStyles.Left });
-            actionFilterComboBox = new ComboBox 
-            { 
-                Width = 150,
-                DropDownStyle = ComboBoxStyle.DropDownList
-            };
-            filterLayout.Controls.Add(actionFilterComboBox);
-            
-            filterButton = new Button { Text = "Применить", Width = 100 };
-            filterButton.Click += FilterButton_Click;
-            filterLayout.Controls.Add(filterButton);
-            
-            clearFilterButton = new Button { Text = "Очистить", Width = 100 };
-            clearFilterButton.Click += ClearFilterButton_Click;
-            filterLayout.Controls.Add(clearFilterButton);
-            
-            exportButton = new Button { Text = "Экспорт", Width = 100 };
+            applyButton.Click += FilterButton_Click;
+            clearButton.Click += ClearFilterButton_Click;
             exportButton.Click += ExportButton_Click;
-            filterLayout.Controls.Add(exportButton);
-            
-            filterPanel.Controls.Add(filterLayout);
-            
-            gridView = new DataGridView
-            {
-                Dock = DockStyle.Fill,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                MultiSelect = false,
-                ReadOnly = true,
-                AllowUserToAddRows = false,
-                AllowUserToDeleteRows = false
-            };
-            
-            mainPanel.Controls.Add(filterPanel, 0, 0);
-            mainPanel.Controls.Add(gridView, 0, 1);
-            
-            Controls.Add(mainPanel);
         }
         
         private void LogsForm_Load(object sender, EventArgs e)
@@ -138,7 +64,7 @@ namespace FurnitureAccounting.Views
                 l.Timestamp
             }).ToList();
             
-            gridView.DataSource = displayLogs;
+            logsDataGridView.DataSource = displayLogs;
             
             // Use BeginInvoke only if handle is created
             if (logs.Any() && IsHandleCreated)
@@ -147,30 +73,30 @@ namespace FurnitureAccounting.Views
                 {
                     try
                     {
-                        if (gridView.Columns.Contains("Id"))
+                        if (logsDataGridView.Columns.Contains("Id"))
                         {
-                            gridView.Columns["Id"].Width = 50;
-                            gridView.Columns["Id"].HeaderText = "ID";
+                            logsDataGridView.Columns["Id"].Width = 50;
+                            logsDataGridView.Columns["Id"].HeaderText = "ID";
                         }
-                        if (gridView.Columns.Contains("Timestamp"))
+                        if (logsDataGridView.Columns.Contains("Timestamp"))
                         {
-                            gridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
-                            gridView.Columns["Timestamp"].Width = 150;
-                            gridView.Columns["Timestamp"].HeaderText = "Время";
+                            logsDataGridView.Columns["Timestamp"].DefaultCellStyle.Format = "g";
+                            logsDataGridView.Columns["Timestamp"].Width = 150;
+                            logsDataGridView.Columns["Timestamp"].HeaderText = "Время";
                         }
-                        if (gridView.Columns.Contains("Username"))
+                        if (logsDataGridView.Columns.Contains("Username"))
                         {
-                            gridView.Columns["Username"].Width = 100;
-                            gridView.Columns["Username"].HeaderText = "Пользователь";
+                            logsDataGridView.Columns["Username"].Width = 100;
+                            logsDataGridView.Columns["Username"].HeaderText = "Пользователь";
                         }
-                        if (gridView.Columns.Contains("Action"))
+                        if (logsDataGridView.Columns.Contains("Action"))
                         {
-                            gridView.Columns["Action"].Width = 150;
-                            gridView.Columns["Action"].HeaderText = "Действие";
+                            logsDataGridView.Columns["Action"].Width = 150;
+                            logsDataGridView.Columns["Action"].HeaderText = "Действие";
                         }
-                        if (gridView.Columns.Contains("Details"))
+                        if (logsDataGridView.Columns.Contains("Details"))
                         {
-                            gridView.Columns["Details"].HeaderText = "Детали";
+                            logsDataGridView.Columns["Details"].HeaderText = "Детали";
                         }
                     }
                     catch
@@ -182,27 +108,27 @@ namespace FurnitureAccounting.Views
             
             var actions = logs.Select(l => TranslateAction(l.Action)).Distinct().OrderBy(a => a).ToList();
             actions.Insert(0, "Все действия");
-            actionFilterComboBox.DataSource = actions;
-            actionFilterComboBox.SelectedIndex = 0;
+            actionComboBox.DataSource = actions;
+            actionComboBox.SelectedIndex = 0;
             
             if (logs.Any())
             {
-                fromDatePicker.Value = logs.Min(l => l.Timestamp).Date;
-                toDatePicker.Value = DateTime.Now.Date.AddDays(1);
+                fromDateTimePicker.Value = logs.Min(l => l.Timestamp).Date;
+                toDateTimePicker.Value = DateTime.Now.Date.AddDays(1);
             }
         }
         
         private void FilterButton_Click(object sender, EventArgs e)
         {
             var logs = _dataService.GetLogs()
-                .Where(l => l.Timestamp >= fromDatePicker.Value.Date && 
-                           l.Timestamp <= toDatePicker.Value.Date.AddDays(1))
+                .Where(l => l.Timestamp >= fromDateTimePicker.Value.Date && 
+                           l.Timestamp <= toDateTimePicker.Value.Date.AddDays(1))
                 .OrderByDescending(l => l.Timestamp)
                 .ToList();
                 
-            if (actionFilterComboBox.Text != "Все действия")
+            if (actionComboBox.Text != "Все действия")
             {
-                logs = logs.Where(l => TranslateAction(l.Action) == actionFilterComboBox.Text).ToList();
+                logs = logs.Where(l => TranslateAction(l.Action) == actionComboBox.Text).ToList();
             }
             
             // Переводим действия для отображения
@@ -215,7 +141,7 @@ namespace FurnitureAccounting.Views
                 l.Timestamp
             }).ToList();
             
-            gridView.DataSource = displayLogs;
+            logsDataGridView.DataSource = displayLogs;
         }
         
         private void ClearFilterButton_Click(object sender, EventArgs e)
@@ -235,7 +161,7 @@ namespace FurnitureAccounting.Views
                 {
                     try
                     {
-                        var logs = gridView.DataSource as System.Collections.IList;
+                        var logs = logsDataGridView.DataSource as System.Collections.IList;
                         var lines = new System.Collections.Generic.List<string>();
                         
                         lines.Add("ID,Пользователь,Действие,Детали,Время");

@@ -4,162 +4,40 @@ using System.Windows.Forms;
 
 namespace FurnitureAccounting.Views
 {
-    public class LoginForm : Form
+    public partial class LoginForm : Form
     {
-        private TextBox usernameTextBox;
-        private TextBox passwordTextBox;
-        private Button loginButton;
-        private Label titleLabel;
-        private Label subtitleLabel;
-        private Panel loginPanel;
-        
         public string Username { get; private set; }
         
         public LoginForm()
         {
-            InitializeComponents();
+            InitializeComponent();
+            SetupEventHandlers();
+            usernameTextBox.Text = Environment.UserName;
         }
         
-        private void InitializeComponents()
+        private void SetupEventHandlers()
         {
-            Text = "Система учета мебели - Вход";
-            Size = new Size(450, 550);
-            StartPosition = FormStartPosition.CenterScreen;
-            BackColor = Color.FromArgb(52, 152, 219);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            
-            // Create central login panel
-            loginPanel = new Panel
+            // Add shadow effect to main panel
+            mainPanel.Paint += (s, e) =>
             {
-                Width = 350,
-                Height = 400,
-                BackColor = Color.White,
-                Location = new Point(50, 60)
-            };
-            
-            // Add shadow effect
-            loginPanel.Paint += (s, e) =>
-            {
-                var rect = new Rectangle(5, 5, loginPanel.Width - 5, loginPanel.Height - 5);
+                var rect = new Rectangle(5, 5, mainPanel.Width - 5, mainPanel.Height - 5);
                 using (var brush = new SolidBrush(Color.FromArgb(50, 0, 0, 0)))
                 {
                     e.Graphics.FillRectangle(brush, rect);
                 }
             };
             
-            // Icon/Logo
-            var iconLabel = new Label
-            {
-                Text = "🪑",
-                Font = new Font("Segoe UI", 48),
-                AutoSize = true,
-                Location = new Point(130, 30)
-            };
-            loginPanel.Controls.Add(iconLabel);
-            
-            // Title
-            titleLabel = new Label
-            {
-                Text = "Добро пожаловать!",
-                Font = new Font("Segoe UI", 20, FontStyle.Bold),
-                ForeColor = Color.FromArgb(44, 62, 80),
-                AutoSize = true,
-                Location = new Point(50, 120)
-            };
-            loginPanel.Controls.Add(titleLabel);
-            
-            // Subtitle
-            subtitleLabel = new Label
-            {
-                Text = "Пожалуйста, войдите в систему",
-                Font = new Font("Segoe UI", 10),
-                ForeColor = Color.Gray,
-                AutoSize = true,
-                Location = new Point(70, 155)
-            };
-            loginPanel.Controls.Add(subtitleLabel);
-            
-            // Username field
-            var usernameLabel = new Label
-            {
-                Text = "Имя пользователя",
-                Font = new Font("Segoe UI", 10),
-                ForeColor = Color.FromArgb(44, 62, 80),
-                Location = new Point(50, 200),
-                AutoSize = true
-            };
-            loginPanel.Controls.Add(usernameLabel);
-            
-            usernameTextBox = new TextBox
-            {
-                Width = 250,
-                Height = 35,
-                Location = new Point(50, 225),
-                Font = new Font("Segoe UI", 12),
-                BorderStyle = BorderStyle.FixedSingle
-            };
-            usernameTextBox.Text = Environment.UserName;
-            loginPanel.Controls.Add(usernameTextBox);
-            
-            // Password field
-            var passwordLabel = new Label
-            {
-                Text = "Пароль",
-                Font = new Font("Segoe UI", 10),
-                ForeColor = Color.FromArgb(44, 62, 80),
-                Location = new Point(50, 270),
-                AutoSize = true
-            };
-            loginPanel.Controls.Add(passwordLabel);
-            
-            passwordTextBox = new TextBox
-            {
-                Width = 250,
-                Height = 35,
-                Location = new Point(50, 295),
-                Font = new Font("Segoe UI", 12),
-                BorderStyle = BorderStyle.FixedSingle,
-                PasswordChar = '•'
-            };
+            // Password field enter key handler
             passwordTextBox.KeyDown += (s, e) =>
             {
                 if (e.KeyCode == Keys.Enter)
                     LoginButton_Click(s, e);
             };
-            loginPanel.Controls.Add(passwordTextBox);
             
-            // Login button
-            loginButton = new Button
-            {
-                Text = "ВОЙТИ",
-                Width = 250,
-                Height = 45,
-                Location = new Point(50, 350),
-                BackColor = Color.FromArgb(52, 152, 219),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                Cursor = Cursors.Hand
-            };
-            loginButton.FlatAppearance.BorderSize = 0;
+            // Login button event handlers
             loginButton.Click += LoginButton_Click;
             loginButton.MouseEnter += (s, e) => loginButton.BackColor = Color.FromArgb(41, 128, 185);
             loginButton.MouseLeave += (s, e) => loginButton.BackColor = Color.FromArgb(52, 152, 219);
-            loginPanel.Controls.Add(loginButton);
-            
-            Controls.Add(loginPanel);
-            
-            // Footer
-            var footerLabel = new Label
-            {
-                Text = "Система учета мебели © 2025",
-                Font = new Font("Segoe UI", 9),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(140, 480)
-            };
-            Controls.Add(footerLabel);
         }
         
         private void LoginButton_Click(object sender, EventArgs e)

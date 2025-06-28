@@ -7,81 +7,27 @@ using FurnitureAccounting.Services;
 
 namespace FurnitureAccounting.Views
 {
-    public class WriteOffForm : Form
+    public partial class WriteOffForm : Form
     {
         private DataService _dataService;
-        private ComboBox furnitureComboBox;
-        private TextBox reasonTextBox;
-        private Label furnitureDetailsLabel;
-        private Button writeOffButton;
         
         public WriteOffForm(DataService dataService)
         {
             _dataService = dataService;
-            InitializeComponents();
+            InitializeComponent();
+            SetupEventHandlers();
             LoadData();
         }
         
-        private void InitializeComponents()
+        private void SetupEventHandlers()
         {
-            Text = "Списание мебели";
-            Size = new Size(500, 350);
-            StartPosition = FormStartPosition.CenterParent;
-            
-            var mainPanel = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 5,
-                Padding = new Padding(20)
-            };
-            
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 80));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            
-            mainPanel.Controls.Add(new Label { Text = "Выберите мебель:", Anchor = AnchorStyles.Right }, 0, 0);
-            furnitureComboBox = new ComboBox 
-            { 
-                Dock = DockStyle.Fill,
-                DropDownStyle = ComboBoxStyle.DropDownList,
-                DisplayMember = "DisplayText"
-            };
             furnitureComboBox.SelectedIndexChanged += FurnitureComboBox_SelectedIndexChanged;
-            mainPanel.Controls.Add(furnitureComboBox, 1, 0);
-            
-            mainPanel.Controls.Add(new Label { Text = "Детали:", Anchor = AnchorStyles.Right | AnchorStyles.Top }, 0, 1);
-            furnitureDetailsLabel = new Label 
-            { 
-                Text = "Выберите мебель для просмотра деталей",
-                ForeColor = Color.Gray,
-                AutoSize = true,
-                MaximumSize = new Size(300, 0)
-            };
-            mainPanel.Controls.Add(furnitureDetailsLabel, 1, 1);
-            
-            mainPanel.Controls.Add(new Label { Text = "Причина списания:", Anchor = AnchorStyles.Right | AnchorStyles.Top }, 0, 3);
-            reasonTextBox = new TextBox 
-            { 
-                Dock = DockStyle.Fill,
-                Multiline = true,
-                ScrollBars = ScrollBars.Vertical
-            };
-            mainPanel.Controls.Add(reasonTextBox, 1, 3);
-            
-            writeOffButton = new Button 
-            { 
-                Text = "Списать",
-                Width = 100,
-                Height = 30,
-                Enabled = false
-            };
             writeOffButton.Click += WriteOffButton_Click;
-            mainPanel.Controls.Add(writeOffButton, 1, 4);
             
-            Controls.Add(mainPanel);
+            // Set initial state
+            writeOffButton.Enabled = false;
+            detailsLabel.Text = "Выберите мебель для просмотра деталей";
+            detailsLabel.ForeColor = Color.Gray;
         }
         
         private void LoadData()
@@ -115,19 +61,19 @@ namespace FurnitureAccounting.Views
                             ? _dataService.GetDepartment(furniture.DepartmentId.Value)?.Name ?? "Не назначен"
                             : "Не назначен";
                             
-                        furnitureDetailsLabel.Text = $"Тип: {furniture.Type}\n" +
+                        detailsLabel.Text = $"Тип: {furniture.Type}\n" +
                                                    $"Цена: ${furniture.Price:N2}\n" +
                                                    $"Дата покупки: {furniture.PurchaseDate:d}\n" +
                                                    $"Отдел: {department}";
-                        furnitureDetailsLabel.ForeColor = Color.Black;
+                        detailsLabel.ForeColor = Color.Black;
                         writeOffButton.Enabled = true;
                     }
                 }
             }
             else
             {
-                furnitureDetailsLabel.Text = "Выберите мебель для просмотра деталей";
-                furnitureDetailsLabel.ForeColor = Color.Gray;
+                detailsLabel.Text = "Выберите мебель для просмотра деталей";
+                detailsLabel.ForeColor = Color.Gray;
                 writeOffButton.Enabled = false;
             }
         }
@@ -160,8 +106,8 @@ namespace FurnitureAccounting.Views
                         
                     LoadData();
                     reasonTextBox.Clear();
-                    furnitureDetailsLabel.Text = "Выберите мебель для просмотра деталей";
-                    furnitureDetailsLabel.ForeColor = Color.Gray;
+                    detailsLabel.Text = "Выберите мебель для просмотра деталей";
+                    detailsLabel.ForeColor = Color.Gray;
                     writeOffButton.Enabled = false;
                 }
             }

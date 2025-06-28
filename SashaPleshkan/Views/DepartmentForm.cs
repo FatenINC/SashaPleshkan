@@ -7,167 +7,45 @@ using FurnitureAccounting.Services;
 
 namespace FurnitureAccounting.Views
 {
-    public class DepartmentForm : Form
+    public partial class DepartmentForm : Form
     {
         private DataService _dataService;
-        private DataGridView gridView;
-        private TextBox nameTextBox;
-        private TextBox descriptionTextBox;
-        private Button addButton;
-        private Button updateButton;
-        private Button deleteButton;
         private Department _selectedDepartment;
         
         public DepartmentForm(DataService dataService)
         {
             _dataService = dataService;
-            InitializeComponents();
+            InitializeComponent();
+            SetupEventHandlers();
         }
         
-        private void InitializeComponents()
+        private void SetupEventHandlers()
         {
-            Text = "Управление отделами";
-            Size = new Size(800, 600);
-            StartPosition = FormStartPosition.CenterParent;
-            BackColor = Color.FromArgb(245, 247, 250);
             Load += DepartmentForm_Load;
-            
-            var mainPanel = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 2,
-                Padding = new Padding(10)
-            };
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 240));
-            mainPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            
-            var inputPanel = new Panel
-            {
-                Height = 220,
-                Dock = DockStyle.Top,
-                BackColor = Color.White,
-                Padding = new Padding(20)
-            };
-            
-            var titleLabel = new Label
-            {
-                Text = "Данные отдела",
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
-                ForeColor = Color.FromArgb(44, 62, 80),
-                AutoSize = true,
-                Location = new Point(20, 10)
-            };
-            inputPanel.Controls.Add(titleLabel);
-            
-            var inputLayout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 3,
-                Padding = new Padding(20, 40, 20, 10),
-                BackColor = Color.White
-            };
-            
-            var nameLabel = new Label { Text = "Название:", Anchor = AnchorStyles.Right, Font = new Font("Segoe UI", 10) };
-            var nameTooltip = new ToolTip();
-            nameTooltip.SetToolTip(nameLabel, "Введите название отдела (обязательно)");
-            inputLayout.Controls.Add(nameLabel, 0, 0);
-            nameTextBox = new TextBox { Dock = DockStyle.Fill, Font = new Font("Segoe UI", 10), BorderStyle = BorderStyle.FixedSingle };
-            inputLayout.Controls.Add(nameTextBox, 1, 0);
-            
-            var descLabel = new Label { Text = "Описание:", Anchor = AnchorStyles.Right, Font = new Font("Segoe UI", 10) };
-            var descTooltip = new ToolTip();
-            descTooltip.SetToolTip(descLabel, "Описание отдела (необязательно)");
-            inputLayout.Controls.Add(descLabel, 0, 1);
-            descriptionTextBox = new TextBox { Dock = DockStyle.Fill, Multiline = true, Height = 50, Font = new Font("Segoe UI", 10), BorderStyle = BorderStyle.FixedSingle, ScrollBars = ScrollBars.Vertical };
-            inputLayout.Controls.Add(descriptionTextBox, 1, 1);
-            
-            var buttonPanel = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                Dock = DockStyle.Fill
-            };
-            
-            addButton = new Button 
-            { 
-                Text = "➕ Добавить", 
-                Width = 100, 
-                Height = 35,
-                BackColor = Color.FromArgb(46, 204, 113),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                Cursor = Cursors.Hand
-            };
-            addButton.FlatAppearance.BorderSize = 0;
+            departmentsDataGridView.SelectionChanged += GridView_SelectionChanged;
             addButton.Click += AddButton_Click;
-            
-            updateButton = new Button 
-            { 
-                Text = "✏️ Изменить", 
-                Width = 100,
-                Height = 35,
-                BackColor = Color.FromArgb(52, 152, 219),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                Enabled = false,
-                Cursor = Cursors.Hand
-            };
-            updateButton.FlatAppearance.BorderSize = 0;
             updateButton.Click += UpdateButton_Click;
-            
-            deleteButton = new Button 
-            { 
-                Text = "🗑️ Удалить", 
-                Width = 100,
-                Height = 35,
-                BackColor = Color.FromArgb(231, 76, 60),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                Enabled = false,
-                Cursor = Cursors.Hand
-            };
-            deleteButton.FlatAppearance.BorderSize = 0;
             deleteButton.Click += DeleteButton_Click;
             
-            buttonPanel.Controls.Add(addButton);
-            buttonPanel.Controls.Add(updateButton);
-            buttonPanel.Controls.Add(deleteButton);
-            
-            inputLayout.Controls.Add(buttonPanel, 1, 2);
-            inputPanel.Controls.Add(inputLayout);
-            
-            gridView = new DataGridView
-            {
-                Dock = DockStyle.Fill,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                MultiSelect = false,
-                ReadOnly = true,
-                BackgroundColor = Color.White,
-                BorderStyle = BorderStyle.None,
-                RowHeadersVisible = false,
-                EnableHeadersVisualStyles = false,
-                Font = new Font("Segoe UI", 10)
-            };
+            // Set tooltips
+            nameToolTip.SetToolTip(nameLabel, "Введите название отдела (обязательно)");
+            descriptionToolTip.SetToolTip(descriptionLabel, "Описание отдела (необязательно)");
             
             // Style the grid
-            gridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
-            gridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            gridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            gridView.ColumnHeadersHeight = 40;
-            gridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
-            gridView.DefaultCellStyle.SelectionForeColor = Color.White;
-            gridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
-            gridView.SelectionChanged += GridView_SelectionChanged;
+            departmentsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
+            departmentsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            departmentsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            departmentsDataGridView.ColumnHeadersHeight = 40;
+            departmentsDataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
+            departmentsDataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+            departmentsDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
+            departmentsDataGridView.RowHeadersVisible = false;
+            departmentsDataGridView.EnableHeadersVisualStyles = false;
+            departmentsDataGridView.Font = new Font("Segoe UI", 10);
             
-            mainPanel.Controls.Add(inputPanel, 0, 0);
-            mainPanel.Controls.Add(gridView, 0, 1);
-            
-            Controls.Add(mainPanel);
+            // Set initial state
+            updateButton.Enabled = false;
+            deleteButton.Enabled = false;
         }
         
         private void DepartmentForm_Load(object sender, EventArgs e)
@@ -178,7 +56,7 @@ namespace FurnitureAccounting.Views
         private void LoadData()
         {
             var departments = _dataService.GetDepartments();
-            gridView.DataSource = departments;
+            departmentsDataGridView.DataSource = departments;
             
             // Use BeginInvoke only if handle is created
             if (departments.Any() && IsHandleCreated)
@@ -187,17 +65,17 @@ namespace FurnitureAccounting.Views
                 {
                     try
                     {
-                        if (gridView.Columns.Contains("Id"))
+                        if (departmentsDataGridView.Columns.Contains("Id"))
                         {
-                            gridView.Columns["Id"].Width = 50;
-                            gridView.Columns["Id"].HeaderText = "ID";
+                            departmentsDataGridView.Columns["Id"].Width = 50;
+                            departmentsDataGridView.Columns["Id"].HeaderText = "ID";
                         }
-                        if (gridView.Columns.Contains("Name"))
-                            gridView.Columns["Name"].HeaderText = "Название";
-                        if (gridView.Columns.Contains("Description"))
-                            gridView.Columns["Description"].HeaderText = "Описание";
-                        if (gridView.Columns.Contains("CreatedDate"))
-                            gridView.Columns["CreatedDate"].HeaderText = "Дата создания";
+                        if (departmentsDataGridView.Columns.Contains("Name"))
+                            departmentsDataGridView.Columns["Name"].HeaderText = "Название";
+                        if (departmentsDataGridView.Columns.Contains("Description"))
+                            departmentsDataGridView.Columns["Description"].HeaderText = "Описание";
+                        if (departmentsDataGridView.Columns.Contains("CreatedDate"))
+                            departmentsDataGridView.Columns["CreatedDate"].HeaderText = "Дата создания";
                     }
                     catch
                     {
@@ -209,9 +87,9 @@ namespace FurnitureAccounting.Views
         
         private void GridView_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridView.SelectedRows.Count > 0)
+            if (departmentsDataGridView.SelectedRows.Count > 0)
             {
-                _selectedDepartment = gridView.SelectedRows[0].DataBoundItem as Department;
+                _selectedDepartment = departmentsDataGridView.SelectedRows[0].DataBoundItem as Department;
                 if (_selectedDepartment != null)
                 {
                     nameTextBox.Text = _selectedDepartment.Name;

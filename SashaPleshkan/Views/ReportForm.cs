@@ -8,53 +8,26 @@ using FurnitureAccounting.Services;
 
 namespace FurnitureAccounting.Views
 {
-    public class ReportForm : Form
+    public partial class ReportForm : Form
     {
         private DataService _dataService;
-        private RichTextBox reportTextBox;
-        private ComboBox reportTypeComboBox;
-        private Button generateButton;
-        private Button saveButton;
-        private Button printButton;
-        private PrintDocument printDocument;
         private string currentReport;
         
         public ReportForm(DataService dataService)
         {
             _dataService = dataService;
-            printDocument = new PrintDocument();
-            printDocument.PrintPage += PrintDocument_PrintPage;
-            InitializeComponents();
+            InitializeComponent();
+            SetupEventHandlers();
         }
         
-        private void InitializeComponents()
+        private void SetupEventHandlers()
         {
-            Text = "Создание отчетов";
-            Size = new Size(800, 600);
-            StartPosition = FormStartPosition.CenterParent;
+            generateButton.Click += GenerateButton_Click;
+            saveButton.Click += SaveButton_Click;
+            printButton.Click += PrintButton_Click;
+            printDocument.PrintPage += PrintDocument_PrintPage;
             
-            var mainPanel = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 3,
-                Padding = new Padding(10)
-            };
-            
-            var controlPanel = new FlowLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                FlowDirection = FlowDirection.LeftToRight,
-                Height = 40
-            };
-            
-            controlPanel.Controls.Add(new Label { Text = "Тип отчета:", AutoSize = true, Anchor = AnchorStyles.Left });
-            
-            reportTypeComboBox = new ComboBox
-            {
-                Width = 200,
-                DropDownStyle = ComboBoxStyle.DropDownList
-            };
+            // Add report types to combo box
             reportTypeComboBox.Items.AddRange(new[] 
             { 
                 "Мебель по отделам",
@@ -65,38 +38,16 @@ namespace FurnitureAccounting.Views
                 "Отчет об общей стоимости"
             });
             reportTypeComboBox.SelectedIndex = 0;
-            controlPanel.Controls.Add(reportTypeComboBox);
             
-            generateButton = new Button { Text = "Создать", Width = 100 };
-            generateButton.Click += GenerateButton_Click;
-            controlPanel.Controls.Add(generateButton);
-            
-            saveButton = new Button { Text = "Сохранить", Width = 80, Enabled = false };
-            saveButton.Click += SaveButton_Click;
-            controlPanel.Controls.Add(saveButton);
-            
-            printButton = new Button { Text = "Печать", Width = 80, Enabled = false };
-            printButton.Click += PrintButton_Click;
-            controlPanel.Controls.Add(printButton);
-            
-            reportTextBox = new RichTextBox
-            {
-                Dock = DockStyle.Fill,
-                ReadOnly = true,
-                Font = new Font("Consolas", 10),
-                WordWrap = false
-            };
-            
-            mainPanel.Controls.Add(controlPanel, 0, 0);
-            mainPanel.Controls.Add(reportTextBox, 0, 1);
-            
-            Controls.Add(mainPanel);
+            // Set initial state
+            saveButton.Enabled = false;
+            printButton.Enabled = false;
         }
         
         private void GenerateButton_Click(object sender, EventArgs e)
         {
             currentReport = GenerateReport();
-            reportTextBox.Text = currentReport;
+            reportRichTextBox.Text = currentReport;
             saveButton.Enabled = true;
             printButton.Enabled = true;
         }
