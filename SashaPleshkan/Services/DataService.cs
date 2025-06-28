@@ -102,8 +102,9 @@ namespace FurnitureAccounting.Services
         
         public void AddFurniture(Furniture furniture)
         {
-            // Check if inventory number already exists
-            if (_furniture.Any(f => f.InventoryNumber == furniture.InventoryNumber))
+            // Check if inventory number already exists (skip check for empty/zero inventory numbers)
+            if (!string.IsNullOrWhiteSpace(furniture.InventoryNumber) && furniture.InventoryNumber != "0" &&
+                _furniture.Any(f => f.InventoryNumber == furniture.InventoryNumber))
             {
                 throw new InvalidOperationException($"Мебель с инвентарным номером {furniture.InventoryNumber} уже существует!");
             }
@@ -116,8 +117,9 @@ namespace FurnitureAccounting.Services
         
         public void UpdateFurniture(Furniture furniture)
         {
-            // Check if inventory number already exists for another item
-            if (_furniture.Any(f => f.InventoryNumber == furniture.InventoryNumber && f.Id != furniture.Id))
+            // Check if inventory number already exists for another item (skip check for empty/zero inventory numbers)
+            if (!string.IsNullOrWhiteSpace(furniture.InventoryNumber) && furniture.InventoryNumber != "0" &&
+                _furniture.Any(f => f.InventoryNumber == furniture.InventoryNumber && f.Id != furniture.Id))
             {
                 throw new InvalidOperationException($"Мебель с инвентарным номером {furniture.InventoryNumber} уже существует!");
             }
