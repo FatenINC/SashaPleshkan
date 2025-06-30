@@ -2,15 +2,7 @@ namespace FurnitureAccounting.Views
 {
     partial class WriteOffForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +13,6 @@ namespace FurnitureAccounting.Views
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -37,9 +24,7 @@ namespace FurnitureAccounting.Views
             this.writeOffButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mainPanel
-            // 
+
             this.mainPanel.ColumnCount = 2;
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -59,9 +44,7 @@ namespace FurnitureAccounting.Views
             this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainPanel.Size = new System.Drawing.Size(460, 310);
             this.mainPanel.TabIndex = 0;
-            // 
-            // furnitureLabel
-            // 
+
             this.furnitureLabel.AutoSize = true;
             this.furnitureLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.furnitureLabel.Location = new System.Drawing.Point(3, 0);
@@ -70,9 +53,7 @@ namespace FurnitureAccounting.Views
             this.furnitureLabel.TabIndex = 0;
             this.furnitureLabel.Text = "Мебель для списания:";
             this.furnitureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // furnitureComboBox
-            // 
+
             this.furnitureComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.furnitureComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.furnitureComboBox.FormattingEnabled = true;
@@ -81,9 +62,7 @@ namespace FurnitureAccounting.Views
             this.furnitureComboBox.Name = "furnitureComboBox";
             this.furnitureComboBox.Size = new System.Drawing.Size(304, 23);
             this.furnitureComboBox.TabIndex = 1;
-            // 
-            // detailsLabel
-            // 
+
             this.detailsLabel.AutoSize = true;
             this.detailsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detailsLabel.ForeColor = System.Drawing.Color.Gray;
@@ -93,9 +72,7 @@ namespace FurnitureAccounting.Views
             this.detailsLabel.Size = new System.Drawing.Size(300, 60);
             this.detailsLabel.TabIndex = 2;
             this.detailsLabel.Text = "Выберите мебель для просмотра деталей";
-            // 
-            // reasonLabel
-            // 
+
             this.reasonLabel.AutoSize = true;
             this.reasonLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reasonLabel.Location = new System.Drawing.Point(3, 100);
@@ -103,18 +80,14 @@ namespace FurnitureAccounting.Views
             this.reasonLabel.Size = new System.Drawing.Size(144, 120);
             this.reasonLabel.TabIndex = 3;
             this.reasonLabel.Text = "Причина списания:";
-            // 
-            // reasonTextBox
-            // 
+
             this.reasonTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reasonTextBox.Location = new System.Drawing.Point(153, 103);
             this.reasonTextBox.Multiline = true;
             this.reasonTextBox.Name = "reasonTextBox";
             this.reasonTextBox.Size = new System.Drawing.Size(304, 114);
             this.reasonTextBox.TabIndex = 4;
-            // 
-            // writeOffButton
-            // 
+
             this.writeOffButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.writeOffButton.Location = new System.Drawing.Point(357, 277);
             this.writeOffButton.Name = "writeOffButton";
@@ -122,9 +95,7 @@ namespace FurnitureAccounting.Views
             this.writeOffButton.TabIndex = 5;
             this.writeOffButton.Text = "Списать";
             this.writeOffButton.UseVisualStyleBackColor = true;
-            // 
-            // WriteOffForm
-            // 
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 350);

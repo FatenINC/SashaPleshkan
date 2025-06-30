@@ -57,11 +57,12 @@ namespace FurnitureAccounting.Views
             reportsButton.Click += (s, e) => OpenReportForm();
             importButton.Click += (s, e) => ImportData();
             exportButton.Click += (s, e) => ExportData();
+            aboutButton.Click += (s, e) => OpenAboutForm();
             logoutButton.Click += (s, e) => Application.Exit();
             
             var navButtons = new[] { dashboardButton, furnitureButton, departmentsButton, 
                                    assignmentButton, writeOffButton, reportsButton, logsButton, 
-                                   importButton, exportButton, logoutButton };
+                                   importButton, exportButton, aboutButton, logoutButton };
             
             foreach (var button in navButtons)
             {
@@ -193,6 +194,12 @@ namespace FurnitureAccounting.Views
         private void OpenReportForm()
         {
             var form = new ReportForm(_dataService);
+            form.ShowDialog();
+        }
+        
+        private void OpenAboutForm()
+        {
+            var form = new AboutForm();
             form.ShowDialog();
         }
         

@@ -2,15 +2,7 @@ namespace FurnitureAccounting.Views
 {
     partial class MainForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +13,6 @@ namespace FurnitureAccounting.Views
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.sidebarPanel = new System.Windows.Forms.Panel();
@@ -42,6 +29,8 @@ namespace FurnitureAccounting.Views
             this.dividerLabel = new System.Windows.Forms.Label();
             this.importButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
+            this.dividerLabel2 = new System.Windows.Forms.Label();
+            this.aboutButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.userStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -87,9 +76,7 @@ namespace FurnitureAccounting.Views
             this.recentActionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recentActionsDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // sidebarPanel
-            // 
+
             this.sidebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.sidebarPanel.Controls.Add(this.logoPanel);
             this.sidebarPanel.Controls.Add(this.navigationPanel);
@@ -98,18 +85,14 @@ namespace FurnitureAccounting.Views
             this.sidebarPanel.Name = "sidebarPanel";
             this.sidebarPanel.Size = new System.Drawing.Size(250, 928);
             this.sidebarPanel.TabIndex = 0;
-            // 
-            // logoPanel
-            // 
+
             this.logoPanel.Controls.Add(this.logoLabel);
             this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.logoPanel.Location = new System.Drawing.Point(0, 0);
             this.logoPanel.Name = "logoPanel";
             this.logoPanel.Size = new System.Drawing.Size(250, 60);
             this.logoPanel.TabIndex = 0;
-            // 
-            // logoLabel
-            // 
+
             this.logoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logoLabel.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.logoLabel.ForeColor = System.Drawing.Color.White;
@@ -119,9 +102,7 @@ namespace FurnitureAccounting.Views
             this.logoLabel.TabIndex = 0;
             this.logoLabel.Text = "🪑 Учет мебели";
             this.logoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // navigationPanel
-            // 
+
             this.navigationPanel.Controls.Add(this.dashboardButton);
             this.navigationPanel.Controls.Add(this.furnitureButton);
             this.navigationPanel.Controls.Add(this.departmentsButton);
@@ -132,6 +113,8 @@ namespace FurnitureAccounting.Views
             this.navigationPanel.Controls.Add(this.dividerLabel);
             this.navigationPanel.Controls.Add(this.importButton);
             this.navigationPanel.Controls.Add(this.exportButton);
+            this.navigationPanel.Controls.Add(this.dividerLabel2);
+            this.navigationPanel.Controls.Add(this.aboutButton);
             this.navigationPanel.Controls.Add(this.logoutButton);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -139,9 +122,7 @@ namespace FurnitureAccounting.Views
             this.navigationPanel.Name = "navigationPanel";
             this.navigationPanel.Size = new System.Drawing.Size(250, 828);
             this.navigationPanel.TabIndex = 1;
-            // 
-            // dashboardButton
-            // 
+
             this.dashboardButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.dashboardButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dashboardButton.FlatAppearance.BorderSize = 0;
@@ -157,9 +138,7 @@ namespace FurnitureAccounting.Views
             this.dashboardButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dashboardButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.dashboardButton.UseVisualStyleBackColor = false;
-            // 
-            // furnitureButton
-            // 
+
             this.furnitureButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.furnitureButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.furnitureButton.FlatAppearance.BorderSize = 0;
@@ -175,9 +154,7 @@ namespace FurnitureAccounting.Views
             this.furnitureButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.furnitureButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.furnitureButton.UseVisualStyleBackColor = false;
-            // 
-            // departmentsButton
-            // 
+
             this.departmentsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.departmentsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.departmentsButton.FlatAppearance.BorderSize = 0;
@@ -193,9 +170,7 @@ namespace FurnitureAccounting.Views
             this.departmentsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.departmentsButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.departmentsButton.UseVisualStyleBackColor = false;
-            // 
-            // assignmentButton
-            // 
+
             this.assignmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.assignmentButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.assignmentButton.FlatAppearance.BorderSize = 0;
@@ -211,9 +186,7 @@ namespace FurnitureAccounting.Views
             this.assignmentButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.assignmentButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.assignmentButton.UseVisualStyleBackColor = false;
-            // 
-            // writeOffButton
-            // 
+
             this.writeOffButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.writeOffButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.writeOffButton.FlatAppearance.BorderSize = 0;
@@ -229,9 +202,7 @@ namespace FurnitureAccounting.Views
             this.writeOffButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.writeOffButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.writeOffButton.UseVisualStyleBackColor = false;
-            // 
-            // reportsButton
-            // 
+
             this.reportsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.reportsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.reportsButton.FlatAppearance.BorderSize = 0;
@@ -247,9 +218,7 @@ namespace FurnitureAccounting.Views
             this.reportsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.reportsButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.reportsButton.UseVisualStyleBackColor = false;
-            // 
-            // logsButton
-            // 
+
             this.logsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.logsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logsButton.FlatAppearance.BorderSize = 0;
@@ -265,17 +234,13 @@ namespace FurnitureAccounting.Views
             this.logsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.logsButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.logsButton.UseVisualStyleBackColor = false;
-            // 
-            // dividerLabel
-            // 
+
             this.dividerLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dividerLabel.Location = new System.Drawing.Point(3, 353);
             this.dividerLabel.Name = "dividerLabel";
             this.dividerLabel.Size = new System.Drawing.Size(244, 2);
             this.dividerLabel.TabIndex = 7;
-            // 
-            // importButton
-            // 
+
             this.importButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.importButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.importButton.FlatAppearance.BorderSize = 0;
@@ -291,9 +256,7 @@ namespace FurnitureAccounting.Views
             this.importButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.importButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.importButton.UseVisualStyleBackColor = false;
-            // 
-            // exportButton
-            // 
+
             this.exportButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.exportButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exportButton.FlatAppearance.BorderSize = 0;
@@ -309,27 +272,45 @@ namespace FurnitureAccounting.Views
             this.exportButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.exportButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.exportButton.UseVisualStyleBackColor = false;
-            // 
-            // logoutButton
-            // 
+
+            this.dividerLabel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dividerLabel2.Location = new System.Drawing.Point(3, 461);
+            this.dividerLabel2.Name = "dividerLabel2";
+            this.dividerLabel2.Size = new System.Drawing.Size(244, 2);
+            this.dividerLabel2.TabIndex = 11;
+
+            this.aboutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.aboutButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.aboutButton.FlatAppearance.BorderSize = 0;
+            this.aboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aboutButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.aboutButton.ForeColor = System.Drawing.Color.White;
+            this.aboutButton.Location = new System.Drawing.Point(0, 466);
+            this.aboutButton.Margin = new System.Windows.Forms.Padding(0);
+            this.aboutButton.Name = "aboutButton";
+            this.aboutButton.Size = new System.Drawing.Size(250, 50);
+            this.aboutButton.TabIndex = 12;
+            this.aboutButton.Text = "    ℹ️ О программе";
+            this.aboutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aboutButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.aboutButton.UseVisualStyleBackColor = false;
+
             this.logoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.logoutButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logoutButton.FlatAppearance.BorderSize = 0;
             this.logoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logoutButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.logoutButton.ForeColor = System.Drawing.Color.White;
-            this.logoutButton.Location = new System.Drawing.Point(0, 458);
+            this.logoutButton.Location = new System.Drawing.Point(0, 516);
             this.logoutButton.Margin = new System.Windows.Forms.Padding(0);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(250, 50);
-            this.logoutButton.TabIndex = 10;
+            this.logoutButton.TabIndex = 13;
             this.logoutButton.Text = "    🚪 Выход";
             this.logoutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.logoutButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.logoutButton.UseVisualStyleBackColor = false;
-            // 
-            // statusStrip
-            // 
+
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(250, 928);
@@ -337,15 +318,11 @@ namespace FurnitureAccounting.Views
             this.statusStrip.Size = new System.Drawing.Size(1550, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
-            // 
-            // userStatusLabel
-            // 
+
             this.userStatusLabel.Name = "userStatusLabel";
             this.userStatusLabel.Size = new System.Drawing.Size(118, 17);
             this.userStatusLabel.Text = "Пользователь: Гость";
-            // 
-            // mainContentPanel
-            // 
+
             this.mainContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.mainContentPanel.Controls.Add(this.dashboardPanel);
             this.mainContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -354,18 +331,14 @@ namespace FurnitureAccounting.Views
             this.mainContentPanel.Padding = new System.Windows.Forms.Padding(20);
             this.mainContentPanel.Size = new System.Drawing.Size(1550, 928);
             this.mainContentPanel.TabIndex = 2;
-            // 
-            // dashboardPanel
-            // 
+
             this.dashboardPanel.Controls.Add(this.dashboardLayout);
             this.dashboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dashboardPanel.Location = new System.Drawing.Point(20, 20);
             this.dashboardPanel.Name = "dashboardPanel";
             this.dashboardPanel.Size = new System.Drawing.Size(1510, 888);
             this.dashboardPanel.TabIndex = 0;
-            // 
-            // dashboardLayout
-            // 
+
             this.dashboardLayout.ColumnCount = 1;
             this.dashboardLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.dashboardLayout.Controls.Add(this.headerPanel, 0, 0);
@@ -380,9 +353,7 @@ namespace FurnitureAccounting.Views
             this.dashboardLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.dashboardLayout.Size = new System.Drawing.Size(1510, 888);
             this.dashboardLayout.TabIndex = 0;
-            // 
-            // headerPanel
-            // 
+
             this.headerPanel.Controls.Add(this.welcomeLabel);
             this.headerPanel.Controls.Add(this.dateLabel);
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -390,9 +361,7 @@ namespace FurnitureAccounting.Views
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1504, 74);
             this.headerPanel.TabIndex = 0;
-            // 
-            // welcomeLabel
-            // 
+
             this.welcomeLabel.AutoSize = true;
             this.welcomeLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.welcomeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
@@ -401,9 +370,7 @@ namespace FurnitureAccounting.Views
             this.welcomeLabel.Size = new System.Drawing.Size(317, 45);
             this.welcomeLabel.TabIndex = 0;
             this.welcomeLabel.Text = "Добро пожаловать!";
-            // 
-            // dateLabel
-            // 
+
             this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dateLabel.ForeColor = System.Drawing.Color.Gray;
@@ -413,9 +380,7 @@ namespace FurnitureAccounting.Views
             this.dateLabel.TabIndex = 1;
             this.dateLabel.Text = "Дата";
             this.dateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // statsPanel
-            // 
+
             this.statsPanel.Controls.Add(this.totalFurnitureCard);
             this.statsPanel.Controls.Add(this.activeFurnitureCard);
             this.statsPanel.Controls.Add(this.departmentsCard);
@@ -426,9 +391,7 @@ namespace FurnitureAccounting.Views
             this.statsPanel.Size = new System.Drawing.Size(1504, 314);
             this.statsPanel.TabIndex = 1;
             this.statsPanel.WrapContents = true;
-            // 
-            // totalFurnitureCard
-            // 
+
             this.totalFurnitureCard.BackColor = System.Drawing.Color.White;
             this.totalFurnitureCard.Controls.Add(this.totalFurnitureIconLabel);
             this.totalFurnitureCard.Controls.Add(this.totalFurnitureTitleLabel);
@@ -437,9 +400,7 @@ namespace FurnitureAccounting.Views
             this.totalFurnitureCard.Name = "totalFurnitureCard";
             this.totalFurnitureCard.Size = new System.Drawing.Size(300, 150);
             this.totalFurnitureCard.TabIndex = 0;
-            // 
-            // totalFurnitureIconLabel
-            // 
+
             this.totalFurnitureIconLabel.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.totalFurnitureIconLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.totalFurnitureIconLabel.Location = new System.Drawing.Point(20, 20);
@@ -448,9 +409,7 @@ namespace FurnitureAccounting.Views
             this.totalFurnitureIconLabel.TabIndex = 0;
             this.totalFurnitureIconLabel.Text = "🪑";
             this.totalFurnitureIconLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // totalFurnitureTitleLabel
-            // 
+
             this.totalFurnitureTitleLabel.AutoSize = true;
             this.totalFurnitureTitleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.totalFurnitureTitleLabel.ForeColor = System.Drawing.Color.Gray;
@@ -459,9 +418,7 @@ namespace FurnitureAccounting.Views
             this.totalFurnitureTitleLabel.Size = new System.Drawing.Size(111, 21);
             this.totalFurnitureTitleLabel.TabIndex = 1;
             this.totalFurnitureTitleLabel.Text = "Всего мебели";
-            // 
-            // totalFurnitureValueLabel
-            // 
+
             this.totalFurnitureValueLabel.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.totalFurnitureValueLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.totalFurnitureValueLabel.Location = new System.Drawing.Point(120, 60);
@@ -469,9 +426,7 @@ namespace FurnitureAccounting.Views
             this.totalFurnitureValueLabel.Size = new System.Drawing.Size(160, 50);
             this.totalFurnitureValueLabel.TabIndex = 2;
             this.totalFurnitureValueLabel.Text = "0";
-            // 
-            // activeFurnitureCard
-            // 
+
             this.activeFurnitureCard.BackColor = System.Drawing.Color.White;
             this.activeFurnitureCard.Controls.Add(this.activeFurnitureIconLabel);
             this.activeFurnitureCard.Controls.Add(this.activeFurnitureTitleLabel);
@@ -480,9 +435,7 @@ namespace FurnitureAccounting.Views
             this.activeFurnitureCard.Name = "activeFurnitureCard";
             this.activeFurnitureCard.Size = new System.Drawing.Size(300, 150);
             this.activeFurnitureCard.TabIndex = 1;
-            // 
-            // activeFurnitureIconLabel
-            // 
+
             this.activeFurnitureIconLabel.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.activeFurnitureIconLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.activeFurnitureIconLabel.Location = new System.Drawing.Point(20, 20);
@@ -491,9 +444,7 @@ namespace FurnitureAccounting.Views
             this.activeFurnitureIconLabel.TabIndex = 0;
             this.activeFurnitureIconLabel.Text = "✅";
             this.activeFurnitureIconLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // activeFurnitureTitleLabel
-            // 
+
             this.activeFurnitureTitleLabel.AutoSize = true;
             this.activeFurnitureTitleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.activeFurnitureTitleLabel.ForeColor = System.Drawing.Color.Gray;
@@ -502,9 +453,7 @@ namespace FurnitureAccounting.Views
             this.activeFurnitureTitleLabel.Size = new System.Drawing.Size(146, 21);
             this.activeFurnitureTitleLabel.TabIndex = 1;
             this.activeFurnitureTitleLabel.Text = "Активная мебель";
-            // 
-            // activeFurnitureValueLabel
-            // 
+
             this.activeFurnitureValueLabel.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.activeFurnitureValueLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.activeFurnitureValueLabel.Location = new System.Drawing.Point(120, 60);
@@ -512,9 +461,7 @@ namespace FurnitureAccounting.Views
             this.activeFurnitureValueLabel.Size = new System.Drawing.Size(160, 50);
             this.activeFurnitureValueLabel.TabIndex = 2;
             this.activeFurnitureValueLabel.Text = "0";
-            // 
-            // departmentsCard
-            // 
+
             this.departmentsCard.BackColor = System.Drawing.Color.White;
             this.departmentsCard.Controls.Add(this.departmentsIconLabel);
             this.departmentsCard.Controls.Add(this.departmentsTitleLabel);
@@ -523,9 +470,7 @@ namespace FurnitureAccounting.Views
             this.departmentsCard.Name = "departmentsCard";
             this.departmentsCard.Size = new System.Drawing.Size(300, 150);
             this.departmentsCard.TabIndex = 2;
-            // 
-            // departmentsIconLabel
-            // 
+
             this.departmentsIconLabel.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.departmentsIconLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.departmentsIconLabel.Location = new System.Drawing.Point(20, 20);
@@ -534,9 +479,7 @@ namespace FurnitureAccounting.Views
             this.departmentsIconLabel.TabIndex = 0;
             this.departmentsIconLabel.Text = "🏢";
             this.departmentsIconLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // departmentsTitleLabel
-            // 
+
             this.departmentsTitleLabel.AutoSize = true;
             this.departmentsTitleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.departmentsTitleLabel.ForeColor = System.Drawing.Color.Gray;
@@ -545,9 +488,7 @@ namespace FurnitureAccounting.Views
             this.departmentsTitleLabel.Size = new System.Drawing.Size(66, 21);
             this.departmentsTitleLabel.TabIndex = 1;
             this.departmentsTitleLabel.Text = "Отделы";
-            // 
-            // departmentsValueLabel
-            // 
+
             this.departmentsValueLabel.Font = new System.Drawing.Font("Segoe UI", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.departmentsValueLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.departmentsValueLabel.Location = new System.Drawing.Point(120, 60);
@@ -555,9 +496,7 @@ namespace FurnitureAccounting.Views
             this.departmentsValueLabel.Size = new System.Drawing.Size(160, 50);
             this.departmentsValueLabel.TabIndex = 2;
             this.departmentsValueLabel.Text = "0";
-            // 
-            // totalValueCard
-            // 
+
             this.totalValueCard.BackColor = System.Drawing.Color.White;
             this.totalValueCard.Controls.Add(this.totalValueIconLabel);
             this.totalValueCard.Controls.Add(this.totalValueTitleLabel);
@@ -566,9 +505,7 @@ namespace FurnitureAccounting.Views
             this.totalValueCard.Name = "totalValueCard";
             this.totalValueCard.Size = new System.Drawing.Size(300, 150);
             this.totalValueCard.TabIndex = 3;
-            // 
-            // totalValueIconLabel
-            // 
+
             this.totalValueIconLabel.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.totalValueIconLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(89)))), ((int)(((byte)(182)))));
             this.totalValueIconLabel.Location = new System.Drawing.Point(20, 20);
@@ -577,9 +514,7 @@ namespace FurnitureAccounting.Views
             this.totalValueIconLabel.TabIndex = 0;
             this.totalValueIconLabel.Text = "💰";
             this.totalValueIconLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // totalValueTitleLabel
-            // 
+
             this.totalValueTitleLabel.AutoSize = true;
             this.totalValueTitleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.totalValueTitleLabel.ForeColor = System.Drawing.Color.Gray;
@@ -588,9 +523,7 @@ namespace FurnitureAccounting.Views
             this.totalValueTitleLabel.Size = new System.Drawing.Size(137, 21);
             this.totalValueTitleLabel.TabIndex = 1;
             this.totalValueTitleLabel.Text = "Общая стоимость";
-            // 
-            // totalValueValueLabel
-            // 
+
             this.totalValueValueLabel.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.totalValueValueLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.totalValueValueLabel.Location = new System.Drawing.Point(120, 60);
@@ -598,9 +531,7 @@ namespace FurnitureAccounting.Views
             this.totalValueValueLabel.Size = new System.Drawing.Size(160, 50);
             this.totalValueValueLabel.TabIndex = 2;
             this.totalValueValueLabel.Text = "0 ₽";
-            // 
-            // recentActionsPanel
-            // 
+
             this.recentActionsPanel.BackColor = System.Drawing.Color.White;
             this.recentActionsPanel.Controls.Add(this.recentActionsTitleLabel);
             this.recentActionsPanel.Controls.Add(this.recentActionsDataGridView);
@@ -610,9 +541,7 @@ namespace FurnitureAccounting.Views
             this.recentActionsPanel.Padding = new System.Windows.Forms.Padding(20);
             this.recentActionsPanel.Size = new System.Drawing.Size(1504, 482);
             this.recentActionsPanel.TabIndex = 2;
-            // 
-            // recentActionsTitleLabel
-            // 
+
             this.recentActionsTitleLabel.AutoSize = true;
             this.recentActionsTitleLabel.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.recentActionsTitleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
@@ -621,13 +550,11 @@ namespace FurnitureAccounting.Views
             this.recentActionsTitleLabel.Size = new System.Drawing.Size(232, 30);
             this.recentActionsTitleLabel.TabIndex = 0;
             this.recentActionsTitleLabel.Text = "Последние действия";
-            // 
-            // recentActionsDataGridView
-            // 
+
             this.recentActionsDataGridView.AllowUserToAddRows = false;
             this.recentActionsDataGridView.AllowUserToDeleteRows = false;
-            this.recentActionsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.recentActionsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.recentActionsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.recentActionsDataGridView.BackgroundColor = System.Drawing.Color.White;
@@ -640,9 +567,7 @@ namespace FurnitureAccounting.Views
             this.recentActionsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.recentActionsDataGridView.Size = new System.Drawing.Size(1464, 542);
             this.recentActionsDataGridView.TabIndex = 1;
-            // 
-            // MainForm
-            // 
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 700);
@@ -696,6 +621,8 @@ namespace FurnitureAccounting.Views
         private System.Windows.Forms.Label dividerLabel;
         private System.Windows.Forms.Button importButton;
         private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Label dividerLabel2;
+        private System.Windows.Forms.Button aboutButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel userStatusLabel;

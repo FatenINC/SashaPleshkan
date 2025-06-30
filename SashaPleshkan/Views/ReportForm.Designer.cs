@@ -2,15 +2,7 @@ namespace FurnitureAccounting.Views
 {
     partial class ReportForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +13,6 @@ namespace FurnitureAccounting.Views
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -40,9 +27,7 @@ namespace FurnitureAccounting.Views
             this.mainPanel.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mainPanel
-            // 
+
             this.mainPanel.ColumnCount = 1;
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainPanel.Controls.Add(this.topPanel, 0, 0);
@@ -55,9 +40,7 @@ namespace FurnitureAccounting.Views
             this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainPanel.Size = new System.Drawing.Size(800, 600);
             this.mainPanel.TabIndex = 0;
-            // 
-            // topPanel
-            // 
+
             this.topPanel.Controls.Add(this.reportTypeLabel);
             this.topPanel.Controls.Add(this.reportTypeComboBox);
             this.topPanel.Controls.Add(this.generateButton);
@@ -69,9 +52,7 @@ namespace FurnitureAccounting.Views
             this.topPanel.Padding = new System.Windows.Forms.Padding(5);
             this.topPanel.Size = new System.Drawing.Size(794, 44);
             this.topPanel.TabIndex = 0;
-            // 
-            // reportTypeLabel
-            // 
+
             this.reportTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.reportTypeLabel.AutoSize = true;
             this.reportTypeLabel.Location = new System.Drawing.Point(8, 14);
@@ -79,27 +60,21 @@ namespace FurnitureAccounting.Views
             this.reportTypeLabel.Size = new System.Drawing.Size(72, 15);
             this.reportTypeLabel.TabIndex = 0;
             this.reportTypeLabel.Text = "Тип отчета:";
-            // 
-            // reportTypeComboBox
-            // 
+
             this.reportTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.reportTypeComboBox.FormattingEnabled = true;
             this.reportTypeComboBox.Location = new System.Drawing.Point(86, 8);
             this.reportTypeComboBox.Name = "reportTypeComboBox";
             this.reportTypeComboBox.Size = new System.Drawing.Size(250, 23);
             this.reportTypeComboBox.TabIndex = 1;
-            // 
-            // generateButton
-            // 
+
             this.generateButton.Location = new System.Drawing.Point(342, 8);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(100, 25);
             this.generateButton.TabIndex = 2;
             this.generateButton.Text = "Сформировать";
             this.generateButton.UseVisualStyleBackColor = true;
-            // 
-            // saveButton
-            // 
+
             this.saveButton.Enabled = false;
             this.saveButton.Location = new System.Drawing.Point(448, 8);
             this.saveButton.Name = "saveButton";
@@ -107,9 +82,7 @@ namespace FurnitureAccounting.Views
             this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
-            // 
-            // printButton
-            // 
+
             this.printButton.Enabled = false;
             this.printButton.Location = new System.Drawing.Point(554, 8);
             this.printButton.Name = "printButton";
@@ -117,9 +90,7 @@ namespace FurnitureAccounting.Views
             this.printButton.TabIndex = 4;
             this.printButton.Text = "Печать";
             this.printButton.UseVisualStyleBackColor = true;
-            // 
-            // reportRichTextBox
-            // 
+
             this.reportRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reportRichTextBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.reportRichTextBox.Location = new System.Drawing.Point(3, 53);
@@ -129,9 +100,7 @@ namespace FurnitureAccounting.Views
             this.reportRichTextBox.TabIndex = 1;
             this.reportRichTextBox.Text = "";
             this.reportRichTextBox.WordWrap = false;
-            // 
-            // ReportForm
-            // 
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
