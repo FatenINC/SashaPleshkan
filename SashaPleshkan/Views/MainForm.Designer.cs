@@ -324,7 +324,7 @@ namespace FurnitureAccounting.Views
             // 
             // aboutButton
             // 
-            this.aboutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185))));
+            this.aboutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.aboutButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.aboutButton.FlatAppearance.BorderSize = 0;
             this.aboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

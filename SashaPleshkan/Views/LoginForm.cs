@@ -6,7 +6,7 @@ namespace FurnitureAccounting.Views
 {
     public partial class LoginForm : Form
     {
-        public string Username { get; private set; }
+        public string Username { get; private set; } = string.Empty;
 
         public LoginForm()
         {
@@ -40,7 +40,7 @@ namespace FurnitureAccounting.Views
             loginButton.MouseLeave += (s, e) => loginButton.BackColor = Color.FromArgb(52, 152, 219);
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object? sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(usernameTextBox.Text))
             {
