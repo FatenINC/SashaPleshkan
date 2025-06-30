@@ -2,15 +2,7 @@ namespace FurnitureAccounting.Views
 {
     partial class LogsForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +13,6 @@ namespace FurnitureAccounting.Views
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -46,9 +33,7 @@ namespace FurnitureAccounting.Views
             this.filterLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logsDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // mainPanel
-            // 
+
             this.mainPanel.ColumnCount = 1;
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainPanel.Controls.Add(this.filterGroupBox, 0, 0);
@@ -61,9 +46,7 @@ namespace FurnitureAccounting.Views
             this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainPanel.Size = new System.Drawing.Size(900, 600);
             this.mainPanel.TabIndex = 0;
-            // 
-            // filterGroupBox
-            // 
+
             this.filterGroupBox.Controls.Add(this.filterLayout);
             this.filterGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.filterGroupBox.Location = new System.Drawing.Point(3, 3);
@@ -72,9 +55,7 @@ namespace FurnitureAccounting.Views
             this.filterGroupBox.TabIndex = 0;
             this.filterGroupBox.TabStop = false;
             this.filterGroupBox.Text = "Фильтры";
-            // 
-            // filterLayout
-            // 
+
             this.filterLayout.Controls.Add(this.fromLabel);
             this.filterLayout.Controls.Add(this.fromDateTimePicker);
             this.filterLayout.Controls.Add(this.toLabel);
@@ -90,9 +71,7 @@ namespace FurnitureAccounting.Views
             this.filterLayout.Padding = new System.Windows.Forms.Padding(10);
             this.filterLayout.Size = new System.Drawing.Size(888, 72);
             this.filterLayout.TabIndex = 0;
-            // 
-            // fromLabel
-            // 
+
             this.fromLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.fromLabel.AutoSize = true;
             this.fromLabel.Location = new System.Drawing.Point(13, 19);
@@ -100,17 +79,13 @@ namespace FurnitureAccounting.Views
             this.fromLabel.Size = new System.Drawing.Size(18, 15);
             this.fromLabel.TabIndex = 0;
             this.fromLabel.Text = "С:";
-            // 
-            // fromDateTimePicker
-            // 
+
             this.fromDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.fromDateTimePicker.Location = new System.Drawing.Point(37, 13);
             this.fromDateTimePicker.Name = "fromDateTimePicker";
             this.fromDateTimePicker.Size = new System.Drawing.Size(100, 23);
             this.fromDateTimePicker.TabIndex = 1;
-            // 
-            // toLabel
-            // 
+
             this.toLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.toLabel.AutoSize = true;
             this.toLabel.Location = new System.Drawing.Point(143, 19);
@@ -118,17 +93,13 @@ namespace FurnitureAccounting.Views
             this.toLabel.Size = new System.Drawing.Size(25, 15);
             this.toLabel.TabIndex = 2;
             this.toLabel.Text = "По:";
-            // 
-            // toDateTimePicker
-            // 
+
             this.toDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.toDateTimePicker.Location = new System.Drawing.Point(174, 13);
             this.toDateTimePicker.Name = "toDateTimePicker";
             this.toDateTimePicker.Size = new System.Drawing.Size(100, 23);
             this.toDateTimePicker.TabIndex = 3;
-            // 
-            // actionLabel
-            // 
+
             this.actionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.actionLabel.AutoSize = true;
             this.actionLabel.Location = new System.Drawing.Point(280, 19);
@@ -136,45 +107,35 @@ namespace FurnitureAccounting.Views
             this.actionLabel.Size = new System.Drawing.Size(62, 15);
             this.actionLabel.TabIndex = 4;
             this.actionLabel.Text = "Действие:";
-            // 
-            // actionComboBox
-            // 
+
             this.actionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.actionComboBox.FormattingEnabled = true;
             this.actionComboBox.Location = new System.Drawing.Point(348, 13);
             this.actionComboBox.Name = "actionComboBox";
             this.actionComboBox.Size = new System.Drawing.Size(150, 23);
             this.actionComboBox.TabIndex = 5;
-            // 
-            // applyButton
-            // 
+
             this.applyButton.Location = new System.Drawing.Point(504, 13);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(80, 25);
             this.applyButton.TabIndex = 6;
             this.applyButton.Text = "Применить";
             this.applyButton.UseVisualStyleBackColor = true;
-            // 
-            // clearButton
-            // 
+
             this.clearButton.Location = new System.Drawing.Point(590, 13);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(80, 25);
             this.clearButton.TabIndex = 7;
             this.clearButton.Text = "Очистить";
             this.clearButton.UseVisualStyleBackColor = true;
-            // 
-            // exportButton
-            // 
+
             this.exportButton.Location = new System.Drawing.Point(676, 13);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(100, 25);
             this.exportButton.TabIndex = 8;
             this.exportButton.Text = "Экспорт в Excel";
             this.exportButton.UseVisualStyleBackColor = true;
-            // 
-            // logsDataGridView
-            // 
+
             this.logsDataGridView.AllowUserToAddRows = false;
             this.logsDataGridView.AllowUserToDeleteRows = false;
             this.logsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -187,9 +148,7 @@ namespace FurnitureAccounting.Views
             this.logsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.logsDataGridView.Size = new System.Drawing.Size(894, 494);
             this.logsDataGridView.TabIndex = 1;
-            // 
-            // LogsForm
-            // 
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 600);

@@ -2,15 +2,7 @@ namespace FurnitureAccounting.Views
 {
     partial class AssignmentForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +13,6 @@ namespace FurnitureAccounting.Views
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -41,9 +28,7 @@ namespace FurnitureAccounting.Views
             this.mainPanel.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mainPanel
-            // 
+
             this.mainPanel.ColumnCount = 2;
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -65,9 +50,7 @@ namespace FurnitureAccounting.Views
             this.mainPanel.SetColumnSpan(this.buttonPanel, 2);
             this.mainPanel.Size = new System.Drawing.Size(460, 260);
             this.mainPanel.TabIndex = 0;
-            // 
-            // furnitureLabel
-            // 
+
             this.furnitureLabel.AutoSize = true;
             this.furnitureLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.furnitureLabel.Location = new System.Drawing.Point(3, 0);
@@ -76,9 +59,7 @@ namespace FurnitureAccounting.Views
             this.furnitureLabel.TabIndex = 0;
             this.furnitureLabel.Text = "Мебель:";
             this.furnitureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // furnitureComboBox
-            // 
+
             this.furnitureComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.furnitureComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.furnitureComboBox.FormattingEnabled = true;
@@ -87,9 +68,7 @@ namespace FurnitureAccounting.Views
             this.furnitureComboBox.Name = "furnitureComboBox";
             this.furnitureComboBox.Size = new System.Drawing.Size(304, 23);
             this.furnitureComboBox.TabIndex = 1;
-            // 
-            // currentAssignmentTitleLabel
-            // 
+
             this.currentAssignmentTitleLabel.AutoSize = true;
             this.currentAssignmentTitleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.currentAssignmentTitleLabel.Location = new System.Drawing.Point(3, 40);
@@ -98,9 +77,7 @@ namespace FurnitureAccounting.Views
             this.currentAssignmentTitleLabel.TabIndex = 2;
             this.currentAssignmentTitleLabel.Text = "Текущее назначение:";
             this.currentAssignmentTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // currentAssignmentLabel
-            // 
+
             this.currentAssignmentLabel.AutoSize = true;
             this.currentAssignmentLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.currentAssignmentLabel.ForeColor = System.Drawing.Color.Gray;
@@ -110,9 +87,7 @@ namespace FurnitureAccounting.Views
             this.currentAssignmentLabel.TabIndex = 3;
             this.currentAssignmentLabel.Text = "Не назначено";
             this.currentAssignmentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // departmentLabel
-            // 
+
             this.departmentLabel.AutoSize = true;
             this.departmentLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.departmentLabel.Location = new System.Drawing.Point(3, 80);
@@ -121,9 +96,7 @@ namespace FurnitureAccounting.Views
             this.departmentLabel.TabIndex = 4;
             this.departmentLabel.Text = "Назначить в отдел:";
             this.departmentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // departmentComboBox
-            // 
+
             this.departmentComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.departmentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.departmentComboBox.FormattingEnabled = true;
@@ -132,9 +105,7 @@ namespace FurnitureAccounting.Views
             this.departmentComboBox.Name = "departmentComboBox";
             this.departmentComboBox.Size = new System.Drawing.Size(304, 23);
             this.departmentComboBox.TabIndex = 5;
-            // 
-            // buttonPanel
-            // 
+
             this.buttonPanel.Controls.Add(this.assignButton);
             this.buttonPanel.Controls.Add(this.unassignButton);
             this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -143,27 +114,21 @@ namespace FurnitureAccounting.Views
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(454, 40);
             this.buttonPanel.TabIndex = 6;
-            // 
-            // assignButton
-            // 
+
             this.assignButton.Location = new System.Drawing.Point(376, 3);
             this.assignButton.Name = "assignButton";
             this.assignButton.Size = new System.Drawing.Size(75, 30);
             this.assignButton.TabIndex = 0;
             this.assignButton.Text = "Назначить";
             this.assignButton.UseVisualStyleBackColor = true;
-            // 
-            // unassignButton
-            // 
+
             this.unassignButton.Location = new System.Drawing.Point(255, 3);
             this.unassignButton.Name = "unassignButton";
             this.unassignButton.Size = new System.Drawing.Size(115, 30);
             this.unassignButton.TabIndex = 1;
             this.unassignButton.Text = "Отменить назначение";
             this.unassignButton.UseVisualStyleBackColor = true;
-            // 
-            // AssignmentForm
-            // 
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 300);

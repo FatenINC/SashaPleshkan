@@ -19,7 +19,6 @@ namespace FurnitureAccounting.Views
         
         private string TranslateAction(string action)
         {
-            // Переводим старые английские действия на русский для отображения
             var translations = new System.Collections.Generic.Dictionary<string, string>
             {
                 { "Add Department", "Добавить отдел" },
@@ -54,7 +53,6 @@ namespace FurnitureAccounting.Views
         {
             var logs = _dataService.GetLogs().OrderByDescending(l => l.Timestamp).ToList();
             
-            // Переводим действия для отображения
             var displayLogs = logs.Select(l => new 
             {
                 l.Id,
@@ -66,7 +64,6 @@ namespace FurnitureAccounting.Views
             
             logsDataGridView.DataSource = displayLogs;
             
-            // Use BeginInvoke only if handle is created
             if (logs.Any() && IsHandleCreated)
             {
                 BeginInvoke(new Action(() =>
@@ -101,7 +98,6 @@ namespace FurnitureAccounting.Views
                     }
                     catch
                     {
-                        // Ignore column formatting errors
                     }
                 }));
             }
@@ -131,7 +127,6 @@ namespace FurnitureAccounting.Views
                 logs = logs.Where(l => TranslateAction(l.Action) == actionComboBox.Text).ToList();
             }
             
-            // Переводим действия для отображения
             var displayLogs = logs.Select(l => new 
             {
                 l.Id,

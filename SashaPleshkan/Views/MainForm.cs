@@ -27,7 +27,6 @@ namespace FurnitureAccounting.Views
         
         private string TranslateAction(string action)
         {
-            // Переводим старые английские действия на русский для отображения
             var translations = new System.Collections.Generic.Dictionary<string, string>
             {
                 { "Add Department", "Добавить отдел" },
@@ -49,7 +48,6 @@ namespace FurnitureAccounting.Views
         {
             Activated += MainForm_Activated;
             
-            // Setup navigation button events
             dashboardButton.Click += (s, e) => ShowDashboard();
             departmentsButton.Click += (s, e) => OpenDepartmentForm();
             furnitureButton.Click += (s, e) => OpenFurnitureForm();
@@ -62,7 +60,6 @@ namespace FurnitureAccounting.Views
             aboutButton.Click += (s, e) => OpenAboutForm();
             logoutButton.Click += (s, e) => Application.Exit();
             
-            // Add hover effects to navigation buttons
             var navButtons = new[] { dashboardButton, furnitureButton, departmentsButton, 
                                    assignmentButton, writeOffButton, reportsButton, logsButton, 
                                    importButton, exportButton, aboutButton, logoutButton };
@@ -81,12 +78,9 @@ namespace FurnitureAccounting.Views
                 };
             }
             
-            // Highlight dashboard button by default
             dashboardButton.BackColor = secondaryColor;
             
-            // Import/Export - these buttons don't exist in Designer, so we'll handle in navigation setup
             
-            // Update status label
             userStatusLabel.Text = $"👤 Пользователь: {Environment.UserName} | 📅 {DateTime.Now:dddd, d MMMM yyyy}";
         }
         
@@ -96,26 +90,21 @@ namespace FurnitureAccounting.Views
             mainContentPanel.Controls.Clear();
             mainContentPanel.Controls.Add(dashboardPanel);
             
-            // Update existing UI elements from Designer
             welcomeLabel.Text = $"Добро пожаловать, {Environment.UserName}!";
             dateLabel.Text = DateTime.Now.ToString("dddd, d MMMM yyyy");
             
-            // Update statistics
             var departments = _dataService.GetDepartments();
             var furniture = _dataService.GetFurniture();
             var activeFurniture = furniture.Where(f => !f.IsWrittenOff).ToList();
             var totalValue = activeFurniture.Sum(f => f.Price);
             
-            // Update stat cards values
             totalFurnitureValueLabel.Text = furniture.Count.ToString();
             activeFurnitureValueLabel.Text = activeFurniture.Count.ToString();
             departmentsValueLabel.Text = departments.Count.ToString();
             totalValueValueLabel.Text = $"{totalValue:N0} ₽";
             
-            // Update recent actions grid
             var recentLogs = _dataService.GetLogs().OrderByDescending(l => l.Timestamp).Take(10).ToList();
             
-            // Переводим действия для отображения
             var displayLogs = recentLogs.Select(l => new 
             {
                 l.Id,
@@ -127,7 +116,6 @@ namespace FurnitureAccounting.Views
             
             recentActionsDataGridView.DataSource = displayLogs;
             
-            // Use BeginInvoke to ensure columns are created
             if (IsHandleCreated && displayLogs.Any())
             {
                 BeginInvoke(new Action(() =>
@@ -155,7 +143,6 @@ namespace FurnitureAccounting.Views
                     }
                     catch
                     {
-                        // Ignore any column formatting errors
                     }
                 }));
             }
@@ -164,7 +151,6 @@ namespace FurnitureAccounting.Views
         
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            // Refresh dashboard when main form is activated
             if (mainContentPanel.Controls.Contains(dashboardPanel))
             {
                 ShowDashboard();
@@ -175,28 +161,28 @@ namespace FurnitureAccounting.Views
         {
             var form = new DepartmentForm(_dataService);
             form.ShowDialog();
-            ShowDashboard(); // Refresh dashboard after changes
+            ShowDashboard();
         }
         
         private void OpenFurnitureForm()
         {
             var form = new FurnitureForm(_dataService);
             form.ShowDialog();
-            ShowDashboard(); // Refresh dashboard after changes
+            ShowDashboard();
         }
         
         private void OpenAssignmentForm()
         {
             var form = new AssignmentForm(_dataService);
             form.ShowDialog();
-            ShowDashboard(); // Refresh dashboard after changes
+            ShowDashboard();
         }
         
         private void OpenWriteOffForm()
         {
             var form = new WriteOffForm(_dataService);
             form.ShowDialog();
-            ShowDashboard(); // Refresh dashboard after changes
+            ShowDashboard();
         }
         
         private void OpenLogsForm()
@@ -231,7 +217,7 @@ namespace FurnitureAccounting.Views
                         _dataService.ImportData(dialog.FileName);
                         MessageBox.Show("Данные успешно импортированы!", "Успех", 
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        ShowDashboard(); // Refresh dashboard after import
+                        ShowDashboard();
                     }
                     catch (Exception ex)
                     {

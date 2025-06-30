@@ -27,11 +27,9 @@ namespace FurnitureAccounting.Views
             updateButton.Click += UpdateButton_Click;
             deleteButton.Click += DeleteButton_Click;
             
-            // Set tooltips
             nameToolTip.SetToolTip(nameLabel, "Введите название отдела (обязательно)");
             descriptionToolTip.SetToolTip(descriptionLabel, "Описание отдела (необязательно)");
             
-            // Style the grid
             departmentsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
             departmentsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             departmentsDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
@@ -43,7 +41,6 @@ namespace FurnitureAccounting.Views
             departmentsDataGridView.EnableHeadersVisualStyles = false;
             departmentsDataGridView.Font = new Font("Segoe UI", 10);
             
-            // Set initial state
             updateButton.Enabled = false;
             deleteButton.Enabled = false;
         }
@@ -58,7 +55,6 @@ namespace FurnitureAccounting.Views
             var departments = _dataService.GetDepartments();
             departmentsDataGridView.DataSource = departments;
             
-            // Use BeginInvoke only if handle is created
             if (departments.Any() && IsHandleCreated)
             {
                 BeginInvoke(new Action(() =>
@@ -79,7 +75,6 @@ namespace FurnitureAccounting.Views
                     }
                     catch
                     {
-                        // Ignore column formatting errors
                     }
                 }));
             }

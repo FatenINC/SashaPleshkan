@@ -2,15 +2,7 @@ namespace FurnitureAccounting.Views
 {
     partial class LoginForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +13,6 @@ namespace FurnitureAccounting.Views
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             mainPanel = new Panel();
@@ -39,9 +26,7 @@ namespace FurnitureAccounting.Views
             footerLabel = new Label();
             mainPanel.SuspendLayout();
             SuspendLayout();
-            // 
-            // mainPanel
-            // 
+
             mainPanel.BackColor = Color.White;
             mainPanel.Controls.Add(titleLabel);
             mainPanel.Controls.Add(iconLabel);
@@ -54,9 +39,7 @@ namespace FurnitureAccounting.Views
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(300, 350);
             mainPanel.TabIndex = 0;
-            // 
-            // titleLabel
-            // 
+
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
             titleLabel.ForeColor = Color.FromArgb(52, 152, 219);
@@ -66,9 +49,7 @@ namespace FurnitureAccounting.Views
             titleLabel.TabIndex = 0;
             titleLabel.Text = "Учет мебели";
             titleLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // iconLabel
-            // 
+
             iconLabel.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point);
             iconLabel.Location = new Point(100, 20);
             iconLabel.Name = "iconLabel";
@@ -76,9 +57,7 @@ namespace FurnitureAccounting.Views
             iconLabel.TabIndex = 1;
             iconLabel.Text = "\U0001fa91";
             iconLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // usernameLabel
-            // 
+
             usernameLabel.AutoSize = true;
             usernameLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             usernameLabel.ForeColor = Color.FromArgb(64, 64, 64);
@@ -87,18 +66,14 @@ namespace FurnitureAccounting.Views
             usernameLabel.Size = new Size(125, 19);
             usernameLabel.TabIndex = 2;
             usernameLabel.Text = "Имя пользователя";
-            // 
-            // usernameTextBox
-            // 
+
             usernameTextBox.BorderStyle = BorderStyle.FixedSingle;
             usernameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             usernameTextBox.Location = new Point(50, 182);
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(200, 29);
             usernameTextBox.TabIndex = 3;
-            // 
-            // passwordLabel
-            // 
+
             passwordLabel.AutoSize = true;
             passwordLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             passwordLabel.ForeColor = Color.FromArgb(64, 64, 64);
@@ -107,9 +82,7 @@ namespace FurnitureAccounting.Views
             passwordLabel.Size = new Size(56, 19);
             passwordLabel.TabIndex = 4;
             passwordLabel.Text = "Пароль";
-            // 
-            // passwordTextBox
-            // 
+
             passwordTextBox.BorderStyle = BorderStyle.FixedSingle;
             passwordTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             passwordTextBox.Location = new Point(50, 242);
@@ -117,9 +90,7 @@ namespace FurnitureAccounting.Views
             passwordTextBox.PasswordChar = '•';
             passwordTextBox.Size = new Size(200, 29);
             passwordTextBox.TabIndex = 5;
-            // 
-            // loginButton
-            // 
+
             loginButton.BackColor = Color.FromArgb(52, 152, 219);
             loginButton.Cursor = Cursors.Hand;
             loginButton.FlatAppearance.BorderSize = 0;
@@ -132,9 +103,7 @@ namespace FurnitureAccounting.Views
             loginButton.TabIndex = 6;
             loginButton.Text = "Войти";
             loginButton.UseVisualStyleBackColor = false;
-            // 
-            // footerLabel
-            // 
+
             footerLabel.AutoSize = true;
             footerLabel.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             footerLabel.ForeColor = Color.White;
@@ -145,9 +114,7 @@ namespace FurnitureAccounting.Views
             footerLabel.Text = "© 2025 Учет мебели";
             footerLabel.TextAlign = ContentAlignment.MiddleCenter;
             footerLabel.Click += footerLabel_Click;
-            // 
-            // LoginForm
-            // 
+
             AcceptButton = loginButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;

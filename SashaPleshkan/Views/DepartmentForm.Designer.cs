@@ -2,15 +2,7 @@ namespace FurnitureAccounting.Views
 {
     partial class DepartmentForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,11 +13,6 @@ namespace FurnitureAccounting.Views
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -48,9 +35,7 @@ namespace FurnitureAccounting.Views
             this.inputPanel.SuspendLayout();
             this.buttonPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mainPanel
-            // 
+
             this.mainPanel.ColumnCount = 1;
             this.mainPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainPanel.Controls.Add(this.departmentsDataGridView, 0, 0);
@@ -63,9 +48,7 @@ namespace FurnitureAccounting.Views
             this.mainPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.mainPanel.Size = new System.Drawing.Size(760, 560);
             this.mainPanel.TabIndex = 0;
-            // 
-            // departmentsDataGridView
-            // 
+
             this.departmentsDataGridView.AllowUserToAddRows = false;
             this.departmentsDataGridView.AllowUserToDeleteRows = false;
             this.departmentsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -80,9 +63,7 @@ namespace FurnitureAccounting.Views
             this.departmentsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.departmentsDataGridView.Size = new System.Drawing.Size(754, 374);
             this.departmentsDataGridView.TabIndex = 0;
-            // 
-            // inputPanel
-            // 
+
             this.inputPanel.BackColor = System.Drawing.Color.White;
             this.inputPanel.Controls.Add(this.titleLabel);
             this.inputPanel.Controls.Add(this.nameLabel);
@@ -96,9 +77,7 @@ namespace FurnitureAccounting.Views
             this.inputPanel.Padding = new System.Windows.Forms.Padding(15);
             this.inputPanel.Size = new System.Drawing.Size(754, 174);
             this.inputPanel.TabIndex = 1;
-            // 
-            // titleLabel
-            // 
+
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -107,9 +86,7 @@ namespace FurnitureAccounting.Views
             this.titleLabel.Size = new System.Drawing.Size(154, 25);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "Новый отдел";
-            // 
-            // nameLabel
-            // 
+
             this.nameLabel.AutoSize = true;
             this.nameLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nameLabel.Location = new System.Drawing.Point(15, 50);
@@ -117,17 +94,13 @@ namespace FurnitureAccounting.Views
             this.nameLabel.Size = new System.Drawing.Size(71, 19);
             this.nameLabel.TabIndex = 1;
             this.nameLabel.Text = "Название:";
-            // 
-            // nameTextBox
-            // 
+
             this.nameTextBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nameTextBox.Location = new System.Drawing.Point(90, 47);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(300, 25);
             this.nameTextBox.TabIndex = 2;
-            // 
-            // descriptionLabel
-            // 
+
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.descriptionLabel.Location = new System.Drawing.Point(15, 85);
@@ -135,18 +108,14 @@ namespace FurnitureAccounting.Views
             this.descriptionLabel.Size = new System.Drawing.Size(75, 19);
             this.descriptionLabel.TabIndex = 3;
             this.descriptionLabel.Text = "Описание:";
-            // 
-            // descriptionTextBox
-            // 
+
             this.descriptionTextBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.descriptionTextBox.Location = new System.Drawing.Point(90, 82);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(300, 45);
             this.descriptionTextBox.TabIndex = 4;
-            // 
-            // buttonPanel
-            // 
+
             this.buttonPanel.Controls.Add(this.addButton);
             this.buttonPanel.Controls.Add(this.updateButton);
             this.buttonPanel.Controls.Add(this.deleteButton);
@@ -155,9 +124,7 @@ namespace FurnitureAccounting.Views
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(329, 80);
             this.buttonPanel.TabIndex = 5;
-            // 
-            // addButton
-            // 
+
             this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.addButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addButton.FlatAppearance.BorderSize = 0;
@@ -170,9 +137,7 @@ namespace FurnitureAccounting.Views
             this.addButton.TabIndex = 0;
             this.addButton.Text = "➕ Добавить";
             this.addButton.UseVisualStyleBackColor = false;
-            // 
-            // updateButton
-            // 
+
             this.updateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.updateButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.updateButton.FlatAppearance.BorderSize = 0;
@@ -185,9 +150,7 @@ namespace FurnitureAccounting.Views
             this.updateButton.TabIndex = 1;
             this.updateButton.Text = "✏️ Изменить";
             this.updateButton.UseVisualStyleBackColor = false;
-            // 
-            // deleteButton
-            // 
+
             this.deleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.deleteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.deleteButton.FlatAppearance.BorderSize = 0;
@@ -200,9 +163,7 @@ namespace FurnitureAccounting.Views
             this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "🗑️ Удалить";
             this.deleteButton.UseVisualStyleBackColor = false;
-            // 
-            // DepartmentForm
-            // 
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
