@@ -42,6 +42,8 @@ namespace FurnitureAccounting.Views
             this.dividerLabel = new System.Windows.Forms.Label();
             this.importButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
+            this.dividerLabel2 = new System.Windows.Forms.Label();
+            this.aboutButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.userStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -132,6 +134,8 @@ namespace FurnitureAccounting.Views
             this.navigationPanel.Controls.Add(this.dividerLabel);
             this.navigationPanel.Controls.Add(this.importButton);
             this.navigationPanel.Controls.Add(this.exportButton);
+            this.navigationPanel.Controls.Add(this.dividerLabel2);
+            this.navigationPanel.Controls.Add(this.aboutButton);
             this.navigationPanel.Controls.Add(this.logoutButton);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigationPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -310,6 +314,32 @@ namespace FurnitureAccounting.Views
             this.exportButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.exportButton.UseVisualStyleBackColor = false;
             // 
+            // dividerLabel2
+            // 
+            this.dividerLabel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dividerLabel2.Location = new System.Drawing.Point(3, 461);
+            this.dividerLabel2.Name = "dividerLabel2";
+            this.dividerLabel2.Size = new System.Drawing.Size(244, 2);
+            this.dividerLabel2.TabIndex = 11;
+            // 
+            // aboutButton
+            // 
+            this.aboutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185))));
+            this.aboutButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.aboutButton.FlatAppearance.BorderSize = 0;
+            this.aboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aboutButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.aboutButton.ForeColor = System.Drawing.Color.White;
+            this.aboutButton.Location = new System.Drawing.Point(0, 466);
+            this.aboutButton.Margin = new System.Windows.Forms.Padding(0);
+            this.aboutButton.Name = "aboutButton";
+            this.aboutButton.Size = new System.Drawing.Size(250, 50);
+            this.aboutButton.TabIndex = 12;
+            this.aboutButton.Text = "    ℹ️ О программе";
+            this.aboutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aboutButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.aboutButton.UseVisualStyleBackColor = false;
+            // 
             // logoutButton
             // 
             this.logoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
@@ -318,11 +348,11 @@ namespace FurnitureAccounting.Views
             this.logoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logoutButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.logoutButton.ForeColor = System.Drawing.Color.White;
-            this.logoutButton.Location = new System.Drawing.Point(0, 458);
+            this.logoutButton.Location = new System.Drawing.Point(0, 516);
             this.logoutButton.Margin = new System.Windows.Forms.Padding(0);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(250, 50);
-            this.logoutButton.TabIndex = 10;
+            this.logoutButton.TabIndex = 13;
             this.logoutButton.Text = "    🚪 Выход";
             this.logoutButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.logoutButton.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
@@ -696,6 +726,8 @@ namespace FurnitureAccounting.Views
         private System.Windows.Forms.Label dividerLabel;
         private System.Windows.Forms.Button importButton;
         private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Label dividerLabel2;
+        private System.Windows.Forms.Button aboutButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel userStatusLabel;
